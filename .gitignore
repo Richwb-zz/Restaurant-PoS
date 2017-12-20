@@ -1,3 +1,5 @@
 node_modules/
 config/
 js/queries.js
+package.json
+yarn.lock
