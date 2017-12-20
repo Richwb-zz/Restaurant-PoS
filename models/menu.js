@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: false
 		},
 		meal_type:{
-			type: DataTypes.String,
+			type: DataTypes.STRING,
 			allowNull: false,
 			validate:{
 				len: {
