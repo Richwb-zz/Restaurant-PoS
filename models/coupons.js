@@ -18,11 +18,25 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             default: 0.00
         },
-        active: {
+        used: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             default: false
         }
     });
+
+    coupons.prototype.validateCoupon = coupon => {
+        if(this.used){
+            return "coupon has already been used";
+        }else if(this.start_date > Date.now()){
+            return "coupon not valid until " + this.start_date;
+        }else if(this.end_date < Date.now()){
+            return "coupon expired on " + this.end_date
+        }else{
+            return this.amount;
+        }
+    }
+
     return coupons;
 }
+
