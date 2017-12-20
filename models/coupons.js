@@ -22,6 +22,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             default: false
+        },
+        used_date:  {
+            type: DataTypes.DATE
         }
     });
 
@@ -33,7 +36,16 @@ module.exports = (sequelize, DataTypes) => {
         }else if(this.end_date < Date.now()){
             return "coupon expired on " + this.end_date
         }else{
-            return this.amount;
+            coupons.update({
+                used: true,
+                used_date: Date.now(),
+            },{
+                where: {
+                    id: coupon.couponcode
+                }
+            })
+            .success(result => result)
+            .catch(error => error)
         }
     }
 
