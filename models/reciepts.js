@@ -1,32 +1,32 @@
 module.exports = (sequelize, DataTypes) => {
-    const reciept = sequelize.define("reciept", {
+    const reciepts = sequelize.define("reciepts", {
         table: {
             type: DataTypes.TINYINT,
-            allowNull: False
+            allowNull: false
         },
         items: {
             type: DataTypes.JSON,
-            allowNull: True
+            allowNull: true
         },
         sub_total: {
             type: DataTypes.DECIMAL,
             defaultValue: 0.00,
-            allowNull: True
+            allowNull: true
         },
         tax: {
             type: DataTypes.DECIMAL,
             defaultValue: 0.00,
-            allowNull: False
+            allowNull: false
         },
         total: {
             type: DataTypes.DECIMAL,
             defaultValue: 0.00,
-            allowNull: False
+            allowNull: false
         },
         paid: {
-            type: DataTypes.Boolean,
-            defaultValue: False,
-            allowNull: False
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false
         }
     });
 
