@@ -1,9 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
     const coupons = sequelize.define("coupons", {
         coupon_code: {
-            type: DataTypes.UUIDV1,
-            default: DataTypes.UUIDV1,
-            allowNull: false
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV1,
+            allowNull: false,
+            primaryKey: true
         },
         start_date: {
             type: DataTypes.DATEONLY,
@@ -16,12 +17,12 @@ module.exports = (sequelize, DataTypes) => {
         amount: {
             type: DataTypes.DECIMAL,
             allowNull: false,
-            default: 0.00
+            defaultValue: 0.00
         },
         used: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            default: false
+            defaultValue: false
         },
         used_date:  {
             type: DataTypes.DATE
