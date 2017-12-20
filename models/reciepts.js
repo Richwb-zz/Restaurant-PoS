@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         items: {
-            type: DataTypes.JSON,
+            type: DataTypes.STRING,
             allowNull: true
         },
         sub_total: {
