@@ -7,11 +7,11 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true
         },
         start_date: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.DATE,
             allowNull: false
         },
         expire_date: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.DATE,
             allowNull: false             
         },
         amount: {
