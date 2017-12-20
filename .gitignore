@@ -2,3 +2,4 @@ node_modules/
 js/queries.js
 package.json
 yarn.lock
+config/
