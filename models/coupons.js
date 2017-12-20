@@ -3,26 +3,26 @@ module.exports = (sequelize, DataTypes) => {
         coupon_code: {
             type: DataTypes.UUIDV1,
             default: DataTypes.UUIDV1,
-            allowNull: False
+            allowNull: false
         },
         start_date: {
-            type: DataTypes.Date,
-            allowNull: False
+            type: DataTypes.DATEONLY,
+            allowNull: false
         },
         expire_date: {
-            type: DataTypes.Date,
-            allowNull: False             
+            type: DataTypes.DATEONLY,
+            allowNull: false             
         },
         amount: {
             type: DataTypes.DECIMAL,
-            allowNull: False,
+            allowNull: false,
             default: 0.00
         },
         active: {
-            type: DataTypes.Boolean,
-            allowNull: False,
-            default: False
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            default: false
         }
     });
-
+    return coupons;
 }
