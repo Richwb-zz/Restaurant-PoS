@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const reciepts = sequelize.define("reciepts", {
+    const receipts = sequelize.define("receipts", {
         table: {
             type: DataTypes.TINYINT,
             allowNull: false
@@ -30,5 +30,5 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
 
-    return reciepts;
+    return receipts;
 }
