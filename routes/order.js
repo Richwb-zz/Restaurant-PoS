@@ -1,15 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const models = require("../models/index.js");
-const reciept = models.reciepts;
+const receipt = models.receipts;
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
+//create new reciept
+router.post('/open', (req,res,next) => {
+    receipt.create({
+        items: req.body.order
+    })
+    .then(result => res.json(result))
+    .catch(error => res.json(error))
+});
+
 //add order to reciept
 router.put('/place', (req, res, next) => {
-    reciept.findOne({
+    receipt.findOne({
         where: {
-            id: req.body.recieptId
+            id: req.body.receiptId
         }
     })
     .then(result => {
@@ -18,7 +27,7 @@ router.put('/place', (req, res, next) => {
         },{
             where: {
                 id: {
-                    [Op.eq]: req.body.recieptId
+                    [Op.eq]: req.body.receiptId
                 }
             }
         })
@@ -39,7 +48,7 @@ router.delete('/remove', (req, res, next) => {
 
         res.json(result[0].dataValues);
     })
-    .catch(error => (error));
+    .catch(error => res.json(error));
 });
 
 module.exports = router;
