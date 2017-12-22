@@ -1,18 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 if (mongoose.connection.readyState === 0) {
-  mongoose.Promise = Promise;
-  mongoose.connect(require('./connection-string'), {
-    useMongoClient: true
-  });
+  mongoose.connect(require('./connection-string'));
 }
+
 
 var newSchema = new Schema({
   
   'name': { type: String },
-  'description': { type: String },
-  'cost': { type: Number },
-  'category': { type: String },
   'createdAt': { type: Date, default: Date.now },
   'updatedAt': { type: Date, default: Date.now }
 });
@@ -30,4 +25,6 @@ newSchema.pre('findOneAndUpdate', function() {
   this.update({}, { $set: { updatedAt: Date.now() } });
 });
 
-module.exports = mongoose.model('Menu', newSchema);
+
+
+module.exports = mongoose.model('Servers', newSchema);

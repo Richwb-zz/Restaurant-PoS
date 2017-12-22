@@ -12,12 +12,14 @@ var newSchema = new Schema({
   'guests': { type: Number },
   'server': { type: String },
   'items': { type: Array },
-  'sub_total': { type: Number },
-  'tax': { type: Number },
-  'total': { type: Number },
-  'paid': { type: Boolean },
+  'sub_total': { type: Number, Default: 0.00 },
+  'tax': { type: Number, Default: 0.00  },
+  'total': { type: Number, Default: 0.00  },
+  'paid': { type: Boolean, Default: False  },
+  'paidtime': { type: Date},
+  'paymenttype':{ type: String},
   'createdAt': { type: Date, default: Date.now },
-  'updatedAt': { type: Date, default: Date.now }
+  'updatedAt': { type: Date, default: Date.now },
 });
 
 newSchema.pre('save', function(next){

@@ -2,7 +2,7 @@ var fs = require('fs');
 
 //require all the models 
 var models = {};
-var names = fs.readdirSync('./models');
+var names = fs.readdirSync('/');
 
 names.forEach(name => {
   if (!name.match(/\.js$/)) return;
