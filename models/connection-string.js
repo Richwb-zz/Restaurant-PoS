@@ -6,7 +6,7 @@
 
 var url = require('url')
 
-var uri = '';
+var uri = 'mongodb://localhost:27017/restaurant';
 if (!uri) {
   throw new Error(
     '\033[31mYou need to provide the connection string. ' +
