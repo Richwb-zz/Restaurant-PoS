@@ -1,9 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const models = require("../models/index.js");
-const receipt = models.receipts;
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
+const express   = require('express');
+const router    = express.Router();
+const mongoose 	= require('mongoose');
+const models 	= require('../models/all-models.js');
 
 //create new reciept
 router.post('/open', (req,res,next) => {
@@ -16,6 +14,7 @@ router.post('/open', (req,res,next) => {
 
 //add order to reciept
 router.put('/place', (req, res, next) => {
+    console.log("test");
     receipt.findOne({
         where: {
             id: req.body.receiptId
