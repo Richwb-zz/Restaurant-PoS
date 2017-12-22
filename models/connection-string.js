@@ -1,9 +1,3 @@
-// place connection string here
-// e.g. var uri = 'mongodb://andy:corn@ds051334.mongolab.com:51334/cli';
-// or   var uri = 'mongodb://andy:corn@localhost:27017/cli';
-// or   var uri = config.get('mongo');
-// or   var uri = process.env.MONGO_URL
-
 var url = require('url')
 
 var uri = 'mongodb://localhost:27017/restaurant';
