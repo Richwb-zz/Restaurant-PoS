@@ -2,14 +2,17 @@ const express   = require('express');
 const router    = express.Router();
 const mongoose 	= require('mongoose');
 const models 	= require('../models/all-models.js');
+const Receipts = models.Receipts;
 
 //create new reciept
 router.post('/open', (req,res,next) => {
-    receipt.create({
-        items: req.body.order
-    })
-    .then(result => res.json(result))
-    .catch(error => res.json(error))
+    const seat = req.body.newSeat;
+    console.log(req.body.newSeat);
+    models.Receipts
+        .create({table: 4, guests: 4, server:"Rick"})
+        .then(results => console.log(results))
+        .catch(error => console.log(error));
+
 });
 
 //add order to reciept
