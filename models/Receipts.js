@@ -15,7 +15,7 @@ var newSchema = new Schema({
   'sub_total': { type: Number, Default: 0.00 },
   'tax': { type: Number, Default: 0.00  },
   'total': { type: Number, Default: 0.00  },
-  'paid': { type: Boolean, Default: False  },
+  'paid': { type: Boolean, Default: false  },
   'paidtime': { type: Date},
   'paymenttype':{ type: String},
   'createdAt': { type: Date, default: Date.now },
@@ -35,4 +35,4 @@ newSchema.pre('findOneAndUpdate', function() {
   this.update({}, { $set: { updatedAt: Date.now() } });
 });
 
-module.exports = mongoose.model('Reciepts', newSchema);
+module.exports = mongoose.model('Receipts', newSchema);
