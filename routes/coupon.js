@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const models = require("../models/index.js");
-const coupons = model.coupon;
+const mongoose = require('mongoose');
+const models = require("../models/all-models.js");
 
 // process a coupon
 router.put('/coupon', (req, res, next) => {
@@ -18,3 +18,5 @@ router.put('/coupon', (req, res, next) => {
     })
     .catch(error => error);
 });
+
+module.exports = router;
