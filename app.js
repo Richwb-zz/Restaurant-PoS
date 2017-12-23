@@ -6,6 +6,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
+const coupon = require('./routes/coupon');
+const menu = require('./routes/menu');
+const order = require('./routes/order');
+const check = require('./routes/check');
 
 const app = express();
 
@@ -18,6 +22,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/coupon', coupon);
+app.use('/menu', menu);
+app.use('/order', order);
+app.use('/check', check);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -34,7 +42,7 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json('error');
 });
 
 module.exports = app;

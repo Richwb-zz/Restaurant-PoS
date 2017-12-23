@@ -8,12 +8,14 @@ if (mongoose.connection.readyState === 0) {
 }
 
 var newSchema = new Schema({
-  
-  'id': { type: Number },
-  'name': { type: String },
-  'description': { type: String },
-  'cost': { type: Number },
-  'category': { type: String },
+  'table': { type: Number },
+  'guests': { type: Number },
+  'server': { type: String },
+  'items': { type: Array },
+  'sub_total': { type: Number },
+  'tax': { type: Number },
+  'total': { type: Number },
+  'paid': { type: Boolean },
   'createdAt': { type: Date, default: Date.now },
   'updatedAt': { type: Date, default: Date.now }
 });
@@ -31,4 +33,4 @@ newSchema.pre('findOneAndUpdate', function() {
   this.update({}, { $set: { updatedAt: Date.now() } });
 });
 
-module.exports = mongoose.model('Menu', newSchema);
+module.exports = mongoose.model('Reciepts', newSchema);
