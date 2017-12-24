@@ -2,9 +2,18 @@ const express   = require('express');
 const router    = express.Router();
 const mongoose 	= require('mongoose');
 const models 	= require('../models/all-models.js');
+const menu = models.Menu;
+//get all menu items
+router.get('/', (req, res, next) => {
+    console.log("test1");
+    models.Servers.find()
+    .then(results => res.json(results))
+    .catch(error => res.json(error));
+});
 
 //get menu list from selected menu section
 router.get('/:section', (req, res, next) => {
+   console.log("test2");
     menu.findAll({
         where: {
             meal_type: req.headers.category
@@ -15,7 +24,7 @@ router.get('/:section', (req, res, next) => {
 
         res.json(result[0].dataValues);
     })
-    .catch(error => (error));
+    .catch(error => res.json(error));
 });
 
 module.exports = router;
