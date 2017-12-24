@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "client": "node scripts/start-client.js",
-    "start": "concurrently \"nodemon ./bin/www\" \"npm run client\""
+    "start": "concurrently \"nodemon ./bin/www\" \"npm run client\"",
+    "server": "node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
