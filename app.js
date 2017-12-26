@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
-const coupon = require('./routes/coupon');
+//const coupon = require('./routes/coupon');
 const menu = require('./routes/menu');
 const order = require('./routes/order');
 const check = require('./routes/check');
@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/coupon', coupon);
+//app.use('/coupon', coupon);
 app.use('/menu', menu);
 app.use('/order', order);
 app.use('/check', check);
