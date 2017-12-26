@@ -15,7 +15,9 @@ var newSchema = new Schema({
   'category': { type: String },
   'createdAt': { type: Date, default: Date.now },
   'updatedAt': { type: Date, default: Date.now }
-});
+},
+{ collection: 'menu'}
+);
 
 newSchema.pre('save', function(next){
   this.updatedAt = Date.now();
