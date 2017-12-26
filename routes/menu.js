@@ -13,16 +13,10 @@ router.get('/', (req, res, next) => {
 
 //get menu list from selected menu section
 router.get('/:section', (req, res, next) => {
-    menu.findAll({
-        where: {
-            meal_type: req.headers.category
-        }
-    })
-    .then(result =>{
-        console.log(result[0].dataValues);
-
-        res.json(result[0].dataValues);
-    })
+    menu
+    .find({})
+    .where("category").equals(req.params.section)
+    .then(result => res.json(result))
     .catch(error => res.json(error));
 });
 
