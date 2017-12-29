@@ -1,10 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 if (mongoose.connection.readyState === 0) {
-  mongoose.Promise = Promise;
-  mongoose.connect(require('./connection-string'), {
-    useMongoClient: true
-  });
+  mongoose.connect(require('./connection-string'));
 }
 
 var newSchema = new Schema({

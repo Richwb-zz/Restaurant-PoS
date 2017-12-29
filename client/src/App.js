@@ -1,134 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+import { Button, Grid, Row, Col } from 'react-bootstrap'
+import Navbar from './components/Navbar'
+import Order from './Pages/Order'
+import Tables from './Pages/Tables'
+import Table from './Pages/Tables/Table'
 
-class App extends Component {
+const App = () => {
+    <Router>
+        <div>
+            <Navbar />
+            <Switch>
+                <Route exact path="/" component={Tables} />
+                <Route exact path="/table/:id" component={Table} />
+                <Route exact path="/order/:id" component={order} />
+                <Route component={NoMatch} />
+            </Switch>
+        </div>
+    </Router>;
 
-  state = {
-    tables: {
-    table1: {
-      isOccupied: false,
-      guestNumber: null,
-      bill: {
-        id: null,
-        items: {},
-        total: null 
-      }
-    },
-    table2: {
-      isOccupied: false,
-      guestNumber: null,
-      bill: {
-        id: null,
-        items: {},
-        total: null
-      }
-    },
-    table3: {
-      isOccupied: false,
-      guestNumber: null,
-      bill: {
-        id: null,
-        items: {},
-        total: null
-      }
-    },
-    table4: {
-      isOccupied: false,
-      guestNumber: null,
-      bill: {
-        id: null,
-        items: {},
-        total: null
-      }
-    },
-    table5: {
-      isOccupied: false,
-      guestNumber: null,
-      bill: {
-        id: null,
-        items: {},
-        total: null
-      }
-    },
-    table6: {
-      isOccupied: false,
-      guestNumber: null,
-      bill: {
-        id: null,
-        items: {},
-        total: null
-      }
-    },
-    table7: {
-      isOccupied: false,
-      guestNumber: null,
-      bill: {
-        id: null,
-        items: {},
-        total: null
-      }
-    },
-    table8: {
-      isOccupied: false,
-      guestNumber: null,
-      bill: {
-        id: null,
-        items: {},
-        total: null
-      }
-    },
-    table9: {
-      isOccupied: false,
-      guestNumber: null,
-      bill: {
-        id: null,
-        items: {},
-        total: null
-      }
-    },
-    table10: {
-      isOccupied: false,
-      guestNumber: null,
-      bill: {
-        id: null,
-        items: {},
-        total: null
-      }
-    }, table11: {
-      isOccupied: false,
-      guestNumber: null,
-      bill: {
-        id: null,
-        items: {},
-        total: null
-      }
-    },
-    table12: {
-      isOccupied: false,
-      guestNumber: null,
-      bill: {
-        id: null,
-        items: {},
-        total: null
-      }
-    }
-  },
-  servers: {}
-  }
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+
 }
-
 export default App;
