@@ -5,51 +5,28 @@ const models 	= require('../models/all-models.js');
 const Receipts = models.Receipts;
 
 //create new reciept
-router.post('/open', (req,res,next) => {
+router.post('/seat', (req,res,next) => {
     const seat = req.body.newSeat;
-    console.log(req.body.newSeat);
+    console.log(seat);
     models.Receipts
-        .create({table: 4, guests: 4, server:"Rick"})
-        .then(results => console.log(results))
-        .catch(error => console.log(error));
+        .create({_Id: 5374574745, table: 4, guests: 4, server:"Morty"})
+        .then(results => res.json(results))
+        .catch(error => res.json(error));
 
 });
 
 //add order to reciept
 router.put('/place', (req, res, next) => {
-    console.log("test");
-    receipt.findOne({
+    const test = {_id: "5a3ecc677afbe70638c7fec9", table: 4, guests: 4, server:"Bob"};
+    console.log(test);
+    reciept.update(test,{
         where: {
-            id: req.body.receiptId
-        }
-    })
-    .then(result => {
-        reciept.update({
-            items: result.items + "," + req.body.order,
-        },{
-            where: {
-                id: {
-                    [Op.eq]: req.body.receiptId
-                }
+            _id: {
+                [Op.eq]: test._Id
             }
-        })
+        }
     })
     .then(result =>  res.json(result))
-    .catch(error => res.json(error));
-});
-
-//remove order from menu
-router.delete('/remove', (req, res, next) => {
-    menu.findOne({
-        where: {
-            meal_type: req.headers.category
-        }
-    })
-    .then(result =>{
-        console.log(result[0].dataValues);
-
-        res.json(result[0].dataValues);
-    })
     .catch(error => res.json(error));
 });
 
