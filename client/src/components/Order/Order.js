@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { Button,Panel, Grid, Row, Col, Container } from 'react-bootstrap';
 import Menubuttons from "./MenuButtons";
+import OrderList from "./OrderList";
 const menu = [[{"name": "coke"},{"name": "water"}],[{"name": "salad"},{"name": "soup"}]];
-let id = -1
+let id = -1;
 
 class Order extends Component {
     state = {
-        id: -1
+        id: -1,
+        newOrderList: []
     };
+
+    addToOrder = (orderList) => {
+        const addToOrder = this.state.newOrderList;
+        addToOrder.push(orderList);
+        this.setState({newOrderList:addToOrder});
+    }
 
     onItemClick = (event) => {
         this.setState({
@@ -26,9 +34,10 @@ class Order extends Component {
                     <h2 onClick={(event) => this.onItemClick(event)} data-id="4"> Specials   </h2>
                 </Col>
                 <Col id="items" md={7}>
+                    <Menubuttons addToOrder={this.addToOrder.bind(this)} menu={menu} id={this.state.id} />
                 </Col>
                 <Col id="order-list" md={3}>
-                    <Menubuttons menu={menu} id={this.state.id}/>
+                    <OrderList newOrders={this.state.newOrderList} />
                 </Col>
             </Row>
         );
