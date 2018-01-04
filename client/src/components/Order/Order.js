@@ -3,7 +3,6 @@ import { Button,Panel, Grid, Row, Col, Container } from 'react-bootstrap';
 import Menubuttons from "./MenuButtons";
 import OrderList from "./OrderList";
 const menu = [[{"name": "coke"},{"name": "water"}],[{"name": "salad"},{"name": "soup"}]];
-let id = -1;
 
 class Order extends Component {
     state = {
