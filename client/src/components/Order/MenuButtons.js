@@ -1,19 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react';
+import {Button} from 'react-bootstrap';
 
-const MenuButtons = props => {
-    // console.log(props);
-    // console.log(props.menu[0][0].name);
-    const id = props.id;
-  
-        if(props.id > -1){
+class MenuButtons extends Component {
+    
+    addOrder = (event) => {
+        this.props.addToOrder(event.target.id)
+    }
+
+    renderButtons(props){
+        const id = props.id;
+        if(id > -1){
+            
             return (
                 props.menu[id].map((section,index) => {
-                    return <p>{section.name}</p>
+                    return <Button id={section.name} onClick={(event) => this.addOrder(event)}>{section.name}</Button>
                 })  
             );     
         }else{
             return <p></p>
         }
+    }
+
+    render () {
+        return(
+            <div>
+            {this.renderButtons(this.props)}
+            </div>
+        )
+    }
 };
 
 export default MenuButtons;
