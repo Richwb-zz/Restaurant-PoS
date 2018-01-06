@@ -5,6 +5,7 @@ import { Button, Grid, Row, Col } from 'react-bootstrap'
 import API from './utils/API'
 import Order from './components/Order'
 import Navbar from './components/Nav/Navbar'
+import Aux from './components/hoc/Aux'
 
 class App extends Component {
 
@@ -142,7 +143,7 @@ class App extends Component {
   activeTableHander = (event) => {
     //this is for the page to know what table is selected.  
     //Make sure error handling is added to mselect an active table / verify active table when submitting an order
-    
+
     alert(`selected ${event}`)
   }
   getMenu = () => {
@@ -179,7 +180,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
+        <Aux>
+          <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
+        </Aux>
         <div> Tables </div>
         <Order />
       </div>
