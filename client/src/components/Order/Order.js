@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button,Panel, Grid, Row, Col, Container } from 'react-bootstrap';
 import Menubuttons from "./MenuButtons";
 import OrderList from "./OrderList";
+// import placeOrder from "../utils/API"
 const menu = [[{"name": "coke"},{"name": "water"}],[{"name": "salad"},{"name": "soup"}]];
 
 class Order extends Component {
@@ -10,10 +11,26 @@ class Order extends Component {
         newOrderList: []
     };
 
-    addToOrder = (orderList) => {
-        const addToOrder = this.state.newOrderList;
-        addToOrder.push(orderList);
-        this.setState({newOrderList:addToOrder});
+    addToOrder = (newItem) => {
+        let orderList = this.state.newOrderList;
+        let itemIndex;
+        
+        if(orderList.length > 0){
+                itemIndex = orderList.findIndex(index => index.name === newItem.name);
+                itemIndex !== -1 ? orderList[itemIndex].quantity = parseInt(orderList[itemIndex].quantity) + 1 : orderList.push(newItem);
+        }else{
+            orderList.push(newItem);
+        }
+        this.setState({newOrderList: orderList});
+    }
+
+    removeFromOrder = (itemToRemove) => {
+        let orderList = this.state.newOrderList;
+        let itemIndex;
+        
+        itemIndex = orderList.findIndex(index => index.name === itemToRemove);
+        orderList[itemIndex].quantity > 1 ? orderList[itemIndex].quantity = parseInt(orderList[itemIndex].quantity) - 1 : orderList.splice(orderList[itemIndex],1);
+        this.setState({newOrderList: orderList});
     }
 
     onItemClick = (event) => {
@@ -36,10 +53,12 @@ class Order extends Component {
                     <Menubuttons addToOrder={this.addToOrder.bind(this)} menu={menu} id={this.state.id} />
                 </Col>
                 <Col id="order-list" md={3}>
-                    <OrderList newOrders={this.state.newOrderList} />
+                    <OrderList newOrderList={this.state.newOrderList} removeFromOrder={this.removeFromOrder.bind(this)} newOrders={this.state.newOrderList} />
                 </Col>
             </Row>
+            // <Button onClick={() => }><Button>
         );
     }
-}
+};
+
 export default Order;
