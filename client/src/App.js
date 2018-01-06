@@ -136,9 +136,13 @@ class App extends Component {
     activeTable: null
   }
   activePageHandler = (event) => {
+    //This is for the navbar to find the active page
     alert(`selected ${event}`);
   }
   activeTableHander = (event) => {
+    //this is for the page to know what table is selected.  
+    //Make sure error handling is added to mselect an active table / verify active table when submitting an order
+    
     alert(`selected ${event}`)
   }
   getMenu = () => {
