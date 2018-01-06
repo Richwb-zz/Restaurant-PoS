@@ -13,117 +13,133 @@ class App extends Component {
       table1: {
         isOccupied: false,
         guestNumber: null,
+        pendingOrder: [],
         bill: {
           id: null,
-          items: {},
+          items: [],
           total: null
         }
       },
       table2: {
         isOccupied: false,
         guestNumber: null,
+        pendingOrder: [],
         bill: {
           id: null,
-          items: {},
+          items: [],
           total: null
         }
       },
       table3: {
         isOccupied: false,
         guestNumber: null,
+        pendingOrder: [],
         bill: {
           id: null,
-          items: {},
+          items: [],
           total: null
         }
       },
       table4: {
         isOccupied: false,
         guestNumber: null,
+        pendingOrder: [],
         bill: {
           id: null,
-          items: {},
+          items: [],
           total: null
         }
       },
       table5: {
         isOccupied: false,
         guestNumber: null,
+        pendingOrder: [],
         bill: {
           id: null,
-          items: {},
+          items: [],
           total: null
         }
       },
       table6: {
         isOccupied: false,
         guestNumber: null,
+        pendingOrder: [],
         bill: {
           id: null,
-          items: {},
+          items: [],
           total: null
         }
       },
       table7: {
         isOccupied: false,
         guestNumber: null,
+        pendingOrder: [],
         bill: {
           id: null,
-          items: {},
+          items: [],
           total: null
         }
       },
       table8: {
         isOccupied: false,
         guestNumber: null,
+        pendingOrder: [],
         bill: {
           id: null,
-          items: {},
+          items: [],
           total: null
         }
       },
       table9: {
         isOccupied: false,
         guestNumber: null,
+        pendingOrder: [],
         bill: {
           id: null,
-          items: {},
+          items: [],
           total: null
         }
       },
       table10: {
         isOccupied: false,
         guestNumber: null,
+        pendingOrder: [],
         bill: {
           id: null,
-          items: {},
+          items: [],
           total: null
         }
       }, table11: {
         isOccupied: false,
         guestNumber: null,
+        pendingOrder: [],
         bill: {
           id: null,
-          items: {},
+          items: [],
           total: null
         }
       },
       table12: {
         isOccupied: false,
         guestNumber: null,
+        pendingOrder: [],
         bill: {
           id: null,
-          items: {},
+          items: [],
           total: null
         }
       }
     },
-    servers: {},
+    servers: [],
     menu: {},
-    activePage: ""
+    activePage: "Table",
+    activeTable: null
   }
   activePageHandler = (event) => {
     alert(`selected ${event}`);
+  }
+  activeTableHander = (event) => {
+    alert(`selected ${event}`)
   }
   getMenu = () => {
     API.getMenu().then(results => {
@@ -159,7 +175,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} />
+        <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
         <div> Tables </div>
         <Order />
       </div>
