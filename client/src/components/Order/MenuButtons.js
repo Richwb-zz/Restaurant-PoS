@@ -4,7 +4,8 @@ import {Button} from 'react-bootstrap';
 class MenuButtons extends Component {
     
     addOrder = (event) => {
-        this.props.addToOrder(event.target.id)
+        const itemToAdd = {name: event.target.id, quantity: "1"};
+        this.props.addToOrder(itemToAdd);
     }
 
     renderButtons(props){
@@ -24,7 +25,7 @@ class MenuButtons extends Component {
     render () {
         return(
             <div>
-            {this.renderButtons(this.props)}
+                {this.renderButtons(this.props)}
             </div>
         )
     }
