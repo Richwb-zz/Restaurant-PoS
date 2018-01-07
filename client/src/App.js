@@ -138,7 +138,7 @@ class App extends Component {
   }
   activePageHandler = (event) => {
     //This is for the navbar to find the active page
-    alert(`selected ${event}`);
+    //alert(`selected ${event}`);
     this.setState({activePage: event}, function() { 
       console.log(this.state.activePage)
     })
