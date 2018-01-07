@@ -5,7 +5,7 @@ import { Button, Grid, Row, Col } from 'react-bootstrap'
 import API from './utils/API'
 import Order from './components/Order'
 import Navbar from './components/Nav/Navbar'
-import Aux from './components/hoc/Aux'
+import Aux from './components/Hoc/Hoc'
 
 class App extends Component {
 
