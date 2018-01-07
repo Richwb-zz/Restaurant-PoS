@@ -139,6 +139,9 @@ class App extends Component {
   activePageHandler = (event) => {
     //This is for the navbar to find the active page
     alert(`selected ${event}`);
+    this.setState({activePage: event}, function() { 
+      console.log(this.state.activePage)
+    })
   }
   activeTableHander = (event) => {
     //this is for the page to know what table is selected.  
@@ -178,14 +181,32 @@ class App extends Component {
     })
   }
   render() {
+    let activeContent = null;
+    
+    switch (this.state.activePage) {
+      case ("Tables"):
+        activeContent = (
+          <div> 
+            <h1> Tables </h1> 
+          </div>
+        )
+        break;
+      case ("Orders"):
+        activeContent = (
+          <Order />
+        )
+        break;
+      default:
+        activeContent = null  
+      }
+
     return (
-      <div>
-        <Aux>
-          <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
-        </Aux>
-        <div> Tables </div>
-        <Order />
-      </div>
+      <Grid fluid>
+        <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
+        <Row>
+          {activeContent}
+        </Row>
+      </Grid>
     );
   }
 }
