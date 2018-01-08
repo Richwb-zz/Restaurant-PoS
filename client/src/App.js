@@ -136,6 +136,17 @@ class App extends Component {
     activePage: "Table",
     activeTable: null
   }
+  componentDidMount(){
+    console.log("mounted")
+    this.populateData();
+  }
+  populateData = () => {
+    console.log("populate start")
+    this.getMenu();
+    this.getServers();
+    this.getTables();
+    console.log("populated")
+  }
   activePageHandler = (event) => {
     //This is for the navbar to find the active page
     //alert(`selected ${event}`);
