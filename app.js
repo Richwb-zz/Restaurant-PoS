@@ -26,6 +26,8 @@ app.use('/', index);
 app.use('/menu', menu);
 app.use('/order', order);
 app.use('/check', check);
+app.use('/servers', check);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
