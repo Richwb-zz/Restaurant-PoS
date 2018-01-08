@@ -10,8 +10,10 @@ const index = require('./routes/index');
 const menu = require('./routes/menu');
 const order = require('./routes/order');
 const check = require('./routes/check');
+const servers = require('./routes/servers');
 
 const app = express();
+const cors = require('cors');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -20,13 +22,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 app.use('/', index);
 //app.use('/coupon', coupon);
 app.use('/menu', menu);
 app.use('/order', order);
 app.use('/check', check);
-app.use('/servers', check);
+app.use('/servers', servers);
 
 
 // catch 404 and forward to error handler
