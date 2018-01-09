@@ -1,5 +1,6 @@
 import React from 'react'
 import { Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap'
+import Hoc from '../Hoc/Hoc'
 
 const navbar = (props) => {
 
