@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Button,Panel, Grid, Row, Col, Container } from 'react-bootstrap';
 import Menubuttons from "./MenuButtons";
 import OrderList from "./OrderList";
-// import placeOrder from "../utils/API"
+import Hoc from "../Hoc/Hoc";
+import placeOrder from "../../utils/API"
 const menu = [[{"name": "coke"},{"name": "water"}],[{"name": "salad"},{"name": "soup"}]];
 
 class Order extends Component {
@@ -12,7 +13,7 @@ class Order extends Component {
     };
 
     addToOrder = (newItem) => {
-        let orderList = this.state.newOrderList;
+        let orderList = this.props.newOrderList;
         let itemIndex;
         
         itemIndex = orderList.findIndex(index => index.name === newItem.name);
@@ -36,20 +37,19 @@ class Order extends Component {
     }
 
     submitOrder = () => {
-        //const test = this.state["tables"][activetable]["bill"]["items"];
-        let currentOrderList = this.state["tables"]["table1"]["bill"]["items"];
+        let currentOrderList = this.props["tables"]["table1"]["bill"]["items"];
         let currentItemIndex;
         
         this.state.newOrderList.map((newItem) => {
             currentItemIndex = currentOrderList.findIndex(index => index.name === newItem.name);
             currentItemIndex !== -1 ? currentOrderList[currentItemIndex].quantity = parseInt(currentOrderList[currentItemIndex].quantity) + parseInt(newItem.quantity) : currentOrderList.push(newItem);
         });
-        this.state["tables"]["table1"]["bill"]["items"]
         this.setState({[["tables"]["table1"]["bill"]["items"]]: currentOrderList});
     }
 
     render() {
         return (
+            <Hoc>    
                 <Row>
                     <Col id="section" md={2}>
                         <h2 onClick={(event) => this.onItemClick(event)} data-id="0"> Drinks     </h2>
@@ -68,6 +68,7 @@ class Order extends Component {
                 <div>
                     <Button onClick={this.submitOrder()}>Submit</Button>
                 </div>
+            </Hoc>
         )
     }
 };
