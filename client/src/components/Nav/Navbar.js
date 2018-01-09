@@ -7,20 +7,14 @@ const navbar = (props) => {
     return (
         <Nav bsStyle="tabs" activeKey={props.activePage} onSelect={k => props.handleSelect(k)}>
             <NavItem eventKey="Tables" title="Tables">
-                NavItem 1 content
+                Tables
 				</NavItem>
             <NavItem eventKey="Orders" title="Orders">
-                NavItem 2 content
+                Orders
 				</NavItem>
             <NavItem eventKey="Tabs" title="Tabs"> 
-                NavItem 3 content
+                Servers
 				</NavItem>
-            <NavDropdown eventKey="4" title="Dropdown" id="nav-dropdown">
-                <MenuItem eventKey="4.1">Action</MenuItem>
-                <MenuItem eventKey="4.2">Another action</MenuItem>
-                <MenuItem eventKey="4.3">Something else here</MenuItem>
-                <MenuItem eventKey="4.4">Separated link</MenuItem>
-            </NavDropdown>
         </Nav>
     );
 
