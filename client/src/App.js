@@ -5,7 +5,8 @@ import { Button, Grid, Row, Col } from 'react-bootstrap'
 import API from './utils/API'
 import Order from './components/Order'
 import Navbar from './components/Nav/Navbar'
-import Aux from './components/Hoc/Hoc'
+import Hoc from './components/Hoc/Hoc'
+
 
 class App extends Component {
 
@@ -136,6 +137,7 @@ class App extends Component {
     activePage: "Table",
     activeTable: null
   }
+
   componentDidMount(){
     console.log("mounted")
     this.populateData();
@@ -157,7 +159,6 @@ class App extends Component {
   activeTableHander = (event) => {
     //this is for the page to know what table is selected.  
     //Make sure error handling is added to mselect an active table / verify active table when submitting an order
-
     alert(`selected ${event}`)
   }
   getMenu = () => {
@@ -212,6 +213,7 @@ class App extends Component {
       }
 
     return (
+
       <Grid fluid>
         <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
         <Row>
