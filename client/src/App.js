@@ -135,7 +135,7 @@ class App extends Component {
     servers: [],
     menu: {},
     activePage: "Table",
-    activeTable: null
+    activeTable: 1
   }
 
   componentDidMount(){
@@ -205,7 +205,7 @@ class App extends Component {
         break;
       case ("Orders"):
         activeContent = (
-          <Order />
+          <Order menu={this.state.menu} activeTable={this.state.activeTable} />
         )
         break;
       default:
