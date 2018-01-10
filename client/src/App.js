@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Button, Grid, Row, Col } from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap'
 import API from './utils/API'
 import Order from './components/Order'
 import Navbar from './components/Nav/Navbar'
@@ -192,6 +192,24 @@ class App extends Component {
       if (error) console.log(error)
     })
   }
+  savePendingOrder = newOrderList => {
+    console.log(newOrderList);
+    const activeTable = this.state.activeTable
+    let currentOrderList = this.state.tables[activeTable].bill.items
+    let currentItemIndex;
+        
+        newOrderList.map((newItem) => {
+            currentItemIndex = currentOrderList.findIndex(index => index.name === newItem.name);
+            currentItemIndex !== -1 ? currentOrderList[currentItemIndex].quantity = parseInt(currentOrderList[currentItemIndex].quantity) + parseInt(newItem.quantity) : currentOrderList.push(newItem);
+        });
+        this.setState({
+          [currentOrderList]: currentOrderList,
+          [this.state.tables[activeTable].pendingOrder]: []
+        });
+
+        API.placeOrder([this.state.tables[activeTable].bill.items]);
+  }
+
   render() {
     let activeContent = null;
     
@@ -205,7 +223,7 @@ class App extends Component {
         break;
       case ("Orders"):
         activeContent = (
-          <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTable]} />
+          <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTable]} orderSubmit={this.savePendingOrder} />
         )
         break;
       default:
