@@ -16,7 +16,8 @@ export default {
     },
     placeOrder: (order)=>{
         return (
-            axios.post("http://localhost:4444/order/place", {[order] : order})
+            
+            axios.put("http://localhost:4444/order/" + order.id, {[order] : order})
             .then(response => {
                 console.log(response)
             })
