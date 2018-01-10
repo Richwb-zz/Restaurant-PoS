@@ -9,13 +9,13 @@ class MenuButtons extends Component {
     }
 
     renderButtons(props){
-        const id = props.id;
-        if(id > -1){
-            
+        if(props.category !== ""){
             return (
-                props.menu[id].map((section,index) => {
-                    return <Button id={section.name} onClick={(event) => this.addOrder(event)}>{section.name}</Button>
-                })  
+                props.menu.map((items,index) => {  
+                    if (items.category === props.category){
+                        return <Button id={items.name} onClick={(event) => this.addOrder(event)}>{items.name}</Button>
+                    }
+                })
             );     
         }else{
             return <p></p>
