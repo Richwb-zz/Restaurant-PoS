@@ -63,7 +63,7 @@ router.post('/', (req, res, next) => {
 //add order to receipt
 router.put('/:id', (req, res, next) => {
     console.log("UPDATE SEATING")
-    console.log(req.params.id)
+    console.log(req.params)
     receipt.update({_id: req.params.id}, {
         'items': req.body.items,
         'total': req.body.total,
