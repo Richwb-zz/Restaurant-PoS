@@ -193,7 +193,6 @@ class App extends Component {
     })
   }
   savePendingOrder = newOrderList => {
-    console.log(newOrderList);
     const activeTable = this.state.activeTable
     let currentOrderList = this.state.tables[activeTable].bill.items
     let currentItemIndex;
@@ -207,7 +206,7 @@ class App extends Component {
           [this.state.tables[activeTable].pendingOrder]: []
         });
 
-        API.placeOrder([this.state.tables[activeTable].bill.items]);
+        API.placeOrder([this.state.tables[activeTable].bill]);
   }
 
   render() {
