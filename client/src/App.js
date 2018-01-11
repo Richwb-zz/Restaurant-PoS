@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Button, Grid, Row, Col, Nav } from 'react-bootstrap'
-import API from './utils/API'
-import Order from './components/Order'
+// import { Button, Grid, Row, Col, Nav } from 'react-bootstrap'
+import API from './utils/API';
+// import Order from './components/Order';
+import MainPage from './components/Table/MainPage';
+// import SetSeatModal from './components/Modals/SetSeatModal';
 
 class App extends Component {
 
@@ -154,7 +155,7 @@ class App extends Component {
   }
   render() {
     return (
-      <Order />
+      <MainPage />
     );
   }
 }
