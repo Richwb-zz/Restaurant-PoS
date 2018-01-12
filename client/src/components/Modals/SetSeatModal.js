@@ -6,11 +6,11 @@ import { Buttons, ConfirmSeats, CloseModal, CancelButton } from '../Buttons';
 import { TableButtons } from '../Table/MainPage';
 
 
+
 export class SetSeatModal extends React.Component {
 
   handleModalClose(e) {
     e.preventDefault();
- console.log("e ", e);
     // this.modalToggle;
     {console.log("working")}
   }
@@ -47,10 +47,11 @@ export class SetSeatModal extends React.Component {
           <div>
             {/* <button onClick={this.handleModalClose.bind(this)}isOccupied={true}
             >Cancel</button> */}
-            {<CancelButton/>}
-            <div>Server <span>{<Servers />}</span></div>
+            {console.log(this.props)}
+            <CloseModal CloseModal={this.props.CloseModal}/>
+            <div>Server <span><Servers /></span></div>
             <div>Number of Guests <span><input type="text" /></span></div>
-            {<ConfirmSeats />}
+            <ConfirmSeats />
           </div>
         </div>
       </div>
