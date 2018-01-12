@@ -1,18 +1,10 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import {Servers} from './Servers';
 import { Button } from 'react-bootstrap';
 import { Buttons, PlaceOrder, PrintCheck, Checkout, CloseModal, CancelButton } from '../Buttons';
-// import {TableButtons} from '../Table/MainPage';
-
 
 export class SeatManager extends React.Component {
 
-    
-
   render() {
-    
-    
     // The gray background
     const backdropStyle = {
       position: 'fixed',
