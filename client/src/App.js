@@ -7,12 +7,13 @@ import Navbar from './components/Nav/Navbar'
 import Hoc from './components/Hoc/Hoc'
 import Table from './components/Table/Table';
 import Servers from './components/Servers/Servers'
+import Modal from './components/Modals/Modal'
 
 class App extends Component {
 
   state = {
-    tables: [
-      {
+    tables: [{
+      table1: {
         name: "table1",
         isOccupied: false,
         guestNumber: null,
@@ -22,8 +23,11 @@ class App extends Component {
           items: [],
           total: null
         }
-      },
-      {
+      }
+    },
+    {
+      
+      table2: {
         name: "table2",
         isOccupied: false,
         guestNumber: null,
@@ -33,8 +37,10 @@ class App extends Component {
           items: [],
           total: null
         }
-      },
-      {
+      }
+    },
+    {
+      table3: {
         name: "table3",
         isOccupied: false,
         guestNumber: null,
@@ -44,8 +50,10 @@ class App extends Component {
           items: [],
           total: null
         }
-      },
-      {
+      }
+    },
+    {
+      table4: {
         name: "table4",
         isOccupied: false,
         guestNumber: null,
@@ -55,8 +63,10 @@ class App extends Component {
           items: [],
           total: null
         }
-      },
-      {
+      }
+    },
+    {
+      table5: {
         name: "table5",
         isOccupied: false,
         guestNumber: null,
@@ -66,8 +76,10 @@ class App extends Component {
           items: [],
           total: null
         }
-      },
-      {
+      }
+    },
+    {
+      table6: {
         name: "table6",
         isOccupied: false,
         guestNumber: null,
@@ -77,8 +89,10 @@ class App extends Component {
           items: [],
           total: null
         }
-      },
-      {
+      }
+    },
+    {
+      table7: {
         name: "table7",
         isOccupied: false,
         guestNumber: null,
@@ -88,8 +102,10 @@ class App extends Component {
           items: [],
           total: null
         }
-      },
-      {
+      }
+    },
+    {
+      table8: {
         name: "table8",
         isOccupied: false,
         guestNumber: null,
@@ -99,8 +115,10 @@ class App extends Component {
           items: [],
           total: null
         }
-      },
-      {
+      }
+    },
+    {
+      table9: {
         name: "table9",
         isOccupied: false,
         guestNumber: null,
@@ -110,8 +128,10 @@ class App extends Component {
           items: [],
           total: null
         }
-      },
-      {
+      }
+    },
+     {
+       table10: {
         name: "table10",
         isOccupied: false,
         guestNumber: null,
@@ -121,8 +141,10 @@ class App extends Component {
           items: [],
           total: null
         }
-      },
-      {
+      }
+    },
+    {
+     table11: {
         name: "table11",
         isOccupied: false,
         guestNumber: null,
@@ -132,8 +154,10 @@ class App extends Component {
           items: [],
           total: null
         }
-      },
-      {
+      }
+    },
+    {
+      table12: {
         name: "table12",
         isOccupied: false,
         guestNumber: null,
@@ -144,7 +168,7 @@ class App extends Component {
           total: null
         }
       }
-    ],
+    }],
     servers: [],
     menu: {},
     activePage: "Tables",
