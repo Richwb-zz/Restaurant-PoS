@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Grid, Row, Col } from 'react-bootstrap'
 import API from './utils/API'
 import Order from './components/Order'
 import Navbar from './components/Nav/Navbar'
 import Hoc from './components/Hoc/Hoc'
+import MainPage from './components/Table/MainPage';
 
 
 class App extends Component {
@@ -153,7 +153,7 @@ class App extends Component {
     //This is for the navbar to find the active page
     //alert(`selected ${event}`);
     this.setState({activePage: event}, function() { 
-      console.log(this.state.activePage)
+      // console.log(this.state.activePage)
     })
   }
   activeTableHander = (event) => {
@@ -216,7 +216,7 @@ class App extends Component {
       case ("Tables"): 
         activeContent = (
           <div> 
-            <h1> Tables </h1> 
+            <MainPage tables={this.state.tables}/> 
           </div>
         )
         break;

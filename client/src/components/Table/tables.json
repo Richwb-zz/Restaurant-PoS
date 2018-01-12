@@ -1,0 +1,111 @@
+[{
+        "name": "Table 1",
+        "isOccupied": false,
+        "guestNumber": null,
+        "bill": {
+            "id": null,
+            "items": {},
+            "total": null
+        }
+    },
+    {
+        "name": "Table 2",
+        "isOccupied": false,
+        "guestNumber": null,
+        "bill": {
+            "id": null,
+            "items": {},
+            "total": null
+        }
+    },
+     {"name": "Table 3",
+        "isOccupied": false,
+        "guestNumber": null,
+        "bill": {
+            "id": null,
+            "items": {},
+            "total": null
+        }
+    },
+    {"name": "Table 4",
+        "isOccupied": false,
+        "guestNumber": null,
+        "bill": {
+            "id": null,
+            "items": {},
+            "total": null
+        }
+    },
+    {"name": "Table 5",
+        "isOccupied": false,
+        "guestNumber": null,
+        "bill": {
+            "id": null,
+            "items": {},
+            "total": null
+        }
+    },
+    {"name": "Table 6",
+        "isOccupied": false,
+        "guestNumber": null,
+        "bill": {
+            "id": null,
+            "items": {},
+            "total": null
+        }
+    },
+    {"name": "Table 7",
+        "isOccupied": false,
+        "guestNumber": null,
+        "bill": {
+            "id": null,
+            "items": {},
+            "total": null
+        }
+    },
+    {"name": "Table 8",
+        "isOccupied": false,
+        "guestNumber": null,
+        "bill": {
+            "id": null,
+            "items": {},
+            "total": null
+        }
+    },
+    {"name": "Table 9",
+        "isOccupied": false,
+        "guestNumber": null,
+        "bill": {
+            "id": null,
+            "items": {},
+            "total": null
+        }
+    },
+    {"name": "Table 10",
+        "isOccupied": false,
+        "guestNumber": null,
+        "bill": {
+            "id": null,
+            "items": {},
+            "total": null
+        }
+    },
+    {"name": "Table 11",
+        "isOccupied": false,
+        "guestNumber": null,
+        "bill": {
+            "id": null,
+            "items": {},
+            "total": null
+        }
+    },
+    {"name": "Table 12",
+        "isOccupied": false,
+        "guestNumber": null,
+        "bill": {
+            "id": null,
+            "items": {},
+            "total": null
+        }
+    }
+]
