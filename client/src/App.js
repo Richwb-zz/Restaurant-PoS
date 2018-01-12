@@ -5,8 +5,8 @@ import API from './utils/API'
 import Order from './components/Order'
 import Navbar from './components/Nav/Navbar'
 import Hoc from './components/Hoc/Hoc'
-import MainPage from './components/Table/MainPage';
-
+import Table from './components/Table/Table';
+import Servers from './components/Servers/Servers'
 
 class App extends Component {
 
@@ -153,7 +153,8 @@ class App extends Component {
     //This is for the navbar to find the active page
     //alert(`selected ${event}`);
     this.setState({activePage: event}, function() { 
-      // console.log(this.state.activePage)
+    console.log(this.state.activePage)
+    console.log(this.state.servers)
     })
   }
   activeTableHander = (event) => {
@@ -216,13 +217,18 @@ class App extends Component {
       case ("Tables"): 
         activeContent = (
           <div> 
-            <MainPage tables={this.state.tables}/> 
+            <Table tables={this.state.tables}/> 
           </div>
         )
         break;
       case ("Orders"):
         activeContent = (
           <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTable]} orderSubmit={this.savePendingOrder} />
+        )
+        break;
+      case ("Servers"):
+        activeContent = (
+          <Servers servers={this.state.servers} />
         )
         break;
       default:

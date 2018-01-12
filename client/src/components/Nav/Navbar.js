@@ -1,6 +1,5 @@
 import React from 'react'
 import { Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap'
-import Hoc from '../Hoc/Hoc'
 
 const navbar = (props) => {
 
@@ -8,13 +7,13 @@ const navbar = (props) => {
         <Nav bsStyle="tabs" activeKey={props.activePage} onSelect={k => props.handleSelect(k)}>
             <NavItem eventKey="Tables" title="Tables">
                 Tables
-				</NavItem>
+			</NavItem>
             <NavItem eventKey="Orders" title="Orders">
                 Orders
-				</NavItem>
-            <NavItem eventKey="Tabs" title="Tabs"> 
+			</NavItem>
+            <NavItem eventKey="Servers" title="Servers"> 
                 Servers
-				</NavItem>
+			</NavItem>
         </Nav>
     );
 
