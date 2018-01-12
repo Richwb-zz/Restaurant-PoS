@@ -5,6 +5,7 @@ import API from './utils/API'
 import Order from './components/Order'
 import Navbar from './components/Nav/Navbar'
 import Hoc from './components/Hoc/Hoc'
+import MainPage from './components/Table/MainPage';
 
 
 class App extends Component {
@@ -152,7 +153,7 @@ class App extends Component {
     //This is for the navbar to find the active page
     //alert(`selected ${event}`);
     this.setState({activePage: event}, function() { 
-      console.log(this.state.activePage)
+      // console.log(this.state.activePage)
     })
   }
   activeTableHander = (event) => {
@@ -215,7 +216,7 @@ class App extends Component {
       case ("Tables"): 
         activeContent = (
           <div> 
-            <h1> Tables </h1> 
+            <MainPage tables={this.state.tables}/> 
           </div>
         )
         break;
@@ -229,9 +230,6 @@ class App extends Component {
       }
 
     return (
-<<<<<<< HEAD
-      <MainPage />
-=======
 
       <Grid fluid>
         <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
@@ -239,7 +237,6 @@ class App extends Component {
           {activeContent}
         </Row>
       </Grid>
->>>>>>> b1d7d78c07354f0cb9f7976b126bbe24a3eeafa9
     );
   }
 }

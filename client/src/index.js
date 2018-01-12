@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { SeatManager } from './components/Modals/SeatManager';
+// import { SeatManager } from './components/Modals/SeatManager';
 // import MainPage from './components/Table/MainPage';
 // import { SeatManager } from './components/Modals/SeatManager';
 
-ReactDOM.render(<SeatManager/>, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));
 registerServiceWorker();
