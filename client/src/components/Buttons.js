@@ -13,11 +13,13 @@ export class ConfirmSeats extends React.Component{
 
 export class CloseModal extends React.Component{
         handleModalClose(e){
+            console.log("this is it")
             e.preventDefault();
         }
     render(){
+        console.log(this.props)
         return(
-            <button onClick={this.handleModalClose}>Cancel</button>
+            <button onClick={this.props.CloseModal}>Cancel</button>
         );
     }
 };
