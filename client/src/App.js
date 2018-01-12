@@ -11,8 +11,9 @@ import Servers from './components/Servers/Servers'
 class App extends Component {
 
   state = {
-    tables: {
-      table1: {
+    tables: [
+      {
+        name: "table1",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -22,7 +23,8 @@ class App extends Component {
           total: null
         }
       },
-      table2: {
+      {
+        name: "table2",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -32,7 +34,8 @@ class App extends Component {
           total: null
         }
       },
-      table3: {
+      {
+        name: "table3",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -42,7 +45,8 @@ class App extends Component {
           total: null
         }
       },
-      table4: {
+      {
+        name: "table4",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -52,7 +56,8 @@ class App extends Component {
           total: null
         }
       },
-      table5: {
+      {
+        name: "table5",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -62,7 +67,8 @@ class App extends Component {
           total: null
         }
       },
-      table6: {
+      {
+        name: "table6",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -72,7 +78,8 @@ class App extends Component {
           total: null
         }
       },
-      table7: {
+      {
+        name: "table7",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -82,7 +89,8 @@ class App extends Component {
           total: null
         }
       },
-      table8: {
+      {
+        name: "table8",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -92,7 +100,8 @@ class App extends Component {
           total: null
         }
       },
-      table9: {
+      {
+        name: "table9",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -102,16 +111,8 @@ class App extends Component {
           total: null
         }
       },
-      table10: {
-        isOccupied: false,
-        guestNumber: null,
-        pendingOrder: [],
-        bill: {
-          id: null,
-          items: [],
-          total: null
-        }
-      }, table11: {
+      {
+        name: "table10",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -121,7 +122,19 @@ class App extends Component {
           total: null
         }
       },
-      table12: {
+      {
+        name: "table11",
+        isOccupied: false,
+        guestNumber: null,
+        pendingOrder: [],
+        bill: {
+          id: null,
+          items: [],
+          total: null
+        }
+      },
+      {
+        name: "table12",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -131,14 +144,14 @@ class App extends Component {
           total: null
         }
       }
-    },
+    ],
     servers: [],
     menu: {},
-    activePage: "Table",
-    activeTable: "table1"
+    activePage: "Tables",
+    activeTable: null
   }
 
-  componentDidMount(){
+  componentDidMount() {
     console.log("mounted")
     this.populateData();
   }
@@ -152,15 +165,9 @@ class App extends Component {
   activePageHandler = (event) => {
     //This is for the navbar to find the active page
     //alert(`selected ${event}`);
-    this.setState({activePage: event}, function() { 
-    console.log(this.state.activePage)
-    console.log(this.state.servers)
+    this.setState({ activePage: event }, function () {
+      console.log(this.state.activePage)
     })
-  }
-  activeTableHander = (event) => {
-    //this is for the page to know what table is selected.  
-    //Make sure error handling is added to mselect an active table / verify active table when submitting an order
-    alert(`selected ${event}`)
   }
   getMenu = () => {
     API.getMenu().then(results => {
@@ -193,34 +200,40 @@ class App extends Component {
       if (error) console.log(error)
     })
   }
+
+  handleTableClick = (item) => {
+    console.log("Table CLicked!!")
+    this.setState({activeTable: item}, function(){
+      console.log("state changed:" + this.state.activeTable)
+    })
+  }
+
   savePendingOrder = newOrderList => {
     const activeTable = this.state.activeTable
     let currentOrderList = this.state.tables[activeTable].bill.items
     let currentItemIndex;
-        
-        newOrderList.map((newItem) => {
-            currentItemIndex = currentOrderList.findIndex(index => index.name === newItem.name);
-            currentItemIndex !== -1 ? currentOrderList[currentItemIndex].quantity = parseInt(currentOrderList[currentItemIndex].quantity) + parseInt(newItem.quantity) : currentOrderList.push(newItem);
-        });
-        this.setState({
-          [currentOrderList]: currentOrderList,
-          [this.state.tables[activeTable].pendingOrder]: []
-        });
 
-        API.placeOrder([this.state.tables[activeTable].bill]);
+    newOrderList.map((newItem) => {
+      currentItemIndex = currentOrderList.findIndex(index => index.name === newItem.name);
+      currentItemIndex !== -1 ? currentOrderList[currentItemIndex].quantity = parseInt(currentOrderList[currentItemIndex].quantity) + parseInt(newItem.quantity) : currentOrderList.push(newItem);
+    });
+    this.setState({
+      [currentOrderList]: currentOrderList,
+      [this.state.tables[activeTable].pendingOrder]: []
+    });
+
+    API.placeOrder([this.state.tables[activeTable].bill]);
   }
 
   render() {
     let activeContent = null;
-    
+
     switch (this.state.activePage) {
-      case ("Tables"): 
+      case ("Tables"):
         activeContent = (
-          <div> 
-            <Table tables={this.state.tables}/> 
-          </div>
+            <Table tables={this.state.tables} clicked={this.handleTableClick}/>
         )
-        break;
+        break;  
       case ("Orders"):
         activeContent = (
           <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTable]} orderSubmit={this.savePendingOrder} />
@@ -232,8 +245,8 @@ class App extends Component {
         )
         break;
       default:
-        activeContent = null  
-      }
+        activeContent = null
+    }
 
     return (
 
