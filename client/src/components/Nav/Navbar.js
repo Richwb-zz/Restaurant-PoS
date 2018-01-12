@@ -12,7 +12,7 @@ const navbar = (props) => {
             <NavItem eventKey="Orders" title="Orders">
                 Orders
 				</NavItem>
-            <NavItem eventKey="Tabs" title="Tabs"> 
+            <NavItem eventKey="Servers" title="Servers"> 
                 Servers
 				</NavItem>
         </Nav>

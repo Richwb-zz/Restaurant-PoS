@@ -7,19 +7,13 @@ import { SetSeatModal } from '../Modals/SetSeatModal';
 const green = '#59f442';
 // const red = '#f44141';
 
-export class MainPage extends React.Component {
+export class table extends React.Component {
 
     state = {
         seatColor: green,
         modalToggle: false,
     };
 
-
-    // handleColorChange = event =>{
-    //     console.log(event.target);
-    //     const colorChange = this.state.seatColor === green ? red : green;
-    //     this.setState({seatColor: colorChange});
-    // };
 
     closeModal(e) {
         console.log("working closeModal")
@@ -41,32 +35,10 @@ export class MainPage extends React.Component {
 
     }
 
-
-
-
-    // handleTableDisplay = (tables) => {
-    //      console.log("tables ", Object.entries(tables));
-    //     return
-    //     (
-    //         Object.entries(tables).map(table =>
-
-    //             {
-    //                 <a key={table.name} onClick={this.handleTableClick.bind(this)}
-    //                     isOccupied={table.isOccupied} modalOpen={true}
-    //                 >
-    //                     <Button style={{ background: this.state.seatColor }}>
-    //                         {this.props.tables}
-    //                     </Button>
-    //                 </a>
-    //             })
-
-    //     )
-    // }
-
     render() {
 
         const tables = Object.entries(this.props.tables);
- console.log("tables ", tables);
+        console.log("tables ", tables);
         const tableDisplay = tables.map(table => (
             <a key={table.name} onClick={this.handleTableClick.bind(this)}
             isOccupied={table.isOccupied} modalOpen={true}
@@ -95,6 +67,6 @@ export class MainPage extends React.Component {
         );
     }
 }
-export default MainPage;
+export default table;
 
         
