@@ -206,12 +206,30 @@ class App extends Component {
     this.setState({activeTable: item}, function(){
       console.log("state changed:" + this.state.activeTable)
     })
+
+  updatePendingOrder = pendingOrder => {
+    this.setState({
+      [this.state.tables[this.state.activeTable].pendingOrder]: pendingOrder
+    });
+
   }
 
   savePendingOrder = newOrderList => {
-    const activeTable = this.state.activeTable
+    const activeTable = this.state.activeTable;
+    const pendingOrders = this.state.tables[activeTable].pendingOrder;
+    
     let currentOrderList = this.state.tables[activeTable].bill.items
     let currentItemIndex;
+
+        pendingOrders.map((newItem) => {
+            currentItemIndex = currentOrderList.findIndex(index => index.name === newItem.name);
+            currentItemIndex !== -1 ? currentOrderList[currentItemIndex].quantity = parseInt(currentOrderList[currentItemIndex].quantity) + parseInt(newItem.quantity) : currentOrderList.push(newItem);
+        });
+        this.setState({
+          [currentOrderList]: currentOrderList,
+          [this.state.tables[activeTable].pendingOrder]: []
+        });
+
 
     newOrderList.map((newItem) => {
       currentItemIndex = currentOrderList.findIndex(index => index.name === newItem.name);
@@ -236,7 +254,7 @@ class App extends Component {
         break;  
       case ("Orders"):
         activeContent = (
-          <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTable]} orderSubmit={this.savePendingOrder} />
+          <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTable]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} />
         )
         break;
       case ("Servers"):

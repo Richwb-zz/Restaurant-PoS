@@ -9,25 +9,28 @@ class Order extends Component {
     
     state = {
         category: "",
-        newOrderList: []
     };
 
     addToOrder = (newItem) => {
-        let orderList = this.state.newOrderList;
+        let orderList = this.props.table.pendingOrder;
         let itemIndex;
         
         itemIndex = orderList.findIndex(index => index.name === newItem.name);
         itemIndex !== -1 ? orderList[itemIndex].quantity = parseInt(orderList[itemIndex].quantity) + 1 : orderList.push(newItem);
-        this.setState({newOrderList: orderList});
+        // this.setState({newOrderList: orderList});
+        
+        this.props.updatePendingOrder(orderList);
     }
 
     removeFromOrder = (itemToRemove) => {
-        let orderList = this.state.newOrderList;
+        let orderList = this.props.table.pendingOrder;
         let itemIndex;
 
         itemIndex = orderList.findIndex(index => index.name === itemToRemove);
         orderList[itemIndex].quantity > 1 ? orderList[itemIndex].quantity = parseInt(orderList[itemIndex].quantity) - 1 : orderList.splice(orderList[itemIndex],1);
-        this.setState({newOrderList: orderList});
+        // this.setState({newOrderList: orderList});
+        
+        this.props.updatePendingOrder(orderList);
     }
 
     onItemClick = event => {
@@ -37,8 +40,13 @@ class Order extends Component {
     }
 
     orderSubmit = () => {
-        this.setState({newOrderList: []});
-        this.props.orderSubmit(this.state.newOrderList)
+        // this.setState({newOrderList: []});
+        this.props.updatePendingOrder();
+        this.props.orderSubmit(this.state.newOrderList);
+    }
+
+    updatePending = () => {
+        this.props.updatePendingOrder(this.state.newOrderList);
     }
 
     render() {
@@ -56,7 +64,7 @@ class Order extends Component {
                         <Menubuttons addToOrder={this.addToOrder.bind(this)} menu={this.props.menu} category={this.state.category} />
                     </Col>
                     <Col id="order-list" md={3}>
-                        <OrderList newOrderList={this.state.newOrderList} removeFromOrder={this.removeFromOrder.bind(this)} newOrders={this.state.newOrderList} />
+                        <OrderList newOrderList={this.state.newOrderList} removeFromOrder={this.removeFromOrder.bind(this)} newOrderList={this.props.table.pendingOrder} />
                     </Col>
                 </Row>
                 <div>
