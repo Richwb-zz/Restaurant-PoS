@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import { Col, Button, Row, Grid, Jumbotron, Panel } from 'react-bootstrap';
-import { SetSeatModal } from '../Modals/SetSeatModal';
+import { Col, Row, Grid, Jumbotron, Panel } from 'react-bootstrap';
 import './Table.css';
 
 
 const table = props => {
-
+console.log(props.tables)
+props.tables.map( item => {
+    let itemKey=Object.keys(item)
+})
     // closeModal(e) {
     //     console.log("working closeModal")
     //     e.preventDefault();
@@ -34,13 +36,13 @@ const table = props => {
                         {props.tables.map( (table)=>{
                         return (
                         <Col md={3} xs={2} key={table.name}>
-                                <Panel onClick={()=> props.clicked(table.name)} bsStyle={ table.isOccupied? "danger" : "success" } data-value="test">
-                                    <Panel.Heading data-value="test" className="tablePanel" >
-                                        <Panel.Title data-value="test">
-                                            <h2 data-value="test" >{table.name}</h2 >
+                                <Panel onClick={()=> props.clicked(table.name)} bsStyle={ table.isOccupied? "danger" : "success" }>
+                                    <Panel.Heading className="tablePanel" >
+                                        <Panel.Title>
+                                            <h2>{table.name}</h2 >
                                         {table.isOccupied ?  (
                                                 <h3> Guests: {table.guestNumber} </h3>)
-                                                : (<h3 data-value= "test"> Table Open </h3>)}
+                                                : (<h3> Table Open </h3>)}
                                     </Panel.Title>
                                 </Panel.Heading>
                             </Panel>
