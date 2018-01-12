@@ -11,7 +11,7 @@ export class MainPage extends React.Component {
           state = {
             tables: tables,
             seatColor: green,
-            modalToggle: false
+            modalToggle: false,
         };
 
     
@@ -21,10 +21,17 @@ export class MainPage extends React.Component {
 //     this.setState({seatColor: colorChange});
 // };
 
+closeModal (e){
+    console.log("working closeModal")
+    e.preventDefault();
+    this.setState({
+        modalToggle: false
+    });
+}
+
      handleTableClick(e) {
         e.preventDefault();
         const modalAction = !this.state.modalToggle;
- console.log("modalAction ", modalAction);
         // const seatCheck = this.state.isOccupied ? false : true;
 
 
@@ -49,7 +56,7 @@ const tableDisplay = this.state.tables.map(table => (
             
             <div>
                     <div className='show-grid'>
-                    {this.state.modalToggle ? <SetSeatModal/> : ""}
+                    {this.state.modalToggle ? <SetSeatModal CloseModal={this.closeModal.bind(this)}/> : ""}
                         <Col md={6} lg={8} mdOffset={2}>
                             {tableDisplay}
                         </Col>
