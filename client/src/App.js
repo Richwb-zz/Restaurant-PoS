@@ -6,7 +6,7 @@ import Order from './components/Order'
 import Navbar from './components/Nav/Navbar'
 import Hoc from './components/Hoc/Hoc'
 import Table from './components/Table/Table';
-import Servers from './components/Servers/Servers '
+import Servers from './components/Servers/Servers'
 
 class App extends Component {
 
