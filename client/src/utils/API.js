@@ -14,7 +14,16 @@ export default {
     seatGuests: ()=>{
         return axios.get("http://localhost:4444/order/seat")
     },
-    placeOrder: ()=>{
-        return axios.get("http://localhost:4444/order/place")
+    placeOrder: (order)=>{
+        return (
+            
+            axios.put("http://localhost:4444/order/" + order.id, {[order] : order})
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        )
     }
 }
