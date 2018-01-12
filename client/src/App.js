@@ -167,8 +167,10 @@ class App extends Component {
     //alert(`selected ${event}`);
     this.setState({ activePage: event }, function () {
       console.log(this.state.activePage)
-    })
+    }
+    )
   }
+
   getMenu = () => {
     API.getMenu().then(results => {
       let newMenu = results.data
@@ -179,6 +181,7 @@ class App extends Component {
       if (error) console.log(error)
     })
   }
+
   getServers = () => {
     API.getServers().then(results => {
       let newServers = results.data
@@ -203,35 +206,24 @@ class App extends Component {
 
   handleTableClick = (item) => {
     console.log("Table CLicked!!")
-    this.setState({activeTable: item}, function(){
+    this.setState({ activeTable: item }, function () {
       console.log("state changed:" + this.state.activeTable)
     })
-
-  updatePendingOrder = pendingOrder => {
-    this.setState({
-      [this.state.tables[this.state.activeTable].pendingOrder]: pendingOrder
-    });
-
   }
+  updatePendingOrder = pendingOrder => {
+      this.setState({
+        [this.state.tables[this.state.activeTable].pendingOrder]: pendingOrder
+      });
+    }
 
   savePendingOrder = newOrderList => {
     const activeTable = this.state.activeTable;
     const pendingOrders = this.state.tables[activeTable].pendingOrder;
-    
+
     let currentOrderList = this.state.tables[activeTable].bill.items
     let currentItemIndex;
 
-        pendingOrders.map((newItem) => {
-            currentItemIndex = currentOrderList.findIndex(index => index.name === newItem.name);
-            currentItemIndex !== -1 ? currentOrderList[currentItemIndex].quantity = parseInt(currentOrderList[currentItemIndex].quantity) + parseInt(newItem.quantity) : currentOrderList.push(newItem);
-        });
-        this.setState({
-          [currentOrderList]: currentOrderList,
-          [this.state.tables[activeTable].pendingOrder]: []
-        });
-
-
-    newOrderList.map((newItem) => {
+    pendingOrders.map((newItem) => {
       currentItemIndex = currentOrderList.findIndex(index => index.name === newItem.name);
       currentItemIndex !== -1 ? currentOrderList[currentItemIndex].quantity = parseInt(currentOrderList[currentItemIndex].quantity) + parseInt(newItem.quantity) : currentOrderList.push(newItem);
     });
@@ -240,42 +232,42 @@ class App extends Component {
       [this.state.tables[activeTable].pendingOrder]: []
     });
 
-    API.placeOrder([this.state.tables[activeTable].bill]);
+   // API.placeOrder([this.state.tables[activeTable].bill]);
   }
 
-  render() {
-    let activeContent = null;
+    render() {
+      let activeContent = null;
 
-    switch (this.state.activePage) {
-      case ("Tables"):
-        activeContent = (
-            <Table tables={this.state.tables} clicked={this.handleTableClick}/>
-        )
-        break;  
-      case ("Orders"):
-        activeContent = (
-          <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTable]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} />
-        )
-        break;
-      case ("Servers"):
-        activeContent = (
-          <Servers servers={this.state.servers} />
-        )
-        break;
-      default:
-        activeContent = null
+      switch (this.state.activePage) {
+        case ("Tables"):
+          activeContent = (
+            <Table tables={this.state.tables} clicked={this.handleTableClick} />
+          )
+          break;
+        case ("Orders"):
+          activeContent = (
+            <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTable]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} />
+          )
+          break;
+        case ("Servers"):
+          activeContent = (
+            <Servers servers={this.state.servers} />
+          )
+          break;
+        default:
+          activeContent = null
+      }
+
+      return (
+
+        <Grid fluid>
+          <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
+          <Row>
+            {activeContent}
+          </Row>
+        </Grid>
+      );
     }
-
-    return (
-
-      <Grid fluid>
-        <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
-        <Row>
-          {activeContent}
-        </Row>
-      </Grid>
-    );
   }
-}
 
-export default App;
+  export default App;
