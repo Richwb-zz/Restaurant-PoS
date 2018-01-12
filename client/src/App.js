@@ -154,6 +154,7 @@ class App extends Component {
     //alert(`selected ${event}`);
     this.setState({activePage: event}, function() { 
     console.log(this.state.activePage)
+    console.log(this.state.servers)
     })
   }
   activeTableHander = (event) => {
@@ -227,8 +228,9 @@ class App extends Component {
         break;
       case ("Servers"):
         activeContent = (
-          <Servers servers={this.state.servers}/>
+          <Servers servers={this.state.servers} />
         )
+        break;
       default:
         activeContent = null  
       }

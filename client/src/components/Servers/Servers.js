@@ -1,24 +1,23 @@
 import React from 'react'
 import { Grid, Row, Col, Button, Jumbotron } from 'react-bootstrap'
 
-const servers = props => {
-    return (
+const servers = props => (
         <Grid>
             <Jumbotron>
                 <h1> Servers </h1>
             </Jumbotron>
-            <Col md={12}>
-                <h2> Current Servers: </h2>
-                {props.servers.map((server,index) => {
-                    return (
-                        <div key={index}> {server} </div>
+            <Row>
+                <Col md={12}>
+                    <h2> Current Servers: </h2>
+                    {props.servers.map((server) => (
+                            <div key={server._id}> {server.name} </div>
+                        )
                     )
-                })
-                }
-            </Col>
+                    }
+                </Col>
+            </Row>
         </Grid>
     )
 
-}
 
 export default servers;
