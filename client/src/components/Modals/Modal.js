@@ -3,9 +3,11 @@ import { Button, Modal, ButtonGroup } from 'react-bootstrap';
 import Aux from '../Hoc/Hoc'
 
 const modal = props => {
-    console.log("modal props", props.modal)
-
-
+    console.log("modal active table", props.activeTable)
+    console.log("modal tables", props.tables)
+    let modal=props.tables[props.activeTable]
+    console.log("modal", modal)
+if (props.activeTable) {
     return (
     <Aux>
      { props.modal.isOccupied ? (
@@ -49,8 +51,12 @@ const modal = props => {
         )
     }
     </Aux>
-);
-
+)
+}
+else {
+    props.close();
+    return null;
+}
     // // The gray background
     // const backdropStyle = {
     //     position: 'fixed',
