@@ -237,7 +237,7 @@ class App extends Component {
   }
   updatePendingOrder = pendingOrder => {
       this.setState({
-        [this.state.tables[this.state.activeTable].pendingOrder]: pendingOrder
+        [this.state.tables[0][this.state.activeTable].pendingOrder]: pendingOrder
       });
     }
 
@@ -259,7 +259,6 @@ class App extends Component {
 
    // API.placeOrder([this.state.tables[activeTable].bill]);
   }
-
   modalOpen = () => {
     this.setState({modalActive: true},function(){
       console.log(`modalActive: ${this.state.modalActive}`);
@@ -270,7 +269,6 @@ class App extends Component {
       console.log(`modalActive: ${this.state.modalActive}`);
     })
   }
-
   modalOrder = () =>{
     console.log("modalOrder")
   }
@@ -281,6 +279,7 @@ class App extends Component {
   checkOut = () => {
     console.log("check out")
   }
+
     render() {
       let activeContent = null;
 
@@ -292,7 +291,7 @@ class App extends Component {
           break;
         case ("Orders"):
           activeContent = (
-            <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTable]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} />
+            <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[0][this.state.activeTable]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} />
           )
           break;
         case ("Servers"):
