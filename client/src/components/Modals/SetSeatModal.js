@@ -3,7 +3,7 @@ import React from 'react';
 import { Servers } from './Servers';
 import { Button } from 'react-bootstrap';
 import { Buttons, ConfirmSeats, CloseModal, CancelButton } from '../Buttons';
-import { TableButtons } from '../Table/MainPage';
+import { TableButtons } from '../Table/Table';
 
 
 

@@ -1,20 +1,20 @@
 import React from 'react'
-import { Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap'
-import Hoc from '../Hoc/Hoc'
+import { Nav, NavItem } from 'react-bootstrap'
 
 const navbar = (props) => {
 
     return (
-        <Nav bsStyle="tabs" activeKey={props.activePage} onSelect={k => props.handleSelect(k)}>
+        <Nav navbar bsStyle="pills" activeKey={props.activePage} onSelect={k => props.handleSelect(k)}>
             <NavItem eventKey="Tables" title="Tables">
                 Tables
-				</NavItem>
+			</NavItem>
             <NavItem eventKey="Orders" title="Orders">
                 Orders
-				</NavItem>
-            <NavItem eventKey="Tabs" title="Tabs"> 
+			</NavItem>
+            <NavItem eventKey="Servers" title="Servers"> 
                 Servers
-				</NavItem>
+			</NavItem>
+                {props.activeTable ? (<NavItem disabled eventKey="ActiveStuff">  Active Table: {props.activeTable} </NavItem>) : null}   
         </Nav>
     );
 
