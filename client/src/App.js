@@ -258,7 +258,12 @@ class App extends Component {
     })
   }
   modalOrder = () =>{
+    // from inside the modal, this function lets the modal open an order page, it closes the modal too
     console.log("modalOrder")
+    this.setState({activePage: "Orders", modalActive: false},function(){
+      console.log(`state updated ${this.state.activePage} and ${this.state.modalActive}`)
+    })
+    
   }
   printReceipt = () =>{
     console.log("print receipt")
@@ -298,8 +303,10 @@ class App extends Component {
         </Grid>
         <Grid>
           <Row>
+            {/* active content (conditional page render) */}
             {activeContent}
           </Row>
+          {/* modal conditional rendering is below */}
           {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} /> ) : (null)}
         </Grid>
       </Aux>  
