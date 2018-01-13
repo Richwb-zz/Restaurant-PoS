@@ -15,14 +15,14 @@ const table = props => {
                     <Row>
                         {props.tables.map( (table)=>{
                         return (
-                        <Col md={3} xs={2} key={table.name}>
-                                <Panel onClick={()=> props.clicked(table.name)} bsStyle={ table.isOccupied? "danger" : "success" }>
+                            <Col className="tablePanels" md={3} xs={2} key={table.name}>
+                                <Panel className="tablePanels" onClick={()=> props.clicked(table.name)} bsStyle={ table.isOccupied? "danger" : "success" }>
                                     <Panel.Heading className="tablePanel" >
                                         <Panel.Title>
-                                            <h2>{table.name}</h2 >
+                                            <h2 className="text-center">{table.name}</h2 >
                                         {table.isOccupied ?  (
-                                                <h3> Guests: {table.guestNumber} </h3>)
-                                                : (<h3> Table Open </h3>)}
+                                                <h3 className="text-center"> Guests: {table.guestNumber} </h3>)
+                                                : (<h3 className="text-center"> Table Open </h3>)}
                                     </Panel.Title>
                                 </Panel.Heading>
                             </Panel>
