@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ButtonGroup } from 'react-bootstrap';
+import { Button, Modal, ButtonGroup,DropdownButton,MenuItem } from 'react-bootstrap';
 import Aux from '../Hoc/Hoc'
 
 const modal = props => {
@@ -38,7 +38,13 @@ if (props.activeTable) {
 
                     <Modal.Body>
                         <p>Seat New Customers:</p>
-                        <p> form goes here </p>
+                            <DropdownButton bsSize="large" title="Select Name" id="modalDropButton">
+                                    {props.servers.map((server,index)=>{
+                                        return (
+                                            <MenuItem key={server._id} eventKey={server.name} value={server.name}> {server.name} </MenuItem>
+                                        )
+                                    })}
+                            </DropdownButton>
                         <Button>Submit</Button>
 
                     </Modal.Body>
