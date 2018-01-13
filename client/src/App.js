@@ -14,7 +14,7 @@ class App extends Component {
   state = {
     tables: [
        {
-        name: "table1" ,
+        name: "Table 1" ,
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -25,7 +25,7 @@ class App extends Component {
         }
       },
       {
-        name: "table2",
+        name: "Table 2",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -36,7 +36,7 @@ class App extends Component {
         }
       },
         {
-        name: "table3",
+        name: "Table 3",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -47,7 +47,7 @@ class App extends Component {
           }
         },
         {
-        name: "table4",
+        name: "Table 4",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -58,7 +58,7 @@ class App extends Component {
         }
       },
       {
-        name: "table5",
+        name: "Table 5",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -69,7 +69,7 @@ class App extends Component {
         }
       },
       {
-        name: "table6",
+        name: "Table 6",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -80,7 +80,7 @@ class App extends Component {
         }
       },
       {
-        name: "table7",
+        name: "Table 7",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -91,7 +91,7 @@ class App extends Component {
         }
       },
       {
-        name: "table8",
+        name: "Table 8",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -102,7 +102,7 @@ class App extends Component {
         }
       },
       {
-        name: "table9",
+        name: "Table 9",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -113,7 +113,7 @@ class App extends Component {
         }
       },
       {
-        name: "table10",
+        name: "Table 10",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -124,7 +124,7 @@ class App extends Component {
         }
       },
       {
-        name: "table11",
+        name: "Table 11",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -135,7 +135,7 @@ class App extends Component {
         }
       },
       {
-        name: "table12",
+        name: "Table 12",
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
