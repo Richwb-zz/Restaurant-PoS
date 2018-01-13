@@ -5,23 +5,6 @@ import './Table.css';
 
 const table = props => {
 
-    // closeModal(e) {
-    //     console.log("working closeModal")
-    //     e.preventDefault();
-    //     this.setState({
-    //         modalToggle: false
-    //     });
-    // }
-
-    // handleTableClick(e) {
-    //     e.preventDefault();
-    //     const modalAction = !this.state.modalToggle;
-    //     // const seatCheck = this.state.isOccupied ? false : true;
-    //     this.setState({
-    //         modalToggle: modalAction
-    //     });
-
-
         return(
             <Grid fluid>
                 <Grid>

@@ -263,9 +263,6 @@ class App extends Component {
   modalOpen = () => {
     this.setState({modalActive: true},function(){
       console.log(`modalActive: ${this.state.modalActive}`);
-      let active=this.state.activeTable
-      console.log("active",active)
-      console.log(this.state.tables[this.state.activeTable])
     })
   }
   modalClose = () => {
@@ -274,6 +271,16 @@ class App extends Component {
     })
   }
 
+  modalOrder = () =>{
+    console.log("modalOrder")
+  }
+  printReceipt = () =>{
+    console.log("print receipt")
+
+  }
+  checkOut = () => {
+    console.log("check out")
+  }
     render() {
       let activeContent = null;
 
@@ -304,7 +311,7 @@ class App extends Component {
           <Row>
             {activeContent}
           </Row>
-          {this.state.modalActive ? (<Modal modalType={this.state.tables[this.state.activeTable]} /> ) : (null)}
+          {this.state.modalActive ? (<Modal modal={this.state.tables[0][this.state.activeTable]} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} /> ) : (null)}
         </Grid>
         
       );
