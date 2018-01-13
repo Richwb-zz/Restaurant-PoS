@@ -1,3 +1,10 @@
 .tablePanel {
     height:175px;
+     border-radius: 50px;
+}
+.tablePanels {
+    border-radius: 50px;
+}
+.jumbotron {
+    border-radius: 50px;
 }

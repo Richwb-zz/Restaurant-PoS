@@ -7,6 +7,7 @@ import Navbar from './components/Nav/Navbar'
 import Table from './components/Table/Table';
 import Servers from './components/Servers/Servers'
 import Modal from './components/Modals/Modal'
+import Aux from './components/Hoc/Hoc'
 
 class App extends Component {
 
@@ -287,15 +288,17 @@ class App extends Component {
       }
 
       return (
-
+      <Aux>
         <Grid fluid>
           <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
+        </Grid>
+        <Grid>
           <Row>
             {activeContent}
           </Row>
           {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} /> ) : (null)}
         </Grid>
-        
+      </Aux>  
       );
     }
   }
