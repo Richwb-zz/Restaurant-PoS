@@ -13,7 +13,7 @@ class App extends Component {
 
   state = {
     tables: [
-      {
+       {
         name: "table1" ,
         isOccupied: false,
         guestNumber: null,
@@ -210,13 +210,17 @@ class App extends Component {
   handleTableClick = (item) => {
     console.log("Table CLicked!!")
     console.log("item", item);
-    console.log("item index", this.state.tables.indexOf(item))
-    // let newItemIndex = (item)=>{
-    //   return this.state.tables.indexOf(item); 
-    // }
-    this.setState({ activeTable: item  }, function () {
-      console.log("state changed:", this.state.activeTable)
-      //this.modalOpen();
+    console.log("item index")
+    let newTableIndex=null;
+    this.state.tables.map((table,index)=>{
+      if (table.name === item) {
+        console.log(`${table.name} found at ${index}`)
+        newTableIndex=index;
+        this.setState({ activeTable: item, activeTableIndex: newTableIndex }, function () {
+          console.log("state changed  Table:", this.state.activeTable, "Index:",this.state.activeTableIndex)
+          this.modalOpen();
+        })
+      }
     })
   }
   updatePendingOrder = pendingOrder => {
@@ -296,7 +300,7 @@ class App extends Component {
           <Row>
             {activeContent}
           </Row>
-          {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} /> ) : (null)}
+          {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} /> ) : (null)}
         </Grid>
       </Aux>  
       );
