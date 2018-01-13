@@ -47,9 +47,8 @@ export class SetSeatModal extends React.Component {
           <div>
             {/* <button onClick={this.handleModalClose.bind(this)}isOccupied={true}
             >Cancel</button> */}
-            {console.log(this.props)}
             <CloseModal CloseModal={this.props.CloseModal}/>
-            <div>Server <span><Servers /></span></div>
+            <div>Server <span><Servers key={this.props.server}/></span></div>
             <div>Number of Guests <span><input type="text" /></span></div>
             <ConfirmSeats />
           </div>

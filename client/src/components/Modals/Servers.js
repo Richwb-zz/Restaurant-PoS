@@ -1,23 +1,36 @@
 import React from 'react';
-import {DropdownButton, MenuItem} from 'react-bootstrap';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
+import { find } from 'lodash';
 
 export class Servers extends React.Component {
 
-   render() {
+    static defaultProps = {
+        servers: ['Server 1', 'Server 2', 'Server 3', 'Server 4', 'Server 5', 'Server 6']
+    }
 
-        const servers = ['Server 1', 'Server 2', 'Server 3', 'Server 4', 'Server 5', 'Server 6'];
-        const serverDisplay = servers.map((server, index) => {
+    handleServerSelection = (server) => {
+ console.log("event ", server);
+ console.log(this);
+       
+    }
+
+        render() {
+        const serverDisplay = this.props.servers.map((server, i) => {
             return (
-                <MenuItem key={server} eventKey={server} value={index.toString()}>{server}</MenuItem>
+                <MenuItem key={i} 
+                options={ server }
+                 clickaction={this.props} 
+                 value={server} 
+                 onClick={this.handleServerSelection(server)}>{server}</MenuItem>
             )
         });
-
+        // this.handleServerSelection();
         return (
-            
-            <DropdownButton                
-            title="Select Name"
-            key={this.props.server}
-            id='dropBtn'
+
+            <DropdownButton
+                title="Select Name"
+                key={this.props.server}
+                id='dropBtn'
             >
                 {serverDisplay}
             </DropdownButton>
@@ -26,3 +39,4 @@ export class Servers extends React.Component {
 
     }
 }
+
