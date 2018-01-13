@@ -1,13 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Col, Row, Grid, Jumbotron, Panel } from 'react-bootstrap';
 import './Table.css';
 
 
 const table = props => {
-console.log(props.tables)
-props.tables.map( item => {
-    let itemKey=Object.keys(item)
-})
+
     // closeModal(e) {
     //     console.log("working closeModal")
     //     e.preventDefault();
@@ -33,7 +30,9 @@ props.tables.map( item => {
                         <h2> Select a table to perform functions </h2>
                     </Jumbotron>
                     <Row>
-                        {props.tables.map( (table)=>{
+                        {props.tables.map( (item)=>{
+                            let itemKey = Object.keys(item)[0]
+                            let table=item[itemKey]
                         return (
                         <Col md={3} xs={2} key={table.name}>
                                 <Panel onClick={()=> props.clicked(table.name)} bsStyle={ table.isOccupied? "danger" : "success" }>
