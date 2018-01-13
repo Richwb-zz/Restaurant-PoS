@@ -8,9 +8,9 @@ const navbar = (props) => {
             <NavItem eventKey="Tables" title="Tables">
                 Tables
 			</NavItem>
-            <NavItem eventKey="Orders" title="Orders">
-                Orders
-			</NavItem>
+            {props.activeTable ? (<NavItem eventKey="Orders" title="Orders"> Orders
+			</NavItem>) : (<NavItem eventKey="Orders" title="Orders" disabled> Orders
+			</NavItem>)}
             <NavItem eventKey="Servers" title="Servers"> 
                 Servers
 			</NavItem>
