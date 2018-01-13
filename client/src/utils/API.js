@@ -22,18 +22,25 @@ export default {
                 console.log(response);
                 return response
             }).catch(error => {
-                if (error) throw error;
+                if (error) {
+                    console.log(error);
+                    return error;
+                }
             })
     },
     placeOrder: (order)=>{
         return (
-            
-            axios.put("http://localhost:4444/order/" + order.id, {[order] : order})
+            axios.put({
+                url: encodeURI("http://localhost:4444/order/"),
+                "id": order.id,
+                "order": order})
             .then(response => {
                 console.log(response)
+                return response;
             })
             .catch(error => {
                 console.log(error);
+                return error;
             })
         )
     }
