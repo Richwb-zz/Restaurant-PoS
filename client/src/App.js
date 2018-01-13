@@ -225,7 +225,7 @@ class App extends Component {
   }
   updatePendingOrder = pendingOrder => {
       this.setState({
-        [this.state.tables[0][this.state.activeTable].pendingOrder]: pendingOrder
+        [this.state.tables[this.state.activeTableIndex].pendingOrder]: pendingOrder
       });
     }
 
@@ -279,7 +279,7 @@ class App extends Component {
           break;
         case ("Orders"):
           activeContent = (
-            <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[0][this.state.activeTable]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} />
+            <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTableIndex]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} />
           )
           break;
         case ("Servers"):
