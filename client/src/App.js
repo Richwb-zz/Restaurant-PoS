@@ -11,9 +11,9 @@ import Modal from './components/Modals/Modal'
 class App extends Component {
 
   state = {
-    tables: [{
-      table1: {
-        name: "table1",
+    tables: [
+      {
+        name: "table1" ,
         isOccupied: false,
         guestNumber: null,
         pendingOrder: [],
@@ -22,11 +22,8 @@ class App extends Component {
           items: [],
           total: null
         }
-      }
-    },
-    {
-      
-      table2: {
+      },
+      {
         name: "table2",
         isOccupied: false,
         guestNumber: null,
@@ -36,10 +33,8 @@ class App extends Component {
           items: [],
           total: null
         }
-      }
-    },
-    {
-      table3: {
+      },
+        {
         name: "table3",
         isOccupied: false,
         guestNumber: null,
@@ -48,11 +43,9 @@ class App extends Component {
           id: null,
           items: [],
           total: null
-        }
-      }
-    },
-    {
-      table4: {
+          }
+        },
+        {
         name: "table4",
         isOccupied: false,
         guestNumber: null,
@@ -62,10 +55,8 @@ class App extends Component {
           items: [],
           total: null
         }
-      }
-    },
-    {
-      table5: {
+      },
+      {
         name: "table5",
         isOccupied: false,
         guestNumber: null,
@@ -75,10 +66,8 @@ class App extends Component {
           items: [],
           total: null
         }
-      }
-    },
-    {
-      table6: {
+      },
+      {
         name: "table6",
         isOccupied: false,
         guestNumber: null,
@@ -88,10 +77,8 @@ class App extends Component {
           items: [],
           total: null
         }
-      }
-    },
-    {
-      table7: {
+      },
+      {
         name: "table7",
         isOccupied: false,
         guestNumber: null,
@@ -101,10 +88,8 @@ class App extends Component {
           items: [],
           total: null
         }
-      }
-    },
-    {
-      table8: {
+      },
+      {
         name: "table8",
         isOccupied: false,
         guestNumber: null,
@@ -114,10 +99,8 @@ class App extends Component {
           items: [],
           total: null
         }
-      }
-    },
-    {
-      table9: {
+      },
+      {
         name: "table9",
         isOccupied: false,
         guestNumber: null,
@@ -127,10 +110,8 @@ class App extends Component {
           items: [],
           total: null
         }
-      }
-    },
-     {
-       table10: {
+      },
+      {
         name: "table10",
         isOccupied: false,
         guestNumber: null,
@@ -140,10 +121,8 @@ class App extends Component {
           items: [],
           total: null
         }
-      }
-    },
-    {
-     table11: {
+      },
+      {
         name: "table11",
         isOccupied: false,
         guestNumber: null,
@@ -153,10 +132,8 @@ class App extends Component {
           items: [],
           total: null
         }
-      }
-    },
-    {
-      table12: {
+      },
+      {
         name: "table12",
         isOccupied: false,
         guestNumber: null,
@@ -167,7 +144,7 @@ class App extends Component {
           total: null
         }
       }
-    }],
+    ],
     servers: [],
     menu: {},
     activePage: "Tables",
@@ -310,7 +287,7 @@ class App extends Component {
           <Row>
             {activeContent}
           </Row>
-          {this.state.modalActive ? (<Modal modal={this.state.tables[0][this.state.activeTable]} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} /> ) : (null)}
+          {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} /> ) : (null)}
         </Grid>
         
       );

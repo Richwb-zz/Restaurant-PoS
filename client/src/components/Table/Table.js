@@ -13,9 +13,7 @@ const table = props => {
                         <h2> Select a table to perform functions </h2>
                     </Jumbotron>
                     <Row>
-                        {props.tables.map( (item)=>{
-                            let itemKey = Object.keys(item)[0]
-                            let table=item[itemKey]
+                        {props.tables.map( (table)=>{
                         return (
                         <Col md={3} xs={2} key={table.name}>
                                 <Panel onClick={()=> props.clicked(table.name)} bsStyle={ table.isOccupied? "danger" : "success" }>
