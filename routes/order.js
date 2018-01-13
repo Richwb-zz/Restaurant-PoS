@@ -47,7 +47,7 @@ router.get('/unpaid', (req, res, next) => {
 })
 
 //create new reciept
-router.post('/', (req, res, next) => {
+router.post('/seat', (req, res, next) => {
     console.log("NEW SEATING")
     console.log(req.body);
     receipts
