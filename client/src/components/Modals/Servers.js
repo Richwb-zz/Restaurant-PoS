@@ -4,14 +4,17 @@ import { find } from 'lodash';
 
 export class Servers extends React.Component {
 
+
+    state = {
+        chosenServer: "Select Server"
+    }
+
     static defaultProps = {
         servers: ['Server 1', 'Server 2', 'Server 3', 'Server 4', 'Server 5', 'Server 6']
     }
 
     handleServerSelection = (server) => {
- console.log("event ", server);
- console.log(this);
-       
+        this.setState({chosenServer: server});       
     }
 
         render() {
@@ -21,14 +24,14 @@ export class Servers extends React.Component {
                 options={ server }
                  clickaction={this.props} 
                  value={server} 
-                 onClick={this.handleServerSelection(server)}>{server}</MenuItem>
+                 onClick={()=> this.handleServerSelection(server)}>{server}</MenuItem>
             )
         });
         // this.handleServerSelection();
         return (
 
             <DropdownButton
-                title="Select Name"
+                title={this.state.chosenServer}
                 key={this.props.server}
                 id='dropBtn'
             >
