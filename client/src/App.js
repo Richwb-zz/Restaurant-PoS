@@ -172,7 +172,7 @@ class App extends Component {
     servers: [],
     menu: {},
     activePage: "Tables",
-    activeTable: null
+    activeTable: ""
   }
 
   componentDidMount() {
@@ -236,7 +236,7 @@ class App extends Component {
   }
   updatePendingOrder = pendingOrder => {
       this.setState({
-        [this.state.tables[this.state.activeTable].pendingOrder]: pendingOrder
+        [this.state.tables[0][this.state.activeTable].pendingOrder]: pendingOrder
       });
     }
 
@@ -259,6 +259,10 @@ class App extends Component {
    // API.placeOrder([this.state.tables[activeTable].bill]);
   }
 
+  // test = element => {
+  //   element === this.state.activeTable ? return element : ''
+  // }
+
     render() {
       let activeContent = null;
 
@@ -270,7 +274,7 @@ class App extends Component {
           break;
         case ("Orders"):
           activeContent = (
-            <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTable]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} />
+            <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[0][this.state.activeTable]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} />
           )
           break;
         case ("Servers"):
