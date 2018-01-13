@@ -14,8 +14,8 @@ const navbar = (props) => {
             <NavItem eventKey="Servers" title="Servers"> 
                 Servers
 			</NavItem>
-            <div className="text-right"> ActivePage: {props.activePage} Active Table: {props.activeTable}
-            </div>
+            <div className="text-right"> { props.activePage ? ( <span> Active Page: {props.activePage}</span>): null }{ props.activeTable ? (<span>Active Table: {props.activeTable} </span>): null}
+            </div>  
         </Nav>
     );
 
