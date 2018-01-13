@@ -149,19 +149,20 @@ class App extends Component {
     menu: {},
     activePage: "Tables",
     activeTable: null,
+    activeTableIndex: null,
     modalActive: false
   }
 
   componentDidMount() {
-    console.log("mounted")
+  //  console.log("mounted")
     this.populateData();
   }
   populateData = () => {
-    console.log("populate start")
+   // console.log("populate start")
     this.getMenu();
     this.getServers();
-    this.getTables();
-    console.log("populated")
+    //this.getTables();
+   // console.log("populated")
   }
   activePageHandler = (event) => {
     //This is for the navbar to find the active page
@@ -176,7 +177,7 @@ class App extends Component {
     API.getMenu().then(results => {
       let newMenu = results.data
       this.setState({ menu: newMenu }, () => {
-        console.log(this.state.menu)
+        //console.log(this.state.menu)
       })
     }).catch(error => {
       if (error) console.log(error)
@@ -187,7 +188,7 @@ class App extends Component {
     API.getServers().then(results => {
       let newServers = results.data
       this.setState({ servers: newServers }, () => {
-        console.log(this.state.servers)
+        //console.log(this.state.servers)
       })
     }).catch(error => {
       if (error) console.log(error)
@@ -207,9 +208,14 @@ class App extends Component {
 
   handleTableClick = (item) => {
     console.log("Table CLicked!!")
-    this.setState({ activeTable: item }, function () {
-      console.log("state changed:" + this.state.activeTable)
-      this.modalOpen();
+    console.log("item", item);
+    console.log("item index", this.state.tables.indexOf(item))
+    // let newItemIndex = (item)=>{
+    //   return this.state.tables.indexOf(item); 
+    // }
+    this.setState({ activeTable: item  }, function () {
+      console.log("state changed:", this.state.activeTable)
+      //this.modalOpen();
     })
   }
   updatePendingOrder = pendingOrder => {
