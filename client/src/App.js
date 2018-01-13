@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Grid, Row, Col } from 'react-bootstrap'
+import { Grid, Row } from 'react-bootstrap'
 import API from './utils/API'
 import Order from './components/Order'
 import Navbar from './components/Nav/Navbar'
-import Hoc from './components/Hoc/Hoc'
 import Table from './components/Table/Table';
 import Servers from './components/Servers/Servers'
 import Modal from './components/Modals/Modal'
@@ -172,7 +171,8 @@ class App extends Component {
     servers: [],
     menu: {},
     activePage: "Tables",
-    activeTable: ""
+    activeTable: null,
+    modalActive: false
   }
 
   componentDidMount() {
@@ -232,6 +232,7 @@ class App extends Component {
     console.log("Table CLicked!!")
     this.setState({ activeTable: item }, function () {
       console.log("state changed:" + this.state.activeTable)
+      this.modalOpen();
     })
   }
   updatePendingOrder = pendingOrder => {
@@ -258,11 +259,19 @@ class App extends Component {
 
    // API.placeOrder([this.state.tables[activeTable].bill]);
   }
-
-  // test = element => {
-  //   element === this.state.activeTable ? return element : ''
-  // }
-
+  modalOpen = () => {
+    this.setState({modalActive: true},function(){
+      console.log(`modalActive: ${this.state.modalActive}`);
+      let active=this.state.activeTable
+      console.log("active",active)
+      console.log(this.state.tables[this.state.activeTable])
+    })
+  }
+  modalClose = () => {
+    this.setState({ modalActive: false }, function () {
+      console.log(`modalActive: ${this.state.modalActive}`);
+    })
+  }
     render() {
       let activeContent = null;
 
@@ -293,7 +302,9 @@ class App extends Component {
           <Row>
             {activeContent}
           </Row>
+          {this.state.modalActive ? (<Modal modalType={this.state.tables[this.state.activeTable]} /> ) : (null)}
         </Grid>
+        
       );
     }
   }

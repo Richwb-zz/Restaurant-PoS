@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap'
+import { Nav, NavItem } from 'react-bootstrap'
 
 const navbar = (props) => {
 
