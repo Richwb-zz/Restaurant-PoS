@@ -221,8 +221,6 @@ class App extends Component {
 
   handleTableClick = (item) => {
     console.log("Table CLicked!!")
-    console.log("item", item);
-    console.log("item index")
     let newTableIndex=null;
     this.state.tables.map((table,index)=>{
       if (table.name === item) {
@@ -263,6 +261,24 @@ class App extends Component {
   setServer = (server) => {
     this.setState({[this.state.tables[this.state.activeTableIndex].server]: server});
   }
+  
+  seatGuestsFromModalHandler = (server,guests) => {
+    console.log(`seatGuests called, ${server} with ${guests}`)
+    console.log(`Table: ${this.state.activeTable} Index: ${this.state.activeTableIndex}`)
+    console.log(this.state.tables[this.state.activeTableIndex])
+    let updateTables = [...this.state.tables]
+    console.log("pre-update", updateTables)
+    updateTables[this.state.activeTableIndex].guestNumber = guests;
+    updateTables[this.state.activeTableIndex].server = server;
+    updateTables[this.state.activeTableIndex].isOccupied = true;
+    console.log("updateTables",updateTables)
+    this.setState({ 
+      modalActive: false,
+      tables: updateTables
+       }, function () {
+      console.log(`state updated modalActive: ${this.state.modalActive}`)
+    })
+  }
 
   modalOpen = () => {
     this.setState({modalActive: true},function(){
@@ -277,11 +293,11 @@ class App extends Component {
   modalOrder = () =>{
     // from inside the modal, this function lets the modal open an order page, it closes the modal too
     console.log("modalOrder")
-    this.setState({activePage: "Orders", modalActive: false},function(){
+    this.setState({ activePage: "Orders", modalActive: false }, function () {
       console.log(`state updated ${this.state.activePage} and ${this.state.modalActive}`)
     })
-    
   }
+
   printReceipt = () =>{
     console.log("print receipt")
 
@@ -324,7 +340,7 @@ class App extends Component {
             {activeContent}
           </Row>
           {/* modal conditional rendering is below */}
-          {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} setServer={this.setServer} /> ) : (null)}
+            {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} setServer={this.setServer} seatGuests={this.seatGuestsFromModalHandler} /> ) : (null)}
         </Grid>
       </Aux>  
       );

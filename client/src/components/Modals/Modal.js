@@ -51,7 +51,7 @@ class SeatModal extends React.Component {
 
                                     <Modal.Body>
                                         <p>Seat New Customers:</p>
-                                        <DropdownButton bsSize="large" title={this.state.chosenServer} id="modalDropButton">
+                                        <DropdownButton bsSize="large" title={this.state.chosenServer} id="modalDropButtonServer">
                                             {this.props.servers.map((server, index) => {
                                                 return (
                                                     <MenuItem key={server._id} eventKey={server.name} value={server.name} onClick={()=> this.handleServerSelection(server.name)}> {server.name} </MenuItem>
@@ -59,7 +59,7 @@ class SeatModal extends React.Component {
                                             })}
                                         </DropdownButton>
                                         <p># of Guests</p>
-                                        <DropdownButton title={this.state.guestNumber}>
+                                        <DropdownButton id="modalDropButtonGuests" title={this.state.guestNumber}>
                                             <MenuItem value={1} onClick={()=> this.setGuests(1)}>1</MenuItem>
                                             <MenuItem value={2} onClick={()=> this.setGuests(2)}>2</MenuItem>
                                             <MenuItem value={3} onClick={()=> this.setGuests(3)}>3</MenuItem>
@@ -69,10 +69,8 @@ class SeatModal extends React.Component {
                                             <MenuItem value={7} onClick={()=> this.setGuests(7)}>7</MenuItem>
                                             <MenuItem value={8} onClick={()=> this.setGuests(8)}>8</MenuItem>
                                         </DropdownButton>
-                                        <Button>Submit</Button>
-
+                                        <Button onClick={() => this.props.seatGuests(this.state.chosenServer,this.state.guestNumber)}>Submit</Button>
                                     </Modal.Body>
-
                                     <Modal.Footer>
                                         <Button onClick={this.props.close}>Close</Button>
                                     </Modal.Footer>
