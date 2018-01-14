@@ -17,6 +17,7 @@ class App extends Component {
         name: "Table 1" ,
         isOccupied: false,
         guestNumber: null,
+        server: null,
         pendingOrder: [],
         bill: {
           id: null,
@@ -28,6 +29,7 @@ class App extends Component {
         name: "Table 2",
         isOccupied: false,
         guestNumber: null,
+        server: null,
         pendingOrder: [],
         bill: {
           id: null,
@@ -39,6 +41,7 @@ class App extends Component {
         name: "Table 3",
         isOccupied: false,
         guestNumber: null,
+        server: null,
         pendingOrder: [],
         bill: {
           id: null,
@@ -50,6 +53,7 @@ class App extends Component {
         name: "Table 4",
         isOccupied: false,
         guestNumber: null,
+        server: null,
         pendingOrder: [],
         bill: {
           id: null,
@@ -61,6 +65,7 @@ class App extends Component {
         name: "Table 5",
         isOccupied: false,
         guestNumber: null,
+        server: null,
         pendingOrder: [],
         bill: {
           id: null,
@@ -72,6 +77,7 @@ class App extends Component {
         name: "Table 6",
         isOccupied: false,
         guestNumber: null,
+        server: null,
         pendingOrder: [],
         bill: {
           id: null,
@@ -83,6 +89,7 @@ class App extends Component {
         name: "Table 7",
         isOccupied: false,
         guestNumber: null,
+        server: null,
         pendingOrder: [],
         bill: {
           id: null,
@@ -94,6 +101,7 @@ class App extends Component {
         name: "Table 8",
         isOccupied: false,
         guestNumber: null,
+        server: null,
         pendingOrder: [],
         bill: {
           id: null,
@@ -105,6 +113,7 @@ class App extends Component {
         name: "Table 9",
         isOccupied: false,
         guestNumber: null,
+        server: null,
         pendingOrder: [],
         bill: {
           id: null,
@@ -116,6 +125,7 @@ class App extends Component {
         name: "Table 10",
         isOccupied: false,
         guestNumber: null,
+        server: null,
         pendingOrder: [],
         bill: {
           id: null,
@@ -127,6 +137,7 @@ class App extends Component {
         name: "Table 11",
         isOccupied: false,
         guestNumber: null,
+        server: null,
         pendingOrder: [],
         bill: {
           id: null,
@@ -138,6 +149,7 @@ class App extends Component {
         name: "Table 12",
         isOccupied: false,
         guestNumber: null,
+        server: null,
         pendingOrder: [],
         bill: {
           id: null,
@@ -247,6 +259,11 @@ class App extends Component {
 
    // API.placeOrder([this.state.tables[activeTable].bill]);
   }
+
+  setServer = (server) => {
+    this.setState({[this.state.tables[this.state.activeTableIndex].server]: server});
+  }
+
   modalOpen = () => {
     this.setState({modalActive: true},function(){
       console.log(`modalActive: ${this.state.modalActive}`);
@@ -307,7 +324,7 @@ class App extends Component {
             {activeContent}
           </Row>
           {/* modal conditional rendering is below */}
-          {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} /> ) : (null)}
+          {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} setServer={this.setServer} /> ) : (null)}
         </Grid>
       </Aux>  
       );
