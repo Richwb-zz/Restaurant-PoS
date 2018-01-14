@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col, Row, Grid, Jumbotron, Panel } from 'react-bootstrap';
+import Aux from '../Hoc/Hoc'
 import './Table.css';
 
 
@@ -20,9 +21,17 @@ const table = props => {
                                     <Panel.Heading className="tablePanel" >
                                         <Panel.Title>
                                             <h2 className="text-center">{table.name}</h2 >
-                                        {table.isOccupied ?  (
-                                                <h3 className="text-center"> Guests: {table.guestNumber} </h3>)
-                                                : (<h3 className="text-center"> Table Open </h3>)}
+                                        {table.isOccupied ?  
+                                            (
+                                            // IS OCCUPIED RENDER
+                                            <Aux>
+                                                <h3 className="text-center"> Guests: {table.guestNumber} </h3>
+                                                <h3 className="text-center"> Server: {table.server} </h3>
+                                            </Aux>
+                                            )
+                                            :(
+                                            // NOT OCCUPIED RENDER
+                                                <h3 className="text-center"> Table Open </h3>)}
                                     </Panel.Title>
                                 </Panel.Heading>
                             </Panel>
