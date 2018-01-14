@@ -5,10 +5,16 @@ import Aux from '../Hoc/Hoc'
 class SeatModal extends React.Component {
 
     state = {
-        chosenServer: "Select Server"
+        chosenServer: "Select Server",
+        guestNumber: "Select Number"
     }
     handleServerSelection = (server) => {
-        this.setState({chosenServer: server});       
+        this.setState({chosenServer: server});  
+        this.props.setServer(server);     
+    }
+
+    setGuests = (numOfGuests) => {
+        this.setState({guestNumber: numOfGuests})
     }
 
     render() {
@@ -51,6 +57,17 @@ class SeatModal extends React.Component {
                                                     <MenuItem key={server._id} eventKey={server.name} value={server.name} onClick={()=> this.handleServerSelection(server.name)}> {server.name} </MenuItem>
                                                 )
                                             })}
+                                        </DropdownButton>
+                                        <p># of Guests</p>
+                                        <DropdownButton title={this.state.guestNumber}>
+                                            <MenuItem value={1} onClick={()=> this.setGuests(1)}>1</MenuItem>
+                                            <MenuItem value={2} onClick={()=> this.setGuests(2)}>2</MenuItem>
+                                            <MenuItem value={3} onClick={()=> this.setGuests(3)}>3</MenuItem>
+                                            <MenuItem value={4} onClick={()=> this.setGuests(4)}>4</MenuItem>
+                                            <MenuItem value={5} onClick={()=> this.setGuests(5)}>5</MenuItem>
+                                            <MenuItem value={6} onClick={()=> this.setGuests(6)}>6</MenuItem>
+                                            <MenuItem value={7} onClick={()=> this.setGuests(7)}>7</MenuItem>
+                                            <MenuItem value={8} onClick={()=> this.setGuests(8)}>8</MenuItem>
                                         </DropdownButton>
                                         <Button>Submit</Button>
 
