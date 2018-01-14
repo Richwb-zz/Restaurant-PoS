@@ -13,11 +13,7 @@ export default {
     },
     seatGuests: (seating)=>{
         console.log ("seating",seating)
-        return axios.post({
-            url: encodeURI("http://localhost:4444/order/seat"),
-            table: seating.table,
-            guests: seating.guests,
-            server: seating.server})
+        return axios.post("http://localhost:4444/check/seat",seating)
             .then(response =>{
                 console.log(response);
                 return response

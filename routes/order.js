@@ -46,20 +46,6 @@ router.get('/unpaid', (req, res, next) => {
 
 })
 
-//create new reciept
-router.post('/seat', (req, res, next) => {
-    console.log("NEW SEATING")
-    console.log(req.body);
-    receipts
-        .create({ table: req.body.table, guests: req.body.guests, server: req.body.server })
-        .then(results => {
-            console.log(results);
-            res.json(results)
-        })
-        .catch(error => res.json(error));
-
-});
-
 //add order to receipt
 router.put('/:id', (req, res, next) => {
     console.log("UPDATE SEATING")
