@@ -8,9 +8,9 @@ if (mongoose.connection.readyState === 0) {
 }
 
 var newSchema = new Schema({
-  'table': { type: Number },
-  'guests': { type: Number },
-  'server': { type: String },
+  'table': { type: String, required: true },
+  'guests': { type: Number, required: true },
+  'server': { type: String, required: true },
   'items': { type: Array },
   'sub_total': { type: Number, Default: 0.00 },
   'tax': { type: Number, Default: 0.00  },

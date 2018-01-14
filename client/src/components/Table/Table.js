@@ -20,13 +20,14 @@ const table = props => {
                                 <Panel className="tablePanels" onClick={()=> props.clicked(table.name)} bsStyle={ table.isOccupied? "danger" : "success" }>
                                     <Panel.Heading className="tablePanel" >
                                         <Panel.Title>
-                                            <h2 className="text-center">{table.name}</h2 >
+                                            <h3 className="text-center">{table.name}</h3 >
                                         {table.isOccupied ?  
                                             (
                                             // IS OCCUPIED RENDER
                                             <Aux>
-                                                <h3 className="text-center"> Guests: {table.guestNumber} </h3>
-                                                <h3 className="text-center"> Server: {table.server} </h3>
+                                                <h4 className="text-center"> Guests: {table.guestNumber} </h4>
+                                                <h4 className="text-center"> Server: {table.server} </h4>
+                                                <p className="text-center"> Receipt ID: {table.bill.id} </p>
                                             </Aux>
                                             )
                                             :(

@@ -35,5 +35,18 @@ router.get('/:id', (req, res, next) => {
     })
 });
 
+//create new reciept
+router.post('/seat', (req, res, next) => {
+    console.log("NEW SEATING")
+    console.log(req.body);
+    receipt
+        .create({ table: req.body.table, guests: req.body.guests, server: req.body.server })
+        .then(results => {
+            console.log(results);
+            res.json(results)
+        })
+        .catch(error => res.json(error));
+
+});
 
 module.exports = router;
