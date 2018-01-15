@@ -62,6 +62,21 @@ router.post('/seat', (req, res, next) => {
 
 });
 
+router.put('/:id', (req, res, next) => {
+    console.log("UPDATE CHECK")
+    console.log(req.params.id)
+    receipt.findOneAndUpdate( req.params.id, {
+    'paid': true,
+    'card': { ...req.body.card },
+    'paymentType': req.body.paymentType,
+    'paidTime': Date.now()
+    })
+        .then(result => {
+            res.json(result)
+        })
+        .catch(error => res.json(error));
+});
+
 router.get('/:id', (req, res, next) => {
     receipt.findOne({
         where: {

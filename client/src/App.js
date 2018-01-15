@@ -339,8 +339,11 @@ class App extends Component {
     console.log("print receipt")
 
   }
-  checkout = () => {
+  submitPayment = (payment) => {
     console.log("check out")
+    console.log("payment",payment);
+    //let outPayment = JSON.stringify(payment)
+    API.submitPayment(payment).then(results => console.log(results)).catch(error => console.log(error))
   }
 
   render() {
@@ -377,7 +380,7 @@ class App extends Component {
             {activeContent}
           </Row>
           {/* modal conditional rendering is below */}
-          {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkout} setServer={this.setServer} seatGuests={this.seatGuestsFromModalHandler} />) : (null)}
+          {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} submitPayment={this.submitPayment} setServer={this.setServer} seatGuests={this.seatGuestsFromModalHandler} />) : (null)}
         </Grid>
       </Hoc>
     );

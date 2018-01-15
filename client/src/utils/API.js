@@ -39,5 +39,19 @@ export default {
                 return error;
             })
         )
+    },
+    submitPayment: (payment) => {
+        console.log("submit payment in API",payment)
+        let URL = encodeURI("http://localhost:4444/check/"+payment.bill.id)
+        return (
+            axios.put(URL,payment)
+                .then(response => {
+                    return response;
+                })
+                .catch(error => {
+                    console.log(error);
+                    return error;
+                })
+        )
     }
 }

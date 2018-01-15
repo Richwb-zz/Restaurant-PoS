@@ -19,7 +19,7 @@ const occupied = props => {
         case ('checkout'):
             console.log("switch checkout")
             occupiedRenderPage= (
-                <Checkout />
+                <Checkout table={props.table} submitPayment={props.submitPayment} />
             )
             //other things
         break;
@@ -38,9 +38,9 @@ const occupied = props => {
         <div className="static-modal">
             <Modal.Dialog>
                 <Modal.Header>
-                    <Modal.Title>{props.modal.name}</Modal.Title>
+                    <Modal.Title>{props.table.name}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Guests: {props.modal.guestNumber} </Modal.Body>
+                <Modal.Body>Guests: {props.table.guestNumber} </Modal.Body>
                 {occupiedRenderPage}
                 <Modal.Footer>
                     <Button onClick={props.close}>Close</Button>
