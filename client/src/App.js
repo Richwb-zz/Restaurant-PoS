@@ -339,7 +339,7 @@ class App extends Component {
     console.log("print receipt")
 
   }
-  checkOut = () => {
+  checkout = () => {
     console.log("check out")
   }
 
@@ -377,7 +377,7 @@ class App extends Component {
             {activeContent}
           </Row>
           {/* modal conditional rendering is below */}
-          {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} setServer={this.setServer} seatGuests={this.seatGuestsFromModalHandler} />) : (null)}
+          {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkout} setServer={this.setServer} seatGuests={this.seatGuestsFromModalHandler} />) : (null)}
         </Grid>
       </Hoc>
     );
