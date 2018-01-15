@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, Modal, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import Hoc from '../Hoc/Hoc'
 import Occupied from './Occupied/Occupied';
 import NewSeating from './NewSeating/NewSeating'
@@ -26,17 +25,17 @@ class SeatModal extends Component {
     }
 
     render() {
-        let modal = this.props.tables[this.props.activeTableIndex]
+        let table = this.props.tables[this.props.activeTableIndex]
 
         if (this.props.activeTable) {
             return (
                 <Hoc>
                     {/* if the table is occupied, render the waitstaff functions, else render a new seating function */}
-                    {modal.isOccupied ? (
-                        <Occupied modal={modal} click={this.occupiedRenderHandler} order={this.props.order}receipt={this.props.receipt} checkout={this.props.checkout} close={this.props.close} render={this.state.occupiedRender}/>
+                    {table.isOccupied ? (
+                        <Occupied table={table} click={this.occupiedRenderHandler} order={this.props.order}receipt={this.props.receipt} submitPayment={this.props.submitPayment} close={this.props.close} render={this.state.occupiedRender} />
                     )
                         : (
-                        <NewSeating modal={modal} chosenServer={this.state.chosenServer} servers={this.props.servers} setGuests={this.setGuests} seatGuests={this.props.seatGuests} handleServerSelection={this.handleServerSelection} guestNumber={this.state.guestNumber} close={this.props.close}/>   
+                        <NewSeating table={table} chosenServer={this.state.chosenServer} servers={this.props.servers} setGuests={this.setGuests} seatGuests={this.props.seatGuests} handleServerSelection={this.handleServerSelection} guestNumber={this.state.guestNumber} close={this.props.close}/>   
                         )
                     }
                 </Hoc>
