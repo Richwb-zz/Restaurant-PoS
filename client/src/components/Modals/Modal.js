@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, Modal, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
-import Aux from '../Hoc/Hoc'
+import Hoc from '../Hoc/Hoc'
+import Occupied from './Occupied/Occupied';
+import NewSeating from './NewSeating/NewSeating'
 
-class SeatModal extends React.Component {
+
+class SeatModal extends Component {
 
     state = {
         chosenServer: "Select Server",
-        guestNumber: "Select Number"
+        guestNumber: "Select Number",
+        occupiedRender: null
+    }
+    occupiedRenderHandler = (page) => {
+        console.log("render handler", page)
+        this.setState({occupiedRender: page}, function(){console.log(`state updated ${this.state.occupiedRender}`)})
     }
     handleServerSelection = (server) => {
         this.setState({chosenServer: server});  
@@ -22,63 +30,16 @@ class SeatModal extends React.Component {
 
         if (this.props.activeTable) {
             return (
-                <Aux>
+                <Hoc>
+                    {/* if the table is occupied, render the waitstaff functions, else render a new seating function */}
                     {modal.isOccupied ? (
-                        <div className="static-modal">
-                            <Modal.Dialog>
-                                <Modal.Header>
-                                    <Modal.Title>{modal.name}</Modal.Title>
-                                </Modal.Header>
-
-                                <Modal.Body>Guests: {modal.guestNumber} </Modal.Body>
-                                <ButtonGroup vertical>
-                                    <Button onClick={this.props.order}> Place Order </Button>
-                                    <Button onClick={this.props.receipt}> Print Check </Button>
-                                    <Button onClick={this.props.checkout}> Checkout </Button>
-                                </ButtonGroup>
-                                <Modal.Footer>
-                                    <Button onClick={this.props.close}>Close</Button>
-                                </Modal.Footer>
-                            </Modal.Dialog>
-                        </div>
+                        <Occupied modal={modal} click={this.occupiedRenderHandler} order={this.props.order}receipt={this.props.receipt} checkout={this.props.checkout} close={this.props.close} render={this.state.occupiedRender}/>
                     )
                         : (
-                            <div className="static-modal">
-                                <Modal.Dialog>
-                                    <Modal.Header>
-                                        <Modal.Title>{modal.name} New Seating </Modal.Title>
-                                    </Modal.Header>
-
-                                    <Modal.Body>
-                                        <p>Seat New Customers:</p>
-                                        <DropdownButton bsSize="large" title={this.state.chosenServer} id="modalDropButtonServer">
-                                            {this.props.servers.map((server, index) => {
-                                                return (
-                                                    <MenuItem key={server._id} eventKey={server.name} value={server.name} onClick={()=> this.handleServerSelection(server.name)}> {server.name} </MenuItem>
-                                                )
-                                            })}
-                                        </DropdownButton>
-                                        <p># of Guests</p>
-                                        <DropdownButton id="modalDropButtonGuests" title={this.state.guestNumber}>
-                                            <MenuItem value={1} onClick={()=> this.setGuests(1)}>1</MenuItem>
-                                            <MenuItem value={2} onClick={()=> this.setGuests(2)}>2</MenuItem>
-                                            <MenuItem value={3} onClick={()=> this.setGuests(3)}>3</MenuItem>
-                                            <MenuItem value={4} onClick={()=> this.setGuests(4)}>4</MenuItem>
-                                            <MenuItem value={5} onClick={()=> this.setGuests(5)}>5</MenuItem>
-                                            <MenuItem value={6} onClick={()=> this.setGuests(6)}>6</MenuItem>
-                                            <MenuItem value={7} onClick={()=> this.setGuests(7)}>7</MenuItem>
-                                            <MenuItem value={8} onClick={()=> this.setGuests(8)}>8</MenuItem>
-                                        </DropdownButton>
-                                        <Button onClick={() => this.props.seatGuests(this.state.chosenServer,this.state.guestNumber)}>Submit</Button>
-                                    </Modal.Body>
-                                    <Modal.Footer>
-                                        <Button onClick={this.props.close}>Close</Button>
-                                    </Modal.Footer>
-                                </Modal.Dialog>
-                            </div>
+                        <NewSeating modal={modal} chosenServer={this.state.chosenServer} servers={this.props.servers} setGuests={this.setGuests} seatGuests={this.props.seatGuests} handleServerSelection={this.handleServerSelection} guestNumber={this.state.guestNumber} close={this.props.close}/>   
                         )
                     }
-                </Aux>
+                </Hoc>
             )
         }
         else {
