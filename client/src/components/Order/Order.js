@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button,Panel, Grid, Row, Col, Container } from 'react-bootstrap';
+import { Button,Panel, Grid, Row, Col, Container, Well } from 'react-bootstrap';
 import Menubuttons from "./MenuButtons";
 import OrderList from "./OrderList";
 import Hoc from "../Hoc/Hoc";
@@ -51,26 +51,40 @@ class Order extends Component {
 
     render() {
         return (
-            <Hoc>    
-                <Row>
-                    <Col id="section" md={2}>
-                        <h2 onClick={(event) => this.onItemClick(event)} id={"drink"}>      Drinks     </h2>
-                        <h2 onClick={(event) => this.onItemClick(event)} id={"appetizer"}>  Appetizers </h2>
-                        <h2 onClick={(event) => this.onItemClick(event)} id={"entree"}>     Entree     </h2>
-                        <h2 onClick={(event) => this.onItemClick(event)} id={"dessert"}>    Dessert    </h2>
-                        <h2 onClick={(event) => this.onItemClick(event)} id={"special"}>    Specials   </h2>
-                    </Col>
-                    <Col id="items" md={7}>
-                        <Menubuttons addToOrder={this.addToOrder.bind(this)} menu={this.props.menu} category={this.state.category} />
-                    </Col>
-                    <Col id="order-list" md={3}>
-                        <OrderList newOrderList={this.state.newOrderList} removeFromOrder={this.removeFromOrder.bind(this)} newOrderList={this.props.table.pendingOrder} />
-                    </Col>
-                </Row>
-                <div>
-                    <Button onClick={() => this.orderSubmit()}>Submit</Button>
-                </div>
-            </Hoc>
+            <Grid fluid>  
+                <Hoc>    
+                    <Row>
+                        <Col id="section" md={2}>
+                            <Panel>
+                                <Well>
+                                    <h2 onClick={(event) => this.onItemClick(event)} id={"drink"}>      Drinks     </h2>
+                                    <h2 onClick={(event) => this.onItemClick(event)} id={"appetizer"}>  Appetizers </h2>
+                                    <h2 onClick={(event) => this.onItemClick(event)} id={"entree"}>     Entree     </h2>
+                                    <h2 onClick={(event) => this.onItemClick(event)} id={"dessert"}>    Dessert    </h2>
+                                    <h2 onClick={(event) => this.onItemClick(event)} id={"special"}>    Specials   </h2>
+                                </Well>
+                            </Panel>
+                        </Col>
+                        <Col id="items" md={4}>
+                            <Panel>
+                                <Well>
+                                    <Menubuttons addToOrder={this.addToOrder.bind(this)} menu={this.props.menu} category={this.state.category} />
+                                </Well>
+                            </Panel>
+                        </Col>
+                        <Col id="order-list" md={6}>
+                            <Panel>
+                                <Well>
+                                    <OrderList newOrderList={this.state.newOrderList} removeFromOrder={this.removeFromOrder.bind(this)} newOrderList={this.props.table.pendingOrder} />
+                                </Well>
+                            </Panel>
+                        </Col>
+                    </Row>
+                    <div>
+                        <Button onClick={() => this.orderSubmit()}>Submit</Button>
+                    </div>
+                </Hoc>
+            </Grid>
         )
     }
 };
