@@ -15,7 +15,6 @@ const servers = props => (
                     )
                     }
                 </Col>
-                <Button onClick={props.getTables}> Get Tables </Button>
             </Row>
         </Grid>
     )

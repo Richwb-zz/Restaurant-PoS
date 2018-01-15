@@ -13,7 +13,7 @@ class MenuButtons extends Component {
             return (
                 props.menu.map((items,index) => {  
                     if (items.category === props.category){
-                        return <Button id={items.name} onClick={(event) => this.addOrder(event)}>{items.name}</Button>
+                        return <Button key={items._id} id={items.name} onClick={(event) => this.addOrder(event)}>{items.name}</Button>
                     }
                 })
             );     
