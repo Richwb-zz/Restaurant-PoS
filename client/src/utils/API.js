@@ -9,7 +9,7 @@ export default {
         return axios.get("http://localhost:4444/servers")
     },
     getTables: ()=>{
-        return axios.get("http://localhost:4444/tables")
+        return axios.get("http://localhost:4444/check/unpaid")
     },
     seatGuests: (seating)=>{
         console.log ("seating",seating)

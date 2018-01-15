@@ -20,14 +20,16 @@ const table = props => {
                                 <Panel className="tablePanels" onClick={()=> props.clicked(table.name)} bsStyle={ table.isOccupied? "danger" : "success" }>
                                     <Panel.Heading className="tablePanel" >
                                         <Panel.Title>
-                                            <h3 className="text-center">{table.name}</h3 >
+                                            <h3 className="text-center">{table.name}</h3>
                                         {table.isOccupied ?  
                                             (
                                             // IS OCCUPIED RENDER
                                             <Aux>
-                                                <h4 className="text-center"> Guests: {table.guestNumber} </h4>
-                                                <h4 className="text-center"> Server: {table.server} </h4>
+                                                <p className="text-center"> Guests: {table.guestNumber} </p>
+                                                <p className="text-center"> Server: {table.server} </p>
                                                 <p className="text-center"> Receipt ID: {table.bill.id} </p>
+                                                {/* conditional render for the total */}
+                                                { table.bill.total ? (<p className="text-center"> Current Total: {table.bill.total} </p>) : null }
                                             </Aux>
                                             )
                                             :(

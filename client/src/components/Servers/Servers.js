@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Row, Col, Jumbotron } from 'react-bootstrap'
+import { Grid, Row, Col, Jumbotron,Button } from 'react-bootstrap'
 
 const servers = props => (
         <Grid>
@@ -15,6 +15,7 @@ const servers = props => (
                     )
                     }
                 </Col>
+                <Button onClick={props.getTables}> Get Tables </Button>
             </Row>
         </Grid>
     )

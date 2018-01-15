@@ -174,7 +174,7 @@ class App extends Component {
     // console.log("populate start")
     this.getMenu();
     this.getServers();
-    //this.getTables();
+    this.getUnpaidChecks();
     // console.log("populated")
   }
   activePageHandler = (event) => {
@@ -207,15 +207,42 @@ class App extends Component {
       if (error) console.log(error)
     })
   }
-  getTables = () => {
+  getUnpaidChecks = () => {
+    //this checks the database on load to see if there are unpaid checks
     API.getTables().then(results => {
-      let newTables = results.data
-      //not finished, need to itierate through data
-      //this.setState({ servers: newServers }, () => {
-      // console.log(this.state.servers)
-      //})
-    }).catch(error => {
-      if (error) console.log(error)
+      console.log("getUnpaidChecks Fired")
+      let newTablesData = results.data
+      // if the result has data, there are unpaid checks
+      if (newTablesData) {
+        console.log("There are unpaid checks")
+        // get the tables from state in a stretch
+        let updateChecks = [...this.state.tables]
+        //map through the data from the d/b
+        newTablesData.map(item => {
+          // match them against the tables in state
+          updateChecks.map((table, index) => {
+            if (table.name === item.table) {
+              let updateChecksIndex = null;
+              console.log(`Found a match, ${item.table} and ${table.name} index ${index}`);
+              //update the table's object
+              updateChecksIndex = index;
+              updateChecks[updateChecksIndex].bill.id = item._id;
+              updateChecks[updateChecksIndex].isOccupied = true;
+              updateChecks[updateChecksIndex].server = item.server
+              updateChecks[updateChecksIndex].guestNumber = item.guests
+              updateChecks[updateChecksIndex].bill.items = item.items
+              updateChecks[updateChecksIndex].bill.total = item.total
+            }
+          })
+        })
+        //push the changed tables back to state
+        console.log("updateChecks", updateChecks)
+        this.setState({
+          tables: updateChecks
+        }, function () {
+          console.log(`state updated tables`)
+        })
+      }
     })
   }
 
@@ -278,87 +305,87 @@ class App extends Component {
       if (results.status === 200) {
         console.log(`Results: ${results.status} is ok`)
         console.log(`ID is: ${results.data._id}`)
-      let updateTables = [...this.state.tables]
-      updateTables[this.state.activeTableIndex].guestNumber = guests;
-      updateTables[this.state.activeTableIndex].server = server;
-      updateTables[this.state.activeTableIndex].isOccupied = true;
-      updateTables[this.state.activeTableIndex].bill.id = results.data._id;
-      console.log("updateTables", updateTables)
-      this.setState({
-        modalActive: false,
-        tables: updateTables
-      }, function () {
-        console.log(`state updated modalActive: ${this.state.modalActive}`)
-      });
-    }
+        let updateTables = [...this.state.tables]
+        updateTables[this.state.activeTableIndex].guestNumber = guests;
+        updateTables[this.state.activeTableIndex].server = server;
+        updateTables[this.state.activeTableIndex].isOccupied = true;
+        updateTables[this.state.activeTableIndex].bill.id = results.data._id;
+        console.log("updateTables", updateTables)
+        this.setState({
+          modalActive: false,
+          tables: updateTables
+        }, function () {
+          console.log(`state updated modalActive: ${this.state.modalActive}`)
+        });
+      }
     });
-}
-
-modalOpen = () => {
-  this.setState({ modalActive: true }, function () {
-    console.log(`modalActive: ${this.state.modalActive}`);
-  })
-}
-modalClose = () => {
-  this.setState({ modalActive: false }, function () {
-    console.log(`modalActive: ${this.state.modalActive}`);
-  })
-}
-modalOrder = () => {
-  // from inside the modal, this function lets the modal open an order page, it closes the modal too
-  console.log("modalOrder")
-  this.setState({ activePage: "Orders", modalActive: false }, function () {
-    console.log(`state updated ${this.state.activePage} and ${this.state.modalActive}`)
-  })
-}
-
-printReceipt = () => {
-  console.log("print receipt")
-
-}
-checkOut = () => {
-  console.log("check out")
-}
-
-render() {
-  let activeContent = null;
-
-  switch (this.state.activePage) {
-    case ("Tables"):
-      activeContent = (
-        <Table tables={this.state.tables} clicked={this.handleTableClick} />
-      )
-      break;
-    case ("Orders"):
-      activeContent = (
-        <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTableIndex]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} />
-      )
-      break;
-    case ("Servers"):
-      activeContent = (
-        <Servers servers={this.state.servers} />
-      )
-      break;
-    default:
-      activeContent = null
   }
 
-  return (
-    <Aux>
-      <Grid fluid>
-        <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
-      </Grid>
-      <Grid>
-        <Row>
-          {/* active content (conditional page render) */}
-          {activeContent}
-        </Row>
-        {/* modal conditional rendering is below */}
-        {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} setServer={this.setServer} seatGuests={this.seatGuestsFromModalHandler} />) : (null)}
-      </Grid>
-    </Aux>
-  );
-}
+  modalOpen = () => {
+    this.setState({ modalActive: true }, function () {
+      console.log(`modalActive: ${this.state.modalActive}`);
+    })
   }
+  modalClose = () => {
+    this.setState({ modalActive: false }, function () {
+      console.log(`modalActive: ${this.state.modalActive}`);
+    })
+  }
+  modalOrder = () => {
+    // from inside the modal, this function lets the modal open an order page, it closes the modal too
+    console.log("modalOrder")
+    this.setState({ activePage: "Orders", modalActive: false }, function () {
+      console.log(`state updated ${this.state.activePage} and ${this.state.modalActive}`)
+    })
+  }
+
+  printReceipt = () => {
+    console.log("print receipt")
+
+  }
+  checkOut = () => {
+    console.log("check out")
+  }
+
+  render() {
+    let activeContent = null;
+
+    switch (this.state.activePage) {
+      case ("Tables"):
+        activeContent = (
+          <Table tables={this.state.tables} clicked={this.handleTableClick} />
+        )
+        break;
+      case ("Orders"):
+        activeContent = (
+          <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTableIndex]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} />
+        )
+        break;
+      case ("Servers"):
+        activeContent = (
+          <Servers servers={this.state.servers} getTables={this.getTables} />
+        )
+        break;
+      default:
+        activeContent = null
+    }
+
+    return (
+      <Aux>
+        <Grid fluid>
+          <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
+        </Grid>
+        <Grid>
+          <Row>
+            {/* active content (conditional page render) */}
+            {activeContent}
+          </Row>
+          {/* modal conditional rendering is below */}
+          {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} setServer={this.setServer} seatGuests={this.seatGuestsFromModalHandler} />) : (null)}
+        </Grid>
+      </Aux>
+    );
+  }
+}
 
 export default App;
