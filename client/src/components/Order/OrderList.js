@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Grid, Row, Col, Table } from 'react-bootstrap';
+import { Button, Grid, Table } from 'react-bootstrap';
 
 class OrderList extends Component {
     getOrderItems = (props) => {
@@ -22,7 +22,7 @@ class OrderList extends Component {
                     <tbody>
                         {props.newOrderList.map((item, index) => {
                             return (
-                                <tr>
+                                <tr key={item._id}>
                                     <td>
                                         {item.name}
                                     </td>

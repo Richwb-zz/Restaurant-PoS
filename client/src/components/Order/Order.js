@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button,Panel, Grid, Row, Col, Container, Well } from 'react-bootstrap';
+import { Button,Panel, Grid, Row, Col, Well } from 'react-bootstrap';
 import Menubuttons from "./MenuButtons";
 import OrderList from "./OrderList";
 import Hoc from "../Hoc/Hoc";

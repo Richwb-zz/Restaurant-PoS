@@ -9,8 +9,8 @@ const table = props => {
         return(
             <Grid fluid>
                 <Grid>
-                    <Jumbotron className="text-center">
-                        <h1> Eat At Joes </h1>
+                    <Jumbotron className="text-center dinerTitle">
+                        <h1> Mel's Diner </h1>
                         <h2> Select a table to perform functions </h2>
                     </Jumbotron>
                     <Row>

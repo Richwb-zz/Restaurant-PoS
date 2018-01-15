@@ -7,7 +7,7 @@ import Navbar from './components/Nav/Navbar'
 import Table from './components/Table/Table';
 import Servers from './components/Servers/Servers'
 import Modal from './components/Modals/Modal'
-import Aux from './components/Hoc/Hoc'
+import Hoc from './components/Hoc/Hoc'
 
 class App extends Component {
 
@@ -359,7 +359,7 @@ class App extends Component {
         break;
       case ("Servers"):
         activeContent = (
-          <Servers servers={this.state.servers} getTables={this.getTables} />
+          <Servers servers={this.state.servers}/>
         )
         break;
       default:
@@ -367,7 +367,7 @@ class App extends Component {
     }
 
     return (
-      <Aux>
+      <Hoc>
         <Grid fluid>
           <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
         </Grid>
@@ -379,7 +379,7 @@ class App extends Component {
           {/* modal conditional rendering is below */}
           {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} setServer={this.setServer} seatGuests={this.seatGuestsFromModalHandler} />) : (null)}
         </Grid>
-      </Aux>
+      </Hoc>
     );
   }
 }
