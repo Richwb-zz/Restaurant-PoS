@@ -48,18 +48,15 @@ router.get('/unpaid', (req, res, next) => {
 
 //add order to receipt
 router.put('/:id', (req, res, next) => {
-    console.log("UPDATE SEATING")
-    console.log(req.params)
-    receipt.update({_id: req.params.id}, {
-        'items': req.body.items,
-        'total': req.body.total,
+    receipts.update({_id: req.params.id}, {
+        'items': req.body.bill.items,
+        'total': req.body.bill.total,
         'paid': req.body.paid,
     })
         .then(result => {
-            console.log(result)
             res.json(result)
         })
-        .catch(error => res.json(error));
+        .catch(error => res.json("error" + error));
 });
 
 module.exports = router;

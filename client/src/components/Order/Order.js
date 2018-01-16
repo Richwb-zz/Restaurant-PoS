@@ -75,7 +75,7 @@ class Order extends Component {
                         <Col id="order-list" md={6}>
                             <Panel>
                                 <Well>
-                                    <OrderList newOrderList={this.state.newOrderList} removeFromOrder={this.removeFromOrder.bind(this)} newOrderList={this.props.table.pendingOrder} />
+                                    <OrderList removeFromOrder={this.removeFromOrder.bind(this)} newOrderList={this.props.table.pendingOrder} />
                                 </Well>
                             </Panel>
                         </Col>

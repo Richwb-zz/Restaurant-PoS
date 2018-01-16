@@ -8,6 +8,7 @@ import Table from './components/Table/Table';
 import Servers from './components/Servers/Servers'
 import Modal from './components/Modals/Modal'
 import Hoc from './components/Hoc/Hoc'
+import OrderModal from './components/Modals/Order'
 
 class App extends Component {
 
@@ -164,6 +165,8 @@ class App extends Component {
     activeTable: null,
     activeTableIndex: null,
     modalActive: false,
+    orderModal: false,
+    orderResponse: null,
     messageModalActive: false,
     messageModal: ""
   }
@@ -286,22 +289,46 @@ class App extends Component {
   }
 
   savePendingOrder = newOrderList => {
-    const activeTable = this.state.activeTable;
+    const activeTable = this.state.activeTableIndex;
     const pendingOrders = this.state.tables[activeTable].pendingOrder;
-
-    let currentOrderList = this.state.tables[activeTable].bill.items
+    let currentOrderList = this.state.tables[activeTable].bill.items;
+    let table = this.state.tables[activeTable];
     let currentItemIndex;
+    
 
     pendingOrders.map((newItem) => {
       currentItemIndex = currentOrderList.findIndex(index => index.name === newItem.name);
       currentItemIndex !== -1 ? currentOrderList[currentItemIndex].quantity = parseInt(currentOrderList[currentItemIndex].quantity) + parseInt(newItem.quantity) : currentOrderList.push(newItem);
     });
-    this.setState({
-      [currentOrderList]: currentOrderList,
-      [this.state.tables[activeTable].pendingOrder]: []
-    });
 
-    // API.placeOrder([this.state.tables[activeTable].bill]);
+    table.bill.items = currentOrderList;
+    table.pendingOrder = [];
+
+    this.setState({
+      [this.state.tables[activeTable]]: table},
+      this.orderToDb
+    );
+  }
+
+  orderToDb = () => {
+    API.placeOrder(this.state.tables[this.state.activeTableIndex], this.dbresponse);
+  }
+
+  dbresponse = (response)=> {
+    let orderMessage;
+    
+    response.status === 200 ? orderMessage = "Order Submitted" : orderMessage = "Any error occured, order was saved and will be saved on next transaction";
+
+    this.setState({
+      orderResponse: orderMessage,
+      orderModal: true
+    });
+  }
+
+  orderClose = () => {
+    this.setState({
+      orderModal: false
+    })
   }
 
   setServer = (server) => {
@@ -362,6 +389,7 @@ class App extends Component {
     console.log("print receipt")
 
   }
+
   submitPayment = (payment) => {
     console.log("check out")
     console.log("payment",payment);
@@ -387,7 +415,7 @@ class App extends Component {
         break;
       case ("Orders"):
         activeContent = (
-          <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTableIndex]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} />
+          <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTableIndex]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} orderModal={this.state.orderModal}/>
         )
         break;
       case ("Servers"):
@@ -410,6 +438,8 @@ class App extends Component {
             {activeContent}
           </Row>
           {/* modal conditional rendering is below */}
+
+          {this.state.orderModal ? <OrderModal orderMessage={this.state.orderResponse} orderClose={this.orderClose} />: (null)}
           {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} submitPayment={this.submitPayment} setServer={this.setServer} seatGuests={this.seatGuestsFromModalHandler} />) : (null)}
         </Grid>
       </Hoc>
