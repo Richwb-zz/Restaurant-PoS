@@ -36,7 +36,6 @@ export default {
             .catch(error => {
                 return error;
             })
-        )
     },
     submitPayment: (payment) => {
         console.log("submit payment in API",payment)
