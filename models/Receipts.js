@@ -23,7 +23,7 @@ var newSchema = new Schema({
   },
   'paidTime': { type: Date },
   'paymentType':{ type: String },
-  'amountTendered': {type: String },
+  'amountTendered': { type: Number },
   'createdAt': { type: Date, default: Date.now },
   'updatedAt': { type: Date, default: Date.now },
 });

@@ -163,7 +163,9 @@ class App extends Component {
     activePage: "Tables",
     activeTable: null,
     activeTableIndex: null,
-    modalActive: false
+    modalActive: false,
+    messageModalActive: false,
+    messageModal: ""
   }
 
   componentDidMount() {
@@ -241,7 +243,28 @@ class App extends Component {
       }
     })
   }
+  //clears the active table;
+  cleanTable = () => {
+    let misterClean = [...this.state.tables];
+      misterClean[this.state.activeTableIndex].isOccupied= false;
+      misterClean[this.state.activeTableIndex].guestNumber= null;
+      misterClean[this.state.activeTableIndex].server= null;
+      misterClean[this.state.activeTableIndex].pendingOrder= [];
+      misterClean[this.state.activeTableIndex].bill.id= null;
+      misterClean[this.state.activeTableIndex].bill.items= [];
+      misterClean[this.state.activeTableIndex].total= null;
 
+      this.setState({
+        tables: misterClean,
+        activeTable: null,
+        activeTableIndex: null,
+        modalActive: false
+      }, function(){
+        console.log('Mister Clean Finished');
+      })
+    }
+
+    // handles what happens when a table is clicked (sets an active table, active index, and opens the modal
   handleTableClick = (item) => {
     console.log("Table CLicked!!")
     let newTableIndex = null;
@@ -342,8 +365,15 @@ class App extends Component {
   submitPayment = (payment) => {
     console.log("check out")
     console.log("payment",payment);
-    //let outPayment = JSON.stringify(payment)
-    API.submitPayment(payment).then(results => console.log(results)).catch(error => console.log(error))
+    API.submitPayment(payment)
+      .then(results => {
+        console.log(results)
+        if (results.status === 200) {
+          console.log("submitpayment success")
+          this.cleanTable();  
+        }
+      })
+      .catch(error => console.log(error))
   }
 
   render() {
