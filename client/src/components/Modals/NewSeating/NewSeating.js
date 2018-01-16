@@ -2,6 +2,17 @@ import React from 'react'
 import { Button, Modal, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 
 const newSeating = props => {
+    let disableButton = true;
+    //if the values are both not the defaults, enable the button
+    if (props.chosenServer !== "Select Server" && props.guestNumber !== "Select Number") {
+        console.log("allowed button?");
+        disableButton = false;
+    }
+    else {
+        console.log("disabled button");
+        disableButton = true;
+    }
+
     return (
     <div className="static-modal">
         <Modal.Dialog>
@@ -28,7 +39,8 @@ const newSeating = props => {
                     <MenuItem value={7} onSelect={() => props.setGuests(7)}>7</MenuItem>
                     <MenuItem value={8} onSelect={() => props.setGuests(8)}>8</MenuItem>
                 </DropdownButton>
-                <Button onClick={() => props.seatGuests(props.chosenServer, props.guestNumber)}>Submit</Button>
+
+                <Button onClick={() => props.seatGuests(props.chosenServer, props.guestNumber)} disabled={disableButton}> Submit</Button>
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.close}>Close</Button>

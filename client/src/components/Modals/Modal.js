@@ -23,7 +23,7 @@ class SeatModal extends Component {
     setGuests = (numOfGuests) => {
         this.setState({guestNumber: numOfGuests})
     }
-
+    
     render() {
         let table = this.props.tables[this.props.activeTableIndex]
 
@@ -35,7 +35,7 @@ class SeatModal extends Component {
                         <Occupied table={table} click={this.occupiedRenderHandler} order={this.props.order}receipt={this.props.receipt} submitPayment={this.props.submitPayment} close={this.props.close} render={this.state.occupiedRender} />
                     )
                         : (
-                        <NewSeating table={table} chosenServer={this.state.chosenServer} servers={this.props.servers} setGuests={this.setGuests} seatGuests={this.props.seatGuests} handleServerSelection={this.handleServerSelection} guestNumber={this.state.guestNumber} close={this.props.close}/>   
+                        <NewSeating table={table} chosenServer={this.state.chosenServer} servers={this.props.servers} setGuests={this.setGuests} seatGuests={this.props.seatGuests} handleServerSelection={this.handleServerSelection} guestNumber={this.state.guestNumber} close={this.props.close} submitButtonLockout={this.submitButtonLockout}/>   
                         )
                     }
                 </Hoc>
