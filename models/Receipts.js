@@ -16,8 +16,14 @@ var newSchema = new Schema({
   'tax': { type: Number, default: 0.00  },
   'total': { type: Number, default: 0.00  },
   'paid': { type: Boolean, default: false  },
-  'paidtime': { type: Date },
-  'paymenttype':{ type: String },
+  'card': { 
+      'number': { type: Number },
+      'cardexp': { type: String },
+      'cvc': { type: Number }
+  },
+  'paidTime': { type: Date },
+  'paymentType':{ type: String },
+  'amountTendered': { type: Number },
   'createdAt': { type: Date, default: Date.now },
   'updatedAt': { type: Date, default: Date.now },
 });
@@ -32,7 +38,7 @@ newSchema.pre('update', function() {
 });
 
 newSchema.pre('findOneAndUpdate', function() {
-  this.update({}, { $set: { updatedAt: Date.now() } });
+  this.update({}, { $set: { updatedAt: Date.now()} });
 });
 
 module.exports = mongoose.model('Receipts', newSchema);

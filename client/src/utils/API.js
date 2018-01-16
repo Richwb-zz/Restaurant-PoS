@@ -36,5 +36,26 @@ export default {
             .catch(error => {
                 return error;
             })
+        )
+    },
+    submitPayment: (payment) => {
+        console.log("submit payment in API",payment)
+        let newPayment = {}
+        newPayment.paid = true;
+        newPayment.card = payment.card
+        newPayment.amountTendered = payment.amount;
+        newPayment.paymentType = payment.paymentType;
+        console.log("newPayment",newPayment)
+        let URL = encodeURI("http://localhost:4444/check/"+payment.bill.id)
+        return (
+            axios.put(URL,newPayment)
+                .then(response => {
+                    return response;
+                })
+                .catch(error => {
+                    console.log(error);
+                    return error;
+                })
+        )
     }
 }

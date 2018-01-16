@@ -166,7 +166,9 @@ class App extends Component {
     activeTableIndex: null,
     modalActive: false,
     orderModal: false,
-    orderResponse: null
+    orderResponse: null,
+    messageModalActive: false,
+    messageModal: ""
   }
 
   componentDidMount() {
@@ -244,7 +246,28 @@ class App extends Component {
       }
     })
   }
+  //clears the active table;
+  cleanTable = () => {
+    let misterClean = [...this.state.tables];
+      misterClean[this.state.activeTableIndex].isOccupied= false;
+      misterClean[this.state.activeTableIndex].guestNumber= null;
+      misterClean[this.state.activeTableIndex].server= null;
+      misterClean[this.state.activeTableIndex].pendingOrder= [];
+      misterClean[this.state.activeTableIndex].bill.id= null;
+      misterClean[this.state.activeTableIndex].bill.items= [];
+      misterClean[this.state.activeTableIndex].total= null;
 
+      this.setState({
+        tables: misterClean,
+        activeTable: null,
+        activeTableIndex: null,
+        modalActive: false
+      }, function(){
+        console.log('Mister Clean Finished');
+      })
+    }
+
+    // handles what happens when a table is clicked (sets an active table, active index, and opens the modal
   handleTableClick = (item) => {
     console.log("Table CLicked!!")
     let newTableIndex = null;
@@ -366,8 +389,19 @@ class App extends Component {
     console.log("print receipt")
 
   }
-  checkOut = () => {
+
+  submitPayment = (payment) => {
     console.log("check out")
+    console.log("payment",payment);
+    API.submitPayment(payment)
+      .then(results => {
+        console.log(results)
+        if (results.status === 200) {
+          console.log("submitpayment success")
+          this.cleanTable();  
+        }
+      })
+      .catch(error => console.log(error))
   }
 
   render() {
@@ -404,8 +438,9 @@ class App extends Component {
             {activeContent}
           </Row>
           {/* modal conditional rendering is below */}
-          {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} checkout={this.checkOut} setServer={this.setServer} seatGuests={this.seatGuestsFromModalHandler} />) : (null)}
+
           {this.state.orderModal ? <OrderModal orderMessage={this.state.orderResponse} orderClose={this.orderClose} />: (null)}
+          {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} submitPayment={this.submitPayment} setServer={this.setServer} seatGuests={this.seatGuestsFromModalHandler} />) : (null)}
         </Grid>
       </Hoc>
     );
