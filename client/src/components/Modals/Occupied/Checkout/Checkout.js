@@ -16,10 +16,6 @@ const initialState = {
 class Checkout extends Component {
     state = initialState;
     
-    
-    componentDidMount(){
-        console.log(this.props.table)
-    }
 
     resetToInitialState = () => {
         this.setState(initialState, function(){

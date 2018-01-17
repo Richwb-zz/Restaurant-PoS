@@ -16,12 +16,7 @@ router.get('/', (req, res, next) => {
 router.post('/add', (req,res,next)=>{
     console.log("adding new item");
     console.log(req.body);
-    menu.create({
-        "name": req.body.name,
-        "description": req.body.description,
-        "price": req.body.price,
-        "category": req.body.category
-    })
+    menu.create(req.body)
         .then(results => res.json(results))
         .catch(error => {
             console.log(error);
