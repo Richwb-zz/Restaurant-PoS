@@ -1,3 +1,5 @@
+//Holds connection information to MongoDB
+
 var url = require('url')
 
 var uri = (process.env.MONGODB_URI || 'mongodb://localhost:27017/restaurant');
@@ -8,6 +10,7 @@ if (!uri) {
   );
 }
 
+//verifies the mongo url
 var uriObj = url.parse(uri)
 if (uriObj.protocol !== 'mongodb:') {
   throw new Error('Must be a mongodb URI')
