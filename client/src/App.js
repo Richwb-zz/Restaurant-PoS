@@ -286,6 +286,7 @@ class App extends Component {
   }
 
   setUser = (name) => {
+    console.log(this.state.menu);
     if(typeof name === "string"){
         this.setState({
         user: name
@@ -311,18 +312,24 @@ class App extends Component {
     let currentOrderList = this.state.tables[activeTable].bill.items;
     let table = this.state.tables[activeTable];
     let currentItemIndex;
-    
+    var newBillTotal = this.state.tables[activeTable].bill.total
 
-    pendingOrders.map((newItem) => {
+    pendingOrders.map(newItem => {
       currentItemIndex = currentOrderList.findIndex(index => index.name === newItem.name);
       currentItemIndex !== -1 ? currentOrderList[currentItemIndex].quantity = parseInt(currentOrderList[currentItemIndex].quantity) + parseInt(newItem.quantity) : currentOrderList.push(newItem);
+      
+     this.state.menu.map((menuItem) => {
+        menuItem.name === newItem.name ? newBillTotal += parseInt(newItem.quantity) * menuItem.price : "";
+      });
     });
-
+    
     table.bill.items = currentOrderList;
     table.pendingOrder = [];
+    table.bill.total = newBillTotal;
 
     this.setState({
-      [this.state.tables[activeTable]]: table},
+      [this.state.tables[activeTable]]: table,
+    },
       this.orderToDb
     );
   }

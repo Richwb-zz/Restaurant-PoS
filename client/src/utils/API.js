@@ -25,11 +25,8 @@ export default {
             })
     },
     placeOrder: (order, dbresponse)=>{
-        console.log("order");
-        console.log(order.bill.id);
         return axios.put("http://localhost:4444/order/"+ order.bill.id, order)
             .then(response => {
-                console.log("test")
                 dbresponse(response)
                 return response;
             })
