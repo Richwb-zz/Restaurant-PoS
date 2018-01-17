@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Button, Modal} from 'react-bootstrap';
 
 const OrderModal = props => {
     return(
