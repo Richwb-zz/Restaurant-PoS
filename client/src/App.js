@@ -311,27 +311,36 @@ class App extends Component {
     const pendingOrders = this.state.tables[activeTable].pendingOrder;
     let currentOrderList = this.state.tables[activeTable].bill.items;
     let table = this.state.tables[activeTable];
-    let currentItemIndex;
-    var newBillTotal = this.state.tables[activeTable].bill.total
+    let newBillTotal = this.state.tables[activeTable].bill.total
 
     pendingOrders.map(newItem => {
-      currentItemIndex = currentOrderList.findIndex(index => index.name === newItem.name);
-      currentItemIndex !== -1 ? currentOrderList[currentItemIndex].quantity = parseInt(currentOrderList[currentItemIndex].quantity) + parseInt(newItem.quantity) : currentOrderList.push(newItem);
+      const currentItemIndex = currentOrderList.findIndex(index => index.name === newItem.name);
+      const currentItem = currentOrderList[currentItemIndex];
+      const menuItemIndex = this.state.menu.findIndex(index => index.name === newItem.name);
+      const menuItem = this.state.menu[menuItemIndex];
+     
+      if(currentItemIndex !== -1){ 
+        currentItem.quantity = parseInt( currentItem.quantity) + parseInt(newItem.quantity); 
+        currentItem.charge = (parseInt( currentItem.quantity) * parseInt(menuItem.price)) + parseInt( currentItem.charge);
+      }else{
+        newItem.charge = newItem.quantity * menuItem.price;
+        currentOrderList.push(newItem);
+       }
       
-     this.state.menu.map((menuItem) => {
+      this.state.menu.map((menuItem) => {
         menuItem.name === newItem.name ? newBillTotal += parseInt(newItem.quantity) * menuItem.price : "";
       });
-    });
     
-    table.bill.items = currentOrderList;
-    table.pendingOrder = [];
-    table.bill.total = newBillTotal;
+      table.bill.items = currentOrderList;
+      table.pendingOrder = [];
+      table.bill.total = newBillTotal;
 
-    this.setState({
-      [this.state.tables[activeTable]]: table,
-    },
-      this.orderToDb
-    );
+      this.setState({
+        [this.state.tables[activeTable]]: table,
+      },
+        this.orderToDb
+      );
+    });
   }
 
   orderToDb = () => {
