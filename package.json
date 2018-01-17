@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "client": "node scripts/start-client.js",
+    "client": "node ./scripts/start-client.js",
     "start": "concurrently \"nodemon ./bin/www\" \"npm run client\"",
     "server": "node ./bin/www"
   },
