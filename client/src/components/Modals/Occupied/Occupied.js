@@ -10,28 +10,46 @@ const occupied = props => {
 
         case ('receipt'):
             occupiedRenderPage=  (
-                <Print table={props.table} />
+                <Print 
+                table={props.table} />
             )
         break;
 
         case ('checkout'):
             occupiedRenderPage= (
-                <Checkout table={props.table} submitPayment={props.submitPayment} />
+                <Checkout 
+                table={props.table} 
+                submitPayment={props.submitPayment} />
             )
         break;
 
         default:
         occupiedRenderPage=  (
-            <ButtonGroup vertical block>
-                <Button bsSize="large" bsStyle="success" onClick={props.order}> Place Order </Button>
-                <Button bsSize="large" bsStyle="info" onClick={() => props.click("receipt")}> Print Check </Button>
-                <Button bsSize="large" bsStyle="primary" onClick={() => props.click("checkout")}> Checkout </Button>
+            <ButtonGroup 
+            vertical 
+            block>
+                <Button 
+                bsSize="large" 
+                bsStyle="success" 
+                onClick={props.order}> Place Order 
+                </Button>
+                <Button 
+                bsSize="large" 
+                bsStyle="info" 
+                onClick={() => props.click("receipt")}> Print Check
+                 </Button>
+                <Button 
+                bsSize="large" 
+                bsStyle="primary" 
+                onClick={() => props.click("checkout")}> Checkout
+                 </Button>
             </ButtonGroup>
         )
 
     }
     return (
-        <div className="static-modal">
+        <div 
+        className="static-modal">
             <Modal.Dialog>
                 <Modal.Header>
                     <Modal.Title>{props.table.name}</Modal.Title>
@@ -39,7 +57,9 @@ const occupied = props => {
                 <Modal.Body>Guests: {props.table.guestNumber} </Modal.Body>
                 {occupiedRenderPage}
                 <Modal.Footer>
-                    <Button onClick={props.close}>Close</Button>
+                    <Button 
+                    onClick={props.close}>Close
+                    </Button>
                 </Modal.Footer>
             </Modal.Dialog>
         </div>

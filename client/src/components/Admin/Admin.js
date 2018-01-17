@@ -9,8 +9,12 @@ const admin = props => (
                 <Jumbotron>
                     <h1> Admin Console </h1>
                 </Jumbotron>
-                <Servers servers={props.servers} addServer={props.addServer}/>
-                <Menu menu={props.menu} addMenu={props.addMenu}/>
+                <Servers
+                 servers={props.servers}
+                 addServer={props.addServer}/>
+                <Menu
+                 menu={props.menu} 
+                 addMenu={props.addMenu}/>
             </Row>  
         </Grid>
 )
