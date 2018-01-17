@@ -85,32 +85,6 @@ class Menu extends Component {
                         </Panel>
                     </Col>
                 </Row>
-                {/* <Row>
-                <Col xs={12}>
-                    <Panel>
-                        <Well>
-                            <Form horizontal>
-                                <FormGroup>
-                                    <div>
-                                        <ControlLabel>New Menu Name</ControlLabel>
-                                        <FormControl type="text" bsSize="small" value={this.props.menu.name} onChange={event => this.changeHandler(event,"name")} />
-
-                                        <ControlLabel>New Menu Description</ControlLabel>
-                                        <FormControl type="text" bsSize="small" value={this.props.menu.description} onChange={event => this.changeHandler(event, "description")} />
-
-                                        <ControlLabel>New Menu Cost</ControlLabel>
-                                        <FormControl type="text" bsSize="small" value={this.props.menu.cost} onChange={event => this.changeHandler(event, "cost")} />
-
-                                        <ControlLabel>New Menu Category</ControlLabel>
-                                        <FormControl type="text" bsSize="small" value={this.props.menu.category} onChange={event => this.changeHandler(event, "category")} />
-                                    </div>
-                                    <Button bsSize="large" bsStyle="info" onClick={this.newServerSubmitHandler}> Submit </Button>
-                                </FormGroup>
-                            </Form>
-                        </Well>
-                    </Panel>
-                </Col>
-            </Row> */}
             </Grid>
         )
     }
