@@ -26,7 +26,9 @@ class Servers extends Component {
       //Submits a new server
     newServerSubmitHandler = () => {
         //validation
-        if (this.state.newServer.name !== "" && typeof this.state.newServer.name === "string" && typeof this.state.newServer.code === "number" ){
+        if (this.state.newServer.name !== ""
+         && typeof this.state.newServer.name === "string" 
+         && typeof this.state.newServer.code === "number" ){
             this.props.addServer(this.state.newServer);
 
            this.resetToInitialState()
@@ -51,7 +53,9 @@ class Servers extends Component {
                             <h3> Current Servers: </h3>
                             <ListGroup>
                             {this.props.servers.map((server) => (
-                                    <ListGroupItem key={server._id}> {server.name} </ListGroupItem>
+                                    <ListGroupItem 
+                                    key={server._id}> {server.name} 
+                                    </ListGroupItem>
                             ))
                             }
                             </ListGroup>
@@ -64,13 +68,25 @@ class Servers extends Component {
                                     <FormGroup>
                                         <div>
                                             <ControlLabel>New Server Name</ControlLabel>
-                                            <FormControl type="text" bsSize="small" value={this.state.newServer.name} onChange={this.newServerNameChangeHandler} />
+                                            <FormControl
+                                             type="text" 
+                                             bsSize="small" 
+                                             value={this.state.newServer.name} 
+                                             onChange={this.newServerNameChangeHandler} />
                                         </div>
                                         <div>
                                             <ControlLabel>New Server Pin Code</ControlLabel>
-                                            <FormControl type="text" bsSize="small" value={this.state.newServer.code} onChange={this.newServerCodeChangeHandler} />
+                                            <FormControl
+                                             type="text" 
+                                             bsSize="small" 
+                                             value={this.state.newServer.code} 
+                                             onChange={this.newServerCodeChangeHandler} />
                                         </div>
-                                        <Button bsSize="large" bsStyle="info" onClick={this.newServerSubmitHandler}> Submit </Button>
+                                        <Button 
+                                        bsSize="large" 
+                                        bsStyle="info" 
+                                        onClick={this.newServerSubmitHandler}> Submit 
+                                        </Button>
                                     </FormGroup>
                                 </form>
                             </Well>

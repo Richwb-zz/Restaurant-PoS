@@ -65,25 +65,45 @@ class Menu extends Component {
                                         )}
                                         <tr>
                                             <td>
-                                                <FormControl type="text" bsSize="small" value={this.state.newMenu.name} onChange={event => this.changeHandler(event, "name")} />
+                                                <FormControl
+                                                 type="text" 
+                                                 bsSize="small" 
+                                                 value={this.state.newMenu.name} 
+                                                 onChange={event => this.changeHandler(event, "name")} />
                                             </td>
 
                                             <td>
-                                                <FormControl type="text" bsSize="small" value={this.state.newMenu.description} onChange={event => this.changeHandler(event, "description")} />
+                                                <FormControl 
+                                                type="text" 
+                                                bsSize="small" 
+                                                value={this.state.newMenu.description} 
+                                                onChange={event => this.changeHandler(event, "description")} />
                                             </td>
 
                                             <td>
-                                                <FormControl type="text" bsSize="small" value={this.state.newMenu.cost} onChange={event => this.changeHandler(event, "cost")} />
+                                                <FormControl
+                                                 type="text" 
+                                                 bsSize="small" 
+                                                 value={this.state.newMenu.cost} 
+                                                 onChange={event => this.changeHandler(event, "cost")} />
                                             </td>
 
                                             <td>
-                                                <FormControl type="text" bsSize="small" value={this.state.newMenu.category} onChange={event => this.changeHandler(event, "category")} />
+                                                <FormControl
+                                                 type="text" 
+                                                 bsSize="small" 
+                                                 value={this.state.newMenu.category} 
+                                                 onChange={event => this.changeHandler(event, "category")} />
                                             </td>
                                         </tr>
                                     </tbody>
                                 </Table>
 
-                                <Button bsSize="large" bsStyle="info" onClick={this.newMenuSubmitHandler}> Submit </Button>
+                                <Button 
+                                bsSize="large" 
+                                bsStyle="info" 
+                                onClick={this.newMenuSubmitHandler}> Submit 
+                                </Button>
                             </Well>
                         </Panel>
                     </Col>
