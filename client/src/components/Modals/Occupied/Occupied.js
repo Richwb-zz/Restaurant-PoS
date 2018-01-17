@@ -5,23 +5,19 @@ import Print from './Print/Print'
 
 const occupied = props => {
     let occupiedRenderPage = null;
-
+//conditional rendering
     switch(props.render){
 
         case ('receipt'):
-            console.log("switch receipt")
-            //things
             occupiedRenderPage=  (
                 <Print table={props.table} />
             )
         break;
 
         case ('checkout'):
-            console.log("switch checkout")
             occupiedRenderPage= (
                 <Checkout table={props.table} submitPayment={props.submitPayment} />
             )
-            //other things
         break;
 
         default:

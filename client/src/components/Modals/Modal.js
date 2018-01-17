@@ -12,8 +12,7 @@ class SeatModal extends Component {
         occupiedRender: null
     }
     occupiedRenderHandler = (page) => {
-        console.log("render handler", page)
-        this.setState({occupiedRender: page}, function(){console.log(`state updated ${this.state.occupiedRender}`)})
+        this.setState({occupiedRender: page})
     }
     handleServerSelection = (server) => {
         this.setState({chosenServer: server});  

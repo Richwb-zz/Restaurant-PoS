@@ -2,6 +2,7 @@ import axios from 'axios'
 
 
 export default {
+    // for initialization / reinit of state
     getMenu: () => {
         return axios.get("http://localhost:4444/menu")
     },
@@ -12,7 +13,7 @@ export default {
         return axios.get("http://localhost:4444/check/unpaid")
     },
     seatGuests: (seating)=>{
-        console.log ("seating",seating)
+        //seats new guests
         return axios.post("http://localhost:4444/check/seat",seating)
             .then(response =>{
                 console.log(response);
@@ -24,6 +25,7 @@ export default {
                 }
             })
     },
+    // place new order
     placeOrder: (order, dbresponse)=>{
         return axios.put("http://localhost:4444/order/"+ order.bill.id, order)
             .then(response => {
@@ -34,14 +36,13 @@ export default {
                 return error;
             })
     },
+    //checkout process
     submitPayment: (payment) => {
-        console.log("submit payment in API",payment)
         let newPayment = {}
         newPayment.paid = true;
         newPayment.card = payment.card
         newPayment.amountTendered = payment.amount;
         newPayment.paymentType = payment.paymentType;
-        console.log("newPayment",newPayment)
         let URL = encodeURI("http://localhost:4444/check/"+payment.bill.id)
         return (
             axios.put(URL,newPayment)
@@ -49,7 +50,6 @@ export default {
                     return response;
                 })
                 .catch(error => {
-                    console.log(error);
                     return error;
                 })
         )
@@ -68,7 +68,6 @@ export default {
         )
     },
     addServer: (server) => {
-        console.log("adding server ",server)
         if (server) {
         let newServer={};
         newServer.name = server.name
@@ -80,28 +79,24 @@ export default {
                         return response;
                     })
                     .catch(error => {
-                        console.log(error);
                         return error;
                     })
             )
         }
     },
     addMenu: (item) => {
-        console.log("adding menu ", item)
         if (item) {
             let newItem = {};
             newItem.name = item.name
             newItem.description = item.description;
             newItem.cost = parseInt(item.cost);
             newItem.category = item.category;
-            console.log("newItem ",newItem)
             return (
                 axios.post('http://localhost:4444/menu/add', newItem)
                     .then(response => {
                         return response;
                     })
                     .catch(error => {
-                        console.log(error);
                         return error;
                     })
                 )
