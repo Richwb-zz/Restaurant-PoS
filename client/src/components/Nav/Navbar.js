@@ -12,8 +12,8 @@ const navbar = (props) => {
             {props.activeTable ? (<NavItem eventKey="Orders" title="Orders"> Orders
 			</NavItem>) : (<NavItem eventKey="Orders" title="Orders" disabled> Orders
 			</NavItem>)}
-            <NavItem eventKey="Servers" title="Servers"> 
-                Servers
+            <NavItem eventKey="Admin" title="Admin"> 
+                Admin
 			</NavItem>
             {props.activeTable ? (<NavItem disabled eventKey="ActiveStuff">  Active Table: {props.activeTable} </NavItem>) : null}   
             {

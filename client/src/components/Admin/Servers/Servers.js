@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Button, Well, Panel, FormControl, FormGroup, ControlLabel, Grid, Row, Col, Jumbotron } from 'react-bootstrap'
+import { Button, Well, Panel, FormControl, Row, FormGroup, ControlLabel, Col, ListGroup, ListGroupItem } from 'react-bootstrap'
 
 const initialState = {
                     newServer: {
-                        name: "",
+                        name: "",   
                         code: ""
                     }
                 }
@@ -29,20 +29,16 @@ class Servers extends Component {
     render() {
 
         return (
-            <Grid>
-                <Jumbotron>
-                    <h1> Servers </h1>
-                </Jumbotron>
                 <Row>
                     <Col md={6} xs={12}>
                         <Panel>
-                            <h2> Current Servers: </h2>
+                            <h3> Current Servers: </h3>
+                            <ListGroup>
                             {this.props.servers.map((server) => (
-                                <Well key={server._id}>
-                                    <h3> {server.name} </h3>
-                                </Well>
+                                    <ListGroupItem key={server._id}> {server.name} </ListGroupItem>
                             ))
                             }
+                            </ListGroup>
                         </Panel>
                     </Col>
                     <Col md={6} xs={12}>
@@ -55,7 +51,7 @@ class Servers extends Component {
                                             <FormControl type="text" bsSize="small" value={this.state.newServer.name} onChange={this.newServerNameChangeHandler} />
                                         </div>
                                         <div>
-                                            <ControlLabel>New Server Code</ControlLabel>
+                                            <ControlLabel>New Server Pin Code</ControlLabel>
                                             <FormControl type="text" bsSize="small" value={this.state.newServer.code} onChange={this.newServerCodeChangeHandler} />
                                         </div>
                                         <Button bsSize="large" bsStyle="info" onClick={this.newServerSubmitHandler}> Submit </Button>
@@ -65,7 +61,6 @@ class Servers extends Component {
                         </Panel>
                     </Col>
                 </Row>
-            </Grid>
         )
     }
 

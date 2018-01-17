@@ -5,7 +5,7 @@ import API from './utils/API';
 import Order from './components/Order';
 import Navbar from './components/Nav/Navbar';
 import Table from './components/Table/Table';
-import Servers from './components/Servers/Servers';
+import Admin from './components/Admin/Admin';
 import Modal from './components/Modals/Modal';
 import Hoc from './components/Hoc/Hoc';
 import OrderModal from './components/Modals/Order';
@@ -371,7 +371,18 @@ class App extends Component {
     }
     ).catch(error => console.log(error))
   }
-
+  addMenu = (menu) => {
+    console.log("addMenu in app.js", menu)
+    API.addMenu(menu)
+      .then(results => {
+        console.log(results)
+        if (results.status === 200) {
+          console.log("good return")
+          this.getMenu();
+        }
+      }
+      ).catch(error => console.log(error))
+  }
   seatGuestsFromModalHandler = (server, guests) => {
     //click handler from the modal, seats new guests, updates state, creates a new receipt and then updates state with the new receipt
     console.log(`seatGuests called, ${server} with ${guests}`)
@@ -459,9 +470,9 @@ class App extends Component {
             <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTableIndex]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} orderModal={this.state.orderModal}/>
           )
           break;
-        case ("Servers"):
+        case ("Admin"):
           activeContent = (
-            <Servers servers={this.state.servers} addServer={this.addServer}/>
+            <Admin servers={this.state.servers} addServer={this.addServer} menu={this.state.menu} addMenu={this.addMenu}/>
           )
           break;
         default:

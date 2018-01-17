@@ -85,5 +85,27 @@ export default {
                     })
             )
         }
+    },
+    addMenu: (item) => {
+        console.log("adding menu ", item)
+        if (item) {
+            let newItem = {};
+            newItem.name = item.name
+            newItem.description = item.description;
+            newItem.cost = parseInt(item.cost);
+            newItem.category = item.category;
+            console.log("newItem ",newItem)
+            return (
+                axios.post('http://localhost:4444/menu/add', newItem)
+                    .then(response => {
+                        return response;
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        return error;
+                    })
+                )
+            }
+
     }
 }
