@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Row, Col, Jumbotron,Button } from 'react-bootstrap'
+import { Grid, Row, Col, Jumbotron} from 'react-bootstrap'
 
 const servers = props => (
         <Grid>

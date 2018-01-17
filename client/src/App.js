@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Grid, Row } from 'react-bootstrap'
-import API from './utils/API'
-import Order from './components/Order'
-import Navbar from './components/Nav/Navbar'
+import { Grid, Row } from 'react-bootstrap';
+import API from './utils/API';
+import Order from './components/Order';
+import Navbar from './components/Nav/Navbar';
 import Table from './components/Table/Table';
-import Servers from './components/Servers/Servers'
-import Modal from './components/Modals/Modal'
-import Hoc from './components/Hoc/Hoc'
-import OrderModal from './components/Modals/Order'
+import Servers from './components/Servers/Servers';
+import Modal from './components/Modals/Modal';
+import Hoc from './components/Hoc/Hoc';
+import OrderModal from './components/Modals/Order';
+import Login from './components/Login/Login';
 
 class App extends Component {
 
@@ -161,6 +162,7 @@ class App extends Component {
     ],
     servers: [],
     menu: {},
+    user: null,
     activePage: "Tables",
     activeTable: null,
     activeTableIndex: null,
@@ -282,6 +284,13 @@ class App extends Component {
       }
     })
   }
+
+  setUser = (name) => {
+    this.setState({
+      user: name
+    })
+  }
+
   updatePendingOrder = pendingOrder => {
     this.setState({
       [this.state.tables[this.state.activeTableIndex].pendingOrder]: pendingOrder
@@ -406,25 +415,30 @@ class App extends Component {
 
   render() {
     let activeContent = null;
+    if(this.state.user === null){
+      activeContent = (<Login setUser={this.setUser} />)
+    }else{
 
-    switch (this.state.activePage) {
-      case ("Tables"):
-        activeContent = (
-          <Table tables={this.state.tables} clicked={this.handleTableClick} />
-        )
-        break;
-      case ("Orders"):
-        activeContent = (
-          <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTableIndex]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} orderModal={this.state.orderModal}/>
-        )
-        break;
-      case ("Servers"):
-        activeContent = (
-          <Servers servers={this.state.servers}/>
-        )
-        break;
-      default:
-        activeContent = null
+      switch (this.state.activePage) {
+        case ("Tables"):
+          activeContent = (
+            <Table tables={this.state.tables} clicked={this.handleTableClick} />
+            
+          )
+          break;
+        case ("Orders"):
+          activeContent = (
+            <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTableIndex]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} orderModal={this.state.orderModal}/>
+          )
+          break;
+        case ("Servers"):
+          activeContent = (
+            <Servers servers={this.state.servers}/>
+          )
+          break;
+        default:
+          activeContent = null
+      }
     }
 
     return (

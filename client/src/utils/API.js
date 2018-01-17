@@ -56,5 +56,18 @@ export default {
                     return error;
                 })
         )
+    },
+    login:(code, setUser) => {
+        return(
+            axios.get(`http://localhost:4444/servers/login/${code}`)
+                .then(response => {
+                    console.log(response);
+                    setUser(response.data.name);
+                    return response;
+                })
+                .catch(error => {
+                    return error;
+                })
+        )
     }
 }

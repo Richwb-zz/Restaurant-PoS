@@ -3,7 +3,6 @@ import { Button,Panel, Grid, Row, Col, Well } from 'react-bootstrap';
 import Menubuttons from "./MenuButtons";
 import OrderList from "./OrderList";
 import Hoc from "../Hoc/Hoc";
-import placeOrder, {} from "../../utils/API"
 
 class Order extends Component {
     
@@ -17,7 +16,6 @@ class Order extends Component {
         
         itemIndex = orderList.findIndex(index => index.name === newItem.name);
         itemIndex !== -1 ? orderList[itemIndex].quantity = parseInt(orderList[itemIndex].quantity) + 1 : orderList.push(newItem);
-        // this.setState({newOrderList: orderList});
         
         this.props.updatePendingOrder(orderList);
     }
@@ -27,9 +25,7 @@ class Order extends Component {
         let itemIndex;
 
         itemIndex = orderList.findIndex(index => index.name === itemToRemove);
-        orderList[itemIndex].quantity > 1 ? orderList[itemIndex].quantity = parseInt(orderList[itemIndex].quantity) - 1 : orderList.splice(orderList[itemIndex],1);
-        // this.setState({newOrderList: orderList});
-        
+        orderList[itemIndex].quantity > 1 ? orderList[itemIndex].quantity = parseInt(orderList[itemIndex].quantity) - 1 : orderList.splice(orderList[itemIndex],1);  
         this.props.updatePendingOrder(orderList);
     }
 
