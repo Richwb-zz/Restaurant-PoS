@@ -214,15 +214,14 @@ class App extends Component {
     })
   }
 
-  getServers = () => {
-    API.getServers().then(results => {
+  getServers = (callback) => {
+    API.getServers().then((results) => {
       let newServers = results.data
-      this.setState({ servers: newServers }, () => {
-        //console.log(this.state.servers)
-      })
+      this.setState({ servers: newServers })
     }).catch(error => {
       if (error) console.log(error)
     })
+    
   }
   getUnpaidChecks = () => {
     //this checks the database on load to see if there are unpaid checks
@@ -307,7 +306,7 @@ class App extends Component {
       //Sets the user name that does callback to display login 
       this.setState({
         user: name
-      },function() {this.props.alert.show('Successfully Logged In!',{ type: "success",})})
+      },function() {this.props.alert.show('Successfully Logged In!',{ type: "success" })})
     }
   }
   // When user clicks logout button set user to null
@@ -397,7 +396,7 @@ class App extends Component {
     this.setState({ [this.state.tables[this.state.activeTableIndex].server]: server });
   }
 
-  addServer = (server) => {
+  addServer = (server,callback) => {
     console.log("addServer in app.js",server)
     API.addServer(server)
     .then(results => {

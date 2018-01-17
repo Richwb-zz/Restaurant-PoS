@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Button, Well, ListGroup, ListGroupItem, DropdownButton, MenuItem, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
 import Hoc from '../../../Hoc/Hoc';
 
+//initial state 
 const initialState = {
     paymentMethod: "Payment Method",
     amountTendered: "",
@@ -18,15 +19,10 @@ class Checkout extends Component {
     
 
     resetToInitialState = () => {
-        this.setState(initialState, function(){
-            console.log("state reset")
-        })
+        this.setState(initialState)
     }
     payment = method => {
-        console.log("payment method ",method);
-        this.setState({paymentMethod: method},function(){
-            console.log(`state updated: ${this.state.paymentMethod}`)
-        })
+        this.setState({paymentMethod: method})
     }
     handleAmountChange=(event) => {
         //could use some validation if time allows
@@ -52,13 +48,11 @@ class Checkout extends Component {
     }
 
     submitPayment=()=>{
-        console.log("submit PAyment")
         let paymentObject = {}
         paymentObject.amount = this.state.amountTendered;
         paymentObject.paymentType = this.state.paymentMethod;
         paymentObject.card = this.state.card;
         paymentObject.bill = this.props.table.bill; 
-        console.log("Payment Submitted: ",paymentObject)
         //send the object "down the chain"
         this.props.submitPayment(paymentObject)
         //reset the state
@@ -74,15 +68,25 @@ class Checkout extends Component {
             case("Cash"):
             paymentMethodRender = (
                 <Hoc>
-                    <FormControl type="text" value={this.state.amountTendered} placeholder="Cash Tendered" onChange={this.handleAmountChange}/>
-                    <Button bsSize="large" bsStyle="info" onClick={this.submitPayment}>Submit</Button>
+                    <FormControl 
+                    type="text" 
+                    value={this.state.amountTendered} 
+                    placeholder="Cash Tendered" 
+                    onChange={this.handleAmountChange}/>
+                    <Button 
+                    bsSize="large" 
+                    bsStyle="info" 
+                    onClick={this.submitPayment}>Submit</Button>
                 </Hoc>
             )
             break;
 
             case("Payment Method"):
             paymentMethodRender = (
-                <Button bsSize="large" bsStyle="info" disabled>Submit</Button>
+                <Button 
+                bsSize="large" 
+                bsStyle="info" 
+                disabled>Submit</Button>
             )
             break;
 
@@ -92,21 +96,41 @@ class Checkout extends Component {
                 <Hoc>
                     <div>
                         <ControlLabel> Amount Tendered </ControlLabel>
-                        <FormControl type="text" value={this.state.amountTendered} placeholder="Credit Tendered" onChange={this.handleAmountChange} />
+                        <FormControl 
+                        type="text" 
+                        value={this.state.amountTendered} 
+                        placeholder="Credit Tendered" 
+                        onChange={this.handleAmountChange} />
                     </div>
                     <div>
                         <ControlLabel>Card Number</ControlLabel>
-                        <FormControl type="text" value={this.state.card.cardNumber} placeholder="Card Number" onChange={this.handleCreditChange} />
+                        <FormControl 
+                        type="text" 
+                        value={this.state.card.cardNumber} 
+                        placeholder="Card Number" 
+                        onChange={this.handleCreditChange} />
                     </div>
                     <div>
                         <ControlLabel>Card Expiration</ControlLabel>
-                        <FormControl type="text" bsSize="small" value={this.state.card.cardExp} placeholder="Card Expiration" onChange={this.handleExpChange} />
+                        <FormControl 
+                        type="text" 
+                        bsSize="small" 
+                        value={this.state.card.cardExp} 
+                        placeholder="Card Expiration" 
+                        onChange={this.handleExpChange} />
                     </div>
                     <div>
                         <ControlLabel>Card CVC</ControlLabel>
-                        <FormControl type="text" bsSize="small" value={this.state.card.cvc} placeholder="CVC" onChange={this.handleCvcChange} />
+                        <FormControl 
+                        type="text" 
+                        bsSize="small" 
+                        value={this.state.card.cvc} 
+                        placeholder="CVC" 
+                        onChange={this.handleCvcChange} />
                     </div>
-                    <Button bsSize="large" bsStyle="info" onClick={this.submitPayment}>Submit</Button>
+                    <Button bsSize="large" 
+                    bsStyle="info" 
+                    onClick={this.submitPayment}>Submit</Button>
                 </Hoc>
             )
         }
@@ -119,12 +143,32 @@ class Checkout extends Component {
                         </ListGroup>
                         <form>
                             <FormGroup>
-                                <DropdownButton id="checkoutDropDown" title={this.state.paymentMethod}>
-                                    <MenuItem value="VISA" onSelect={() => this.payment("VISA")}>VISA</MenuItem>
-                                    <MenuItem value="MasterCard" onSelect={() => this.payment("MasterCard")}>MasterCard</MenuItem>
-                                    <MenuItem value="AMEX" onSelect={() => this.payment("AMEX")}>AMEX</MenuItem>
-                                    <MenuItem value="Diners Club" onSelect={() => this.payment("Diners Club")}>Diners Club</MenuItem>
-                                    <MenuItem value="Cash" onSelect={() => this.payment("Cash")}>Cash</MenuItem>
+                                <DropdownButton 
+                                id="checkoutDropDown" 
+                                title={this.state.paymentMethod}>
+                                    <MenuItem 
+                                    value="VISA" 
+                                    onSelect={() => this.payment("VISA")}>VISA
+                                    </MenuItem>
+
+                                    <MenuItem 
+                                    value="MasterCard" 
+                                    onSelect={() => this.payment("MasterCard")}>MasterCard
+                                    </MenuItem>
+
+                                    <MenuItem 
+                                    value="AMEX" 
+                                    onSelect={() => this.payment("AMEX")}>AMEX
+                                    </MenuItem>
+
+                                    <MenuItem 
+                                    value="Diners Club" 
+                                    onSelect={() => this.payment("Diners Club")}>Diners Club
+                                    </MenuItem>
+                                    <MenuItem 
+                                    value="Cash" 
+                                    onSelect={() => this.payment("Cash")}>Cash
+                                    </MenuItem>
                                 </DropdownButton>
 
                                 {paymentMethodRender}
