@@ -54,9 +54,23 @@ The main purpose of this repository is to continue to test React core, making it
 * Guest tableside ordering system
 
 # Application Instances
-![](./imagesMD/1.png)
-![](./imagesMD/2.png)
-![](./imagesMD/3.png)
-![](./imagesMD/4.png)
-![](./imagesMD/5.png)
-![](./imagesMD/6.png)
+*Main Page*
+![main page display](./imagesMD/1.png)
+
+*Modal for seating new Guests*
+![modal for seating new guests](./imagesMD/2.png)
+
+*Active/Seated Table*
+![image showing active table](./imagesMD/3.png)
+
+*Making Orders*
+![ordering for guests](./imagesMD/4.png)
+
+*Order Submission Confirmation*
+![order submission confirmation](./imagesMD/5.png)
+
+*Current Servers*
+![current servers](./imagesMD/6.png)
+
+*Checking Out Guests*
+![checking out guest](./imagesMD/7.png)
