@@ -2,7 +2,7 @@
 # Restaurant-PoS <hr>
 By [Richard Debrah](https://github.com/GM456742), [Richard Bates](https://github.com/Richwb) and [Jim Reinknecht](https://github.com/CaptainJimmy)
 
-Restaurant PoS is a simple node application for managing restaurant seating. It's features include handling orders for multiple guests and receipt printing. Restaurant PoS is lightweight making it easy to run on very low memory systems.
+Restaurant PoS is a simple React application for managing restaurant seating. It's features include handling orders for multiple guests and receipt printing. Restaurant PoS is lightweight making it easy to run on very low memory systems.
 
 # Dependencies
 Restaurant PoS depends on several NPM Packages. Find below the various packages and their versions used. 
@@ -48,12 +48,16 @@ Installation Instructions:
 7) In the app folder run `$ npm start` or `$ yarn start` to run the app. Happy Hacking!
 7) You can configure `config/config.json` if you are able to. For experienced developers update it for your SQL DB.
 
-# Contributing
+# Contribution
 The main purpose of this repository is to continue to test React core, making it accessible and easier to understand and use. Development of this application happens in the open on GitHub, and we are grateful to the [Rutgers Coding Bootcamp Community](https://github.com/RutgersCodingBootcamp) for contributing efforts and improvements.
 
 # Future Updates
 * Managing Servers/Waiters/Waitresses from the front end
-* Receipt by text
+* Receipt by sms
+* Coupons and Gift cards integration
+* Administrative section to manage service, menu, and employees
+* SMS integration for waiting
+* Guest tableside ordering system
 
 # Application Instances
 ![](./imagesMD/1.png)
