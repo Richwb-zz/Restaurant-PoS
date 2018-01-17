@@ -344,6 +344,19 @@ class App extends Component {
     this.setState({ [this.state.tables[this.state.activeTableIndex].server]: server });
   }
 
+  addServer = (server) => {
+    console.log("addServer in app.js",server)
+    API.addServer(server)
+    .then(results => {
+      console.log(results)
+      if (results.status === 200) {
+        console.log("good return")
+        this.getServers();
+      }
+    }
+    ).catch(error => console.log(error))
+  }
+
   seatGuestsFromModalHandler = (server, guests) => {
     //click handler from the modal, seats new guests, updates state, creates a new receipt and then updates state with the new receipt
     console.log(`seatGuests called, ${server} with ${guests}`)
@@ -433,7 +446,7 @@ class App extends Component {
           break;
         case ("Servers"):
           activeContent = (
-            <Servers servers={this.state.servers}/>
+            <Servers servers={this.state.servers} addServer={this.addServer}/>
           )
           break;
         default:

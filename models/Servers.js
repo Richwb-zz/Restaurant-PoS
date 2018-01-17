@@ -6,8 +6,8 @@ if (mongoose.connection.readyState === 0) {
 
 
 var newSchema = new Schema({
-  'name': { type: String },
-  'code': { type: Number},
+  'name': { type: String, require: true },
+  'code': { type: Number, require: true },
   'createdAt': { type: Date, default: Date.now },
   'updatedAt': { type: Date, default: Date.now }
 });
