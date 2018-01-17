@@ -5,11 +5,9 @@ const newSeating = props => {
     let disableButton = true;
     //if the values are both not the defaults, enable the button
     if (props.chosenServer !== "Select Server" && props.guestNumber !== "Select Number") {
-        console.log("allowed button?");
         disableButton = false;
     }
     else {
-        console.log("disabled button");
         disableButton = true;
     }
 

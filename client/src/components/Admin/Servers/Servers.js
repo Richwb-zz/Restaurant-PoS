@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Well, Panel, FormControl, Row, FormGroup, ControlLabel, Col, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { withAlert } from 'react-alert';
 
+// makes it easy to reset the state of the page / clear the forms
 const initialState = {
                     newServer: {
                         name: "",   
@@ -9,23 +11,37 @@ const initialState = {
                 }
 class Servers extends Component {
     state = initialState;
-
+    //updates states immediately on change
     newServerNameChangeHandler = event => {
         let server = { ...this.state.newServer }
         server.name = event.target.value
         this.setState({ newServer: server })
     }
+    //updates states immediately on change
     newServerCodeChangeHandler = event => {
         let server = { ...this.state.newServer }
         server.code = event.target.value
         this.setState({ newServer: server })
     }
+      //Submits a new server
     newServerSubmitHandler = () => {
-        console.log("submitted new Server")
-        console.log("newServer", this.state.newServer.name, this.state.newServer.code)
-        this.props.addServer(this.state.newServer)
-        this.setState(initialState)
+        //validation
+        if (this.state.newServer.name !== "" && typeof this.state.newServer.name === "string" && typeof this.state.newServer.code === "number" ){
+            this.props.addServer(this.state.newServer);
+
+           this.resetToInitialState()
+
+            
+        } else {
+            this.props.alert.show("Validation failed",{type: "warning"})
+        }
     }
+    resetToInitialState = () => {
+        this.setState(initialState, function () {
+            this.props.alert.show('Server Added', { type: "success" })
+        })
+    }
+    
     render() {
 
         return (
@@ -66,4 +82,4 @@ class Servers extends Component {
 
 
 }
-export default Servers;
+export default withAlert(Servers);
