@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Button, Well, ListGroup, ListGroupItem, DropdownButton, MenuItem, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
 import Hoc from '../../../Hoc/Hoc';
 
+//initial state 
 const initialState = {
     paymentMethod: "Payment Method",
     amountTendered: "",
@@ -18,15 +19,10 @@ class Checkout extends Component {
     
 
     resetToInitialState = () => {
-        this.setState(initialState, function(){
-            console.log("state reset")
-        })
+        this.setState(initialState)
     }
     payment = method => {
-        console.log("payment method ",method);
-        this.setState({paymentMethod: method},function(){
-            console.log(`state updated: ${this.state.paymentMethod}`)
-        })
+        this.setState({paymentMethod: method})
     }
     handleAmountChange=(event) => {
         //could use some validation if time allows
@@ -52,13 +48,11 @@ class Checkout extends Component {
     }
 
     submitPayment=()=>{
-        console.log("submit PAyment")
         let paymentObject = {}
         paymentObject.amount = this.state.amountTendered;
         paymentObject.paymentType = this.state.paymentMethod;
         paymentObject.card = this.state.card;
         paymentObject.bill = this.props.table.bill; 
-        console.log("Payment Submitted: ",paymentObject)
         //send the object "down the chain"
         this.props.submitPayment(paymentObject)
         //reset the state
