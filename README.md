@@ -10,17 +10,11 @@ Install with `$ npm install`.
 
 * [React](https://reactjs.org/) &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)
  
-* [Body-Parser](https://www.npmjs.com/package/body-parser) &middot; ![Github license](https://img.shields.io/badge/npm-1.18.2-blue.svg)
- 
 * [Concurrently](https://www.npmjs.com/package/concurrently) &middot; ![npm license](https://img.shields.io/badge/npm-3.5.1-red.svg)
- 
-* [Cookie-Parser](https://www.npmjs.com/package/cookie-parser) &middot; ![GitHub license](https://img.shields.io/badge/npm-1.4.3-orange.svg)
  
 * [MongoDB](https://www.npmjs.com/package/mongodb) &middot; ![GitHub license](https://img.shields.io/badge/mongodb-3.0.1-green.svg)
  
 * [Cors](https://www.npmjs.com/package/cors) &middot; ![GitHub license](https://img.shields.io/badge/npm-2.8.4-blue.svg)
- 
-* [Debug](https://www.npmjs.com/package/debug) &middot; ![GitHub license](https://img.shields.io/badge/npm-2.6.9-blue.svg)
  
 * [Express](https://www.npmjs.com/package/express) &middot; ![GitHub license](https://img.shields.io/badge/npm-4.15.5-red.svg)
  
