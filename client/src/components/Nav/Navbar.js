@@ -21,7 +21,7 @@ const navbar = (props) => {
                     (
                         <HOC>
                             <NavItem eventKey="LoggedInServer" title="LoggedInServer" disabled>{props.loggedInUser} </NavItem>
-                            <Button eventKey="LogOutUser" title="LogOutUser" 
+                            <Button title="LogOutUser" 
                             bsSize="large" bsStyle="danger" onClick={props.logOut}>Logout</Button>
                         </HOC>
                     ) 
