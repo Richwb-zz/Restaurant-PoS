@@ -69,5 +69,24 @@ export default {
                     return error;
                 })
         )
+    },
+    addServer: (server) => {
+        console.log("adding server ",server)
+        if (server) {
+        let newServer={};
+        newServer.name = server.name
+        newServer.code = server.code
+
+            return (
+                axios.post('http://localhost:4444/servers/add', newServer)
+                    .then(response => {
+                        return response;
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        return error;
+                    })
+            )
+        }
     }
 }

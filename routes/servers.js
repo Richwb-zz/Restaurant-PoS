@@ -12,9 +12,17 @@ router.get('/', (req, res, next) => {
         .catch(error => res.json(error));
 });
 
-router.post('/', (req, res, next) => {
-    // ADD SERVER INFO HERE
-    res.send('Request received, Server Not added, code not there')
+router.post('/add', (req, res, next) => {
+    if (req.body) {
+    servers.create({'name': req.body.name, 'code': req.body.code}).then(results => {
+        console.log(results);
+        res.json(results);
+    })
+    .catch(error => {
+        console.log(error);
+        res.json(error);
+    })
+    }
 });
 
 router.get('/login/:code', (req,res,next) => {
