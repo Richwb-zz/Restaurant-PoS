@@ -21,11 +21,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static("client/build"));
 app.use(cors());
 
 app.use('/', index);
-//app.use('/coupon', coupon);
 app.use('/menu', menu);
 app.use('/order', order);
 app.use('/check', check);
