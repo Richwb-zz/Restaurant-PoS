@@ -61,11 +61,11 @@ export default {
         return(
             axios.get(`http://localhost:4444/servers/login/${code}`)
                 .then(response => {
-                    console.log(response);
-                    setUser(response.data.name);
-                    return response;
+                    setUser(response.data);
+                    return response.data;
                 })
                 .catch(error => {
+                    console.log(error);
                     return error;
                 })
         )

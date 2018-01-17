@@ -1,5 +1,6 @@
-import React from 'react'
-import { Nav, NavItem } from 'react-bootstrap'
+import React from 'react';
+import { Nav, NavItem, Button} from 'react-bootstrap';
+import HOC from "../Hoc/Hoc";
 
 const navbar = (props) => {
 
@@ -14,7 +15,17 @@ const navbar = (props) => {
             <NavItem eventKey="Servers" title="Servers"> 
                 Servers
 			</NavItem>
-                {props.activeTable ? (<NavItem disabled eventKey="ActiveStuff">  Active Table: {props.activeTable} </NavItem>) : null}   
+            {props.activeTable ? (<NavItem disabled eventKey="ActiveStuff">  Active Table: {props.activeTable} </NavItem>) : null}   
+            {
+                props.loggedInUser ? 
+                    (
+                        <HOC>
+                            <NavItem eventKey="LoggedInServer" title="LoggedInServer" disabled>{props.loggedInUser} </NavItem>
+                            <Button eventKey="LogOutUser" title="LogOutUser" onClick={props.logOut}>Logout</Button>
+                        </HOC>
+                    ) 
+                    : null}
+
         </Nav>
     );
 

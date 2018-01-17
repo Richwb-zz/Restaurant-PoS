@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Grid, Row, Col, Button, Modal, ButtonGroup} from 'react-bootstrap';
+import { Grid, Row, Col, Button} from 'react-bootstrap';
 import API from '../../utils/API'
 
 class Login extends Component {
@@ -15,6 +15,10 @@ class Login extends Component {
     }
 
     userCheck = () => {
+        this.setState({
+            code: ""
+        });
+
         API.login(this.state.code, this.props.setUser)
     }
     
