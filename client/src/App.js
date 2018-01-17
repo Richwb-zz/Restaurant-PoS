@@ -12,11 +12,11 @@ import OrderModal from './components/Modals/Order';
 import Login from './components/Login/Login';
 import { withAlert } from 'react-alert';
 
-
-
 class App extends Component {
-
   state = {
+    // Holds all information regarding the tables. 
+    // Pending Order contains name and quantity
+    // Items contains name, quantity, and cost
     tables: [
       {
         name: "Table 1",
@@ -163,16 +163,27 @@ class App extends Component {
         }
       }
     ],
+    // List of servers
     servers: [],
+    // Holds all menu information found in DB: id, name, description, cost
     menu: {},
+    // Currently logged in User
     user: null,
+    // the page that is currently active
     activePage: "Tables",
+    // Table that has been selected
     activeTable: null,
+    // Index position of table that has been selected
     activeTableIndex: null,
+    // Is modal active
     modalActive: false,
+    // is orderodal active
     orderModal: false,
+    // Response from DB upon submitted the order from order component
     orderResponse: null,
+    // Is message modal active
     messageModalActive: false,
+    // Content of message modal
     messageModal: ""
   }
 
@@ -287,72 +298,86 @@ class App extends Component {
     })
   }
 
+  // Callback function for DB query to verify login code
   setUser = (name) => {
     console.log(this.state.menu);
+    // Checks if return is a string or object
     if(typeof name === "string"){
-        this.setState({
+      //Sets the user name that does callback to display login 
+      this.setState({
         user: name
       },function() {this.props.alert.show('Successfully Logged In!',{ type: "success" })})
     }
   }
-
+  // When user clicks logout button set user to null
   unsetUser = () => {
     this.setState({
       user: null
     }, function () { this.props.alert.show('Successfully Logged Out!')})
   }
 
+  // Called from Order.js component, updates pending order list for active table
   updatePendingOrder = pendingOrder => {
     this.setState({
       [this.state.tables[this.state.activeTableIndex].pendingOrder]: pendingOrder
     });
   }
 
+  // Saves pendering orders into ordered list
   savePendingOrder = newOrderList => {
+    // variables for asthetic purposes, shorten code length
     const activeTable = this.state.activeTableIndex;
     const pendingOrders = this.state.tables[activeTable].pendingOrder;
-    let currentOrderList = this.state.tables[activeTable].bill.items;
+    var currentOrderList = this.state.tables[activeTable].bill.items;
     let table = this.state.tables[activeTable];
     let newBillTotal = this.state.tables[activeTable].bill.total
 
+    // Loop through list of pending orders
     pendingOrders.map(newItem => {
+      // Gets index position of newItem from table
       const currentItemIndex = currentOrderList.findIndex(index => index.name === newItem.name);
-      const currentItem = currentOrderList[currentItemIndex];
+      console.log("cc: " + currentItemIndex);
+      // Gets index position of item from menu
       const menuItemIndex = this.state.menu.findIndex(index => index.name === newItem.name);
+      // variables for asthetic purposes, shorten code length
       const menuItem = this.state.menu[menuItemIndex];
      
+      //If item is found in the list add the ordered quantity to the pending quantity and calculate the new cost of the quantity
+      // If not found calculate the total cost and push all items into the array
       if(currentItemIndex !== -1){ 
-        currentItem.quantity = parseInt( currentItem.quantity) + parseInt(newItem.quantity); 
-        currentItem.charge = (parseInt( currentItem.quantity) * parseInt(menuItem.cost)) + parseInt( currentItem.charge);
+        currentOrderList[currentItemIndex].quantity = parseInt( currentOrderList[currentItemIndex].quantity) + parseInt(newItem.quantity); 
+        currentOrderList[currentItemIndex].charge = parseInt(currentOrderList[currentItemIndex].quantity) * parseInt(menuItem.cost);
+        newBillTotal = parseInt(newBillTotal) + parseInt(currentOrderList[currentItemIndex].charge);
       }else{
-        newItem.charge = newItem.quantity * menuItem.cost;
+        newItem.charge = parseInt(newItem.quantity) * parseInt(menuItem.cost);
         currentOrderList.push(newItem);
+        newBillTotal = parseInt(newBillTotal) + parseInt(newItem.charge);
        }
-      
-      this.state.menu.map((menuItem) => {
-        menuItem.name === newItem.name ? newBillTotal += parseInt(newItem.quantity) * menuItem.cost : "";
-      });
-    
-      table.bill.items = currentOrderList;
-      table.pendingOrder = [];
-      table.bill.total = newBillTotal;
-
-      this.setState({
-        [this.state.tables[activeTable]]: table,
-      },
-        this.orderToDb
-      );
     });
+
+    // Store updated info into table object
+    table.bill.items = currentOrderList;
+    table.bill.total = newBillTotal;
+    table.pendingOrder = [];
+    
+    // Set State using table object and use callback once state is updated
+    this.setState({
+      [this.state.tables[activeTable]]: table,
+    },
+      this.orderToDb
+    );
   }
 
+  // Call placeOrder API route to update database and wait for response
   orderToDb = () => {
     API.placeOrder(this.state.tables[this.state.activeTableIndex], this.dbresponse);
   }
 
+  // Process route response from updating order and set message to be forwarded to Order component
   dbresponse = (response)=> {
     let orderMessage;
     
-    response.status === 200 ? orderMessage = "Order Submitted" : orderMessage = "Any error occured, order was saved and will be saved on next transaction";
+    response.status === 200 ? orderMessage = "Order Submitted" : orderMessage = "An error occured, order was saved and will be saved on next transaction";
 
     this.setState({
       orderResponse: orderMessage,
@@ -360,6 +385,7 @@ class App extends Component {
     });
   }
 
+  // Close Response modal
   orderClose = () => {
     this.setState({
       orderModal: false
@@ -477,6 +503,7 @@ class App extends Component {
           )
           break;
         case ("Orders"):
+          // Sets Order Page as rendered page and passes props to Order Component
           activeContent = (
             <Order menu={this.state.menu} activeTable={this.state.activeTable} table={this.state.tables[this.state.activeTableIndex]} orderSubmit={this.savePendingOrder} updatePendingOrder={this.updatePendingOrder} orderModal={this.state.orderModal}/>
           )
@@ -502,7 +529,7 @@ class App extends Component {
             {activeContent}
           </Row>
           {/* modal conditional rendering is below */}
-
+          {/* Displays Order modal if state is true */}
           {this.state.orderModal ? <OrderModal orderMessage={this.state.orderResponse} orderClose={this.orderClose} />: (null)}
           {this.state.modalActive ? (<Modal tables={this.state.tables} activeTable={this.state.activeTable} activeTableIndex={this.state.activeTableIndex} servers={this.state.servers} close={this.modalClose} order={this.modalOrder} receipt={this.printReceipt} submitPayment={this.submitPayment} setServer={this.setServer} seatGuests={this.seatGuestsFromModalHandler} />) : (null)}
         </Grid>
