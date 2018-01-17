@@ -12,7 +12,7 @@ const occupied = props => {
             console.log("switch receipt")
             //things
             occupiedRenderPage=  (
-                <Print />
+                <Print table={props.table} />
             )
         break;
 
