@@ -286,8 +286,16 @@ class App extends Component {
   }
 
   setUser = (name) => {
+    if(typeof name === "string"){
+        this.setState({
+        user: name
+      })
+    }
+  }
+
+  unsetUser = () => {
     this.setState({
-      user: name
+      user: null
     })
   }
 
@@ -444,7 +452,7 @@ class App extends Component {
     return (
       <Hoc>
         <Grid fluid>
-          <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} />
+          <Navbar activePage={this.state.activePage} handleSelect={this.activePageHandler} activeTable={this.state.activeTable} loggedInUser={this.state.user} logOut={this.unsetUser}/>
         </Grid>
         <Grid>
           <Row>
