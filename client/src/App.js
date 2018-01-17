@@ -321,14 +321,14 @@ class App extends Component {
      
       if(currentItemIndex !== -1){ 
         currentItem.quantity = parseInt( currentItem.quantity) + parseInt(newItem.quantity); 
-        currentItem.charge = (parseInt( currentItem.quantity) * parseInt(menuItem.price)) + parseInt( currentItem.charge);
+        currentItem.charge = (parseInt( currentItem.quantity) * parseInt(menuItem.cost)) + parseInt( currentItem.charge);
       }else{
-        newItem.charge = newItem.quantity * menuItem.price;
+        newItem.charge = newItem.quantity * menuItem.cost;
         currentOrderList.push(newItem);
        }
       
       this.state.menu.map((menuItem) => {
-        menuItem.name === newItem.name ? newBillTotal += parseInt(newItem.quantity) * menuItem.price : "";
+        menuItem.name === newItem.name ? newBillTotal += parseInt(newItem.quantity) * menuItem.cost : "";
       });
     
       table.bill.items = currentOrderList;
