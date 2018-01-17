@@ -25,7 +25,6 @@ app.use(express.static("client/build"));
 app.use(cors());
 
 app.use('/', index);
-//app.use('/coupon', coupon);
 app.use('/menu', menu);
 app.use('/order', order);
 app.use('/check', check);
