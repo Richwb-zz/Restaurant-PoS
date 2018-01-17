@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Well, Panel, Grid, Form, FormControl, FormGroup, ControlLabel, Row, Col, Table } from 'react-bootstrap'
+import { Button, Well, Panel, Grid, FormControl, Row, Col, Table } from 'react-bootstrap'
 import { withAlert } from 'react-alert';
 
 // makes it easy to reset the state of the page / clear the forms
