@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Button, Modal, DropdownButton, MenuItem } from 'react-bootstrap';
 
 const newSeating = props => {
     let disableButton = true;
