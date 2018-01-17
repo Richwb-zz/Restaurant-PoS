@@ -20,8 +20,7 @@ router.post('/', (req, res, next) => {
 router.get('/login/:code', (req,res,next) => {
     servers.findOne({}).where("code").equals(req.params.code)
         .then(result => {
-            console.log("rep " + result.name)
-                res.json(result)
+                res.json(result.name)
         })
         .catch(error =>{
             res.json(error);
