@@ -7,7 +7,7 @@ const admin = props => (
         <Grid>
             <Row>
                 <Jumbotron>
-                    <h1> Servers </h1>
+                    <h1> Admin Console </h1>
                 </Jumbotron>
                 <Servers servers={props.servers} addServer={props.addServer}/>
                 <Menu menu={props.menu} addMenu={props.addMenu}/>

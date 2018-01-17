@@ -17,7 +17,6 @@
     "mongoose": "^4.13.7",
     "morgan": "~1.9.0",
     "nodemon": "^1.14.0",
-    "react-bootstrap": "^0.32.0",
     "serve-favicon": "~2.4.5"
   }
 }

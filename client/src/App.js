@@ -10,6 +10,8 @@ import Modal from './components/Modals/Modal';
 import Hoc from './components/Hoc/Hoc';
 import OrderModal from './components/Modals/Order';
 import Login from './components/Login/Login';
+import { withAlert } from 'react-alert';
+
 
 class App extends Component {
 
@@ -290,14 +292,14 @@ class App extends Component {
     if(typeof name === "string"){
         this.setState({
         user: name
-      })
+      },function() {this.props.alert.show('Successfully Logged In!',{ type: "success",})})
     }
   }
 
   unsetUser = () => {
     this.setState({
       user: null
-    })
+    }, function () { this.props.alert.show('Successfully Logged Out!')})
   }
 
   updatePendingOrder = pendingOrder => {
@@ -509,4 +511,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withAlert(App);
