@@ -1,6 +1,10 @@
+// Reciept Modal to display the tables orders broke down by item, quantity and cost followed by sub-total, tax and total
+
+// Uses react-bootstrap for CSS styling
 import React from 'react'
 import { Button,Row,Col } from 'react-bootstrap';
 
+// Loops through the reciept items to display them individually and put them in Row Col form 
 const createReciept = (items) => {
     console.log(items);
     return(
@@ -16,6 +20,7 @@ const createReciept = (items) => {
     )
 }
 
+// Renders headers and costs.
 const print = props => {
     return (
         <div>

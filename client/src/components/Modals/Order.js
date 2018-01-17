@@ -1,3 +1,6 @@
+// Modal that displays ordering confirmation or error
+//information comes from app.js where it passes the message to display.
+
 import React from 'react'
 import { Button, Modal} from 'react-bootstrap';
 

@@ -1,3 +1,5 @@
+// MongoDB model that handles the menu items
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 if (mongoose.connection.readyState === 0) {

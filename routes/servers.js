@@ -6,7 +6,6 @@ const servers = models.Servers;
 
 //print check and close out order
 router.get('/', (req, res, next) => {
-    console.log("servers")
     servers.find({})
         .then(result => res.json(result))
         .catch(error => res.json(error));
@@ -15,16 +14,15 @@ router.get('/', (req, res, next) => {
 router.post('/add', (req, res, next) => {
     if (req.body) {
     servers.create({'name': req.body.name, 'code': req.body.code}).then(results => {
-        console.log(results);
         res.json(results);
     })
     .catch(error => {
-        console.log(error);
         res.json(error);
     })
     }
 });
 
+// Checks if login code is valid and returns name of server
 router.get('/login/:code', (req,res,next) => {
     servers.findOne({}).where("code").equals(req.params.code)
         .then(result => {
