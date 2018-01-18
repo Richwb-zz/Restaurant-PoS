@@ -16,11 +16,9 @@ export default {
         //seats new guests
         return axios.post("http://localhost:4444/check/seat",seating)
             .then(response =>{
-                console.log(response);
                 return response
             }).catch(error => {
                 if (error) {
-                    console.log(error);
                     return error;
                 }
             })
@@ -62,7 +60,6 @@ export default {
                     return response.data;
                 })
                 .catch(error => {
-                    console.log(error);
                     return error;
                 })
         )
@@ -89,7 +86,7 @@ export default {
             let newItem = {};
             newItem.name = item.name
             newItem.description = item.description;
-            newItem.cost = parseInt(item.cost);
+            newItem.cost = parseInt(item.cost,10);
             newItem.category = item.category;
             return (
                 axios.post('http://localhost:4444/menu/add', newItem)
