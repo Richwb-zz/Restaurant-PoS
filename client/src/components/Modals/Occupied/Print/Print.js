@@ -5,12 +5,11 @@ import React from 'react'
 import { Row,Col } from 'react-bootstrap';
 
 // Loops through the reciept items to display them individually and put them in Row Col form 
-const createReciept = (items) => {
-    console.log(items);
+const createReceipt = (items) => {
     return(
         items.map(item => {
             return(
-                <Row>
+                <Row key={item._id}>
 
                     <Col 
                     md={3}>{item.name}
@@ -46,7 +45,7 @@ const print = props => {
                 md={3}><h3>Cost</h3>
                 </Col>  
             </Row>
-                {createReciept(props.table.bill.items)}
+                {createReceipt(props.table.bill.items)}
             <Row>
                 <Col 
                 mdOffset={4} 
@@ -69,7 +68,6 @@ const print = props => {
 
 
         </div>
-        // <Button> thug lyfe </Button>
     )
 }
 

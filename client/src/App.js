@@ -432,9 +432,7 @@ class App extends Component {
   }
   modalOrder = () => {
     // from inside the modal, this function lets the modal open an order page, it closes the modal too
-    this.setState({ activePage: "Orders", modalActive: false }, function () {
-      console.log(`state updated ${this.state.activePage} and ${this.state.modalActive}`)
-    })
+    this.setState({ activePage: "Orders", modalActive: false })
   }
 
   submitPayment = (payment) => {
