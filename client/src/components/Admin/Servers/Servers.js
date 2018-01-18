@@ -26,17 +26,17 @@ class Servers extends Component {
       //Submits a new server
     newServerSubmitHandler = () => {
         //validation
-        if (this.state.newServer.name !== ""
-         && typeof this.state.newServer.name === "string" 
-         && typeof this.state.newServer.code === "number" ){
+        // if (this.state.newServer.name !== ""
+        //  && typeof this.state.newServer.name === "string" 
+        //  && typeof this.state.newServer.code === "number" ){
             this.props.addServer(this.state.newServer);
 
            this.resetToInitialState()
 
             
-        } else {
-            this.props.alert.show("Validation failed",{type: "warning"})
-        }
+        // } else {
+        //     this.props.alert.show("Validation failed",{type: "warning"})
+        // }
     }
     resetToInitialState = () => {
         this.setState(initialState, function () {

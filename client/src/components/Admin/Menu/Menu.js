@@ -48,7 +48,7 @@ class Menu extends Component {
                                         <tr>
                                             <th> Name </th>
                                             <th> Description </th>
-                                            import {withAlert} from 'react-alert';           <th> Cost </th>
+                                            <th> Cost </th>
                                             <th> Category </th>
                                         </tr>
                                     </thead>
