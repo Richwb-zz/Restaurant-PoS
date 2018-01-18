@@ -4,17 +4,17 @@ import axios from 'axios'
 export default {
     // for initialization / reinit of state
     getMenu: () => {
-        return axios.get("http://localhost:4444/menu")
+        return axios.get("/menu")
     },
     getServers: ()=>{
-        return axios.get("http://localhost:4444/servers")
+        return axios.get("/servers")
     },
     getTables: ()=>{
-        return axios.get("http://localhost:4444/check/unpaid")
+        return axios.get("/check/unpaid")
     },
     seatGuests: (seating)=>{
         //seats new guests
-        return axios.post("http://localhost:4444/check/seat",seating)
+        return axios.post("/check/seat",seating)
             .then(response =>{
                 return response
             }).catch(error => {
@@ -25,7 +25,7 @@ export default {
     },
     // place new order
     placeOrder: (order, dbresponse)=>{
-        return axios.put("http://localhost:4444/order/"+ order.bill.id, order)
+        return axios.put("/order/"+ order.bill.id, order)
             .then(response => {
                 dbresponse(response)
                 return response;
@@ -41,7 +41,7 @@ export default {
         newPayment.card = payment.card
         newPayment.amountTendered = payment.amount;
         newPayment.paymentType = payment.paymentType;
-        let URL = encodeURI("http://localhost:4444/check/"+payment.bill.id)
+        let URL = encodeURI("/check/"+payment.bill.id)
         return (
             axios.put(URL,newPayment)
                 .then(response => {
@@ -54,7 +54,7 @@ export default {
     },
     login:(code, setUser) => {
         return(
-            axios.get(`http://localhost:4444/servers/login/${code}`)
+            axios.get(`/servers/login/${code}`)
                 .then(response => {
                     setUser(response.data);
                     return response.data;
@@ -71,7 +71,7 @@ export default {
         newServer.code = server.code
 
             return (
-                axios.post('http://localhost:4444/servers/add', newServer)
+                axios.post('/servers/add', newServer)
                     .then(response => {
                         return response;
                     })
@@ -89,7 +89,7 @@ export default {
             newItem.cost = parseInt(item.cost,10);
             newItem.category = item.category;
             return (
-                axios.post('http://localhost:4444/menu/add', newItem)
+                axios.post('/menu/add', newItem)
                     .then(response => {
                         return response;
                     })
