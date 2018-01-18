@@ -9,14 +9,14 @@ const initialState = {
         name: "",
         description: "",
         cost: "",
-        category: ""
+        category: "appetizer"
     }
 }
 
 class Menu extends Component {
     state = initialState;
 
-    //updates states immediately on change
+    //updates states immediately on change for all onChange events
 
     changeHandler = (event, item) => {
         let menu = { ...this.state.newMenu }
@@ -35,6 +35,7 @@ class Menu extends Component {
             this.props.alert.show('New Menu Item Successfully Submitted.')
         })
     }
+
     render() {
 
         return (
@@ -90,10 +91,30 @@ class Menu extends Component {
 
                                             <td>
                                                 <FormControl
-                                                 type="text" 
-                                                 bsSize="small" 
-                                                 value={this.state.newMenu.category} 
-                                                 onChange={event => this.changeHandler(event, "category")} />
+                                                 componentClass="select"
+                                                 value={this.state.newMenu.category}
+                                                 onChange={event => this.changeHandler(event,"category")}>
+                                                    <option selected
+                                                        value="appetizer"
+                                                        > Appetizer 
+                                                    </option>
+                                                    <option
+                                                        value="entree"
+                                                        > Entree
+                                                    </option>
+                                                    <option
+                                                        value="drink"
+                                                        > Drink
+                                                    </option>
+                                                    <option
+                                                        value="dessert"
+                                                        > Dessert
+                                                    </option>
+                                                    <option
+                                                        value="special"
+                                                        > Special
+                                                    </option>
+                                                </FormControl>
                                             </td>
                                         </tr>
                                     </tbody>
