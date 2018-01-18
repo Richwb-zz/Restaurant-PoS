@@ -56,7 +56,7 @@ const print = props => {
                 {createReceipt(props.table.bill.items)}
             <Row>
                 <Col mdOffset={4}  md={5} style={align}>
-                    <h4>Sub-Total: ${props.table.bill.total.toFixed(2)}</h4>
+                    <h4>Sub-Total: ${parseFloat(props.table.bill.total).toFixed(2)}</h4>
                 </Col>
             </Row>
             <Row>
