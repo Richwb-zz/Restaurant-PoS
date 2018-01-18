@@ -29,6 +29,8 @@ Install with `$ npm install`.
 * [Serve-Favicon](https://www.npmjs.com/package/serve-favicon) &middot; ![GitHub license](https://img.shields.io/badge/npm-2.4.5-blue.svg)
  
 * [Axios](https://www.npmjs.com/package/axios) &middot; ![GitHub license](https://img.shields.io/badge/npm-0.17.1-blue.svg)
+
+* [React-Alert](https://www.npmjs.com/package/react-alert) &middot;![GitHub license](https://img.shields.io/npm/v/react-alert.svg?style=flat-square)
  
  
 Installation Instructions:
@@ -37,10 +39,9 @@ Installation Instructions:
 2) From your favorite terminal enter `$ cd Restaurant-PoS`
 3) Run `$ npm install` to install packages
 4) `$ cd client`
-5) Run `$ yarn install` to install React packages
+5) Run `$ npm install` to install React packages
 6) `$ cd ..` into the main app folder
-7) In the app folder run `$ npm start` or `$ yarn start` to run the app. Happy Hacking!
-7) You can configure `config/config.json` if you are able to. For experienced developers update it for your SQL DB.
+7) In the app folder run `$ npm start` to run the app. Happy Hacking!
 
 # Contribution
 The main purpose of this repository is to continue to test React core, making it accessible and easier to understand and use. Development of this application happens in the open on GitHub, and we are grateful to the [Rutgers Coding Bootcamp Community](https://github.com/RutgersCodingBootcamp) for contributing efforts and improvements.
