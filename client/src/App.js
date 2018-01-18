@@ -27,7 +27,7 @@ class App extends Component {
         bill: {
           id: null,
           items: [],
-          total: null
+          total: 0.00
         }
       },
       {
@@ -39,7 +39,7 @@ class App extends Component {
         bill: {
           id: null,
           items: [],
-          total: null
+          total: 0.00
         }
       },
       {
@@ -51,7 +51,7 @@ class App extends Component {
         bill: {
           id: null,
           items: [],
-          total: null
+          total: 0.00
         }
       },
       {
@@ -63,7 +63,7 @@ class App extends Component {
         bill: {
           id: null,
           items: [],
-          total: null
+          total: 0.00
         }
       },
       {
@@ -75,7 +75,7 @@ class App extends Component {
         bill: {
           id: null,
           items: [],
-          total: null
+          total: 0.00
         }
       },
       {
@@ -87,7 +87,7 @@ class App extends Component {
         bill: {
           id: null,
           items: [],
-          total: null
+          total: 0.00
         }
       },
       {
@@ -99,7 +99,7 @@ class App extends Component {
         bill: {
           id: null,
           items: [],
-          total: null
+          total: 0.00
         }
       },
       {
@@ -111,7 +111,7 @@ class App extends Component {
         bill: {
           id: null,
           items: [],
-          total: null
+          total: 0.00
         }
       },
       {
@@ -123,7 +123,7 @@ class App extends Component {
         bill: {
           id: null,
           items: [],
-          total: null
+          total: 0.00
         }
       },
       {
@@ -135,7 +135,7 @@ class App extends Component {
         bill: {
           id: null,
           items: [],
-          total: null
+          total: 0.00
         }
       },
       {
@@ -147,7 +147,7 @@ class App extends Component {
         bill: {
           id: null,
           items: [],
-          total: null
+          total: 0.00
         }
       },
       {
@@ -159,7 +159,7 @@ class App extends Component {
         bill: {
           id: null,
           items: [],
-          total: null
+          total: 0.00
         }
       }
     ],
@@ -352,9 +352,10 @@ class App extends Component {
         newItem.charge = parseInt(newItem.quantity) * parseInt(menuItem.cost);
         currentOrderList.push(newItem);
         newBillTotal = parseInt(newBillTotal) + parseInt(newItem.charge);
+        console.log("new1: " + newBillTotal);
        }
     });
-
+    console.log("new: " + newBillTotal);
     // Store updated info into table object
     table.bill.items = currentOrderList;
     table.bill.total = newBillTotal;
