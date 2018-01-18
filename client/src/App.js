@@ -275,7 +275,9 @@ class App extends Component {
     this.state.tables.map((table, index) => {
       if (table.name === item) {
         newTableIndex = index;
-        this.setState({ activeTable: item, activeTableIndex: newTableIndex })
+        this.setState({ activeTable: item, activeTableIndex: newTableIndex },function(){
+          this.modalOpen()
+        })
       }
     })
   }
