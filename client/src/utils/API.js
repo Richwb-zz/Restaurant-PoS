@@ -10,7 +10,7 @@ export default {
         return axios.get("/servers")
     },
     getTables: ()=>{
-        return axios.get("/unpaid")
+        return axios.get("/checks/unpaid")
     },
     seatGuests: (seating)=>{
         //seats new guests
