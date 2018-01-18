@@ -327,26 +327,28 @@ class App extends Component {
       //If item is found in the list add the ordered quantity to the pending quantity and calculate the new cost of the quantity
       // If not found calculate the total cost and push all items into the array
       if(currentItemIndex !== -1){ 
-        currentOrderList[currentItemIndex].quantity = parseInt( currentOrderList[currentItemIndex].quantity,10) + parseInt(newItem.quantity,10); 
-        currentOrderList[currentItemIndex].charge = parseInt(currentOrderList[currentItemIndex].quantity,10) * parseInt(menuItem.cost,10);
-        newBillTotal = parseInt(newBillTotal,10) + parseInt(currentOrderList[currentItemIndex].charge,10);
+        currentOrderList[currentItemIndex].quantity = parseInt(currentOrderList[currentItemIndex].quantity,10) + parseInt(newItem.quantity,10); 
+        currentOrderList[currentItemIndex].charge = (currentOrderList[currentItemIndex].quantity).toFixed(2) * (menuItem.cost).toFixed(2);
+        newBillTotal = parseInt(currentOrderList[currentItemIndex].charge,10);
       }else{
-        newItem.charge = parseInt(newItem.quantity,10) * parseInt(menuItem.cost,10);
+        newItem.charge = parseInt(newItem.quantity) * menuItem.cost.toFixed(2);
         currentOrderList.push(newItem);
-        newBillTotal = parseInt(newBillTotal,10) + parseInt(newItem.charge,10);
+        newBillTotal = parseInt(newBillTotal) + newItem.charge;
        }
     });
     // Store updated info into table object
     table.bill.items = currentOrderList;
-    table.bill.total = newBillTotal;
+    table.bill.total = (newBillTotal).toFixed(2);
     table.pendingOrder = [];
     
     // Set State using table object and use callback once state is updated
     this.setState({
       [this.state.tables[activeTable]]: table,
     },
-      this.orderToDb
+      this.orderToDb()
     );
+
+    console.log(this.state.tables[activeTable].bill.total);
   }
 
   // Call placeOrder API route to update database and wait for response
