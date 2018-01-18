@@ -42,7 +42,7 @@ router.put('/:id', (req, res, next) => {
         'items': req.body.bill.items,
         'total': req.body.bill.total,
         'paid': req.body.paid,
-        'total':req.body.total
+        'total': req.body.bill.total
     })
         .then(result => {
             res.json(result)
